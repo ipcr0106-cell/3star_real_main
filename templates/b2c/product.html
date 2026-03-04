@@ -30,7 +30,7 @@
 
   <div class="product-grid">
     {% for p in cat.products %}
-    <div class="product-card">
+    <div class="product-card" id="{{ p.id }}">
 
       {% if p.badge %}
       <span class="product-badge badge-{{ p.badge | lower }}">{{ p.badge }}</span>
@@ -64,5 +64,20 @@
   </div>
 </section>
 {% endfor %}
+
+<script>
+// URL hash로 특정 제품 카드로 스크롤 + 하이라이트
+document.addEventListener('DOMContentLoaded', function() {
+  var hash = window.location.hash.replace('#', '');
+  if (!hash) return;
+  var target = document.getElementById(hash);
+  if (target) {
+    setTimeout(function() {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.classList.add('highlight');
+    }, 300);
+  }
+});
+</script>
 
 {% endblock %}

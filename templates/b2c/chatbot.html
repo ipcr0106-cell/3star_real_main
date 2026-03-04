@@ -3,6 +3,16 @@
 
 {% block title %}Recipe Bot — Three Star ★{% endblock %}
 
+{% block extra_css %}
+<style>.chatbot-fab { display: none !important; }</style>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="/static/js/cart.js"></script>
+<script src="/static/js/main.js"></script>
+{% endblock %}
+
 {% block content %}
 
 <!-- ══════════════════════════════
@@ -152,7 +162,7 @@ function setLang(lang) {
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
 
-  var L = LANG[lang];
+  var L = CW_LANG[lang];
   // placeholder
   document.getElementById('userInput').placeholder = L.placeholder;
   // 전송 버튼
@@ -196,11 +206,11 @@ async function sendMessage() {
   const message = input.value.trim();
   if (!message) return;
 
-  appendMessage('user', message);
+  _cwAppendMsg('user', message);
   input.value = '';
-  conversationHistory.push({ role: 'user', content: message });
+  cwHistory.push({ role: 'user', content: message });
 
-  const loadingId = appendMessage('bot', LANG[currentLang].loading);
+  const loadingId = _cwAppendMsg('bot', CW_LANG[currentLang].loading);
 
   try {
     const res = await fetch('/api/chat', {
@@ -212,21 +222,21 @@ async function sendMessage() {
         mode: currentMode === 'guided' ? 'guided' : 'chat',
         category: selectedCategory,
         taste: selectedTaste,
-        conversation_history: conversationHistory.slice(-6)
+        conversation_history: cwHistory.slice(-6)
       })
     });
     const data = await res.json();
-    handleResponse(data, loadingId);
+    _cwHandleResponse(data, loadingId);
   } catch (e) {
-    document.getElementById(loadingId).textContent = LANG[currentLang].error;
+    document.getElementById(loadingId).textContent = CW_LANG[currentLang].error;
   }
 }
 
 // ── 가이드 추천 전송 ──
 async function sendGuided() {
   const label = `${selectedCategory} + ${selectedTaste} 맛`;
-  appendMessage('user', `📋 가이드 추천: ${label}`);
-  const loadingId = appendMessage('bot', LANG[currentLang].loading);
+  _cwAppendMsg('user', `📋 가이드 추천: ${label}`);
+  const loadingId = _cwAppendMsg('bot', CW_LANG[currentLang].loading);
 
   try {
     const res = await fetch('/api/chat', {
@@ -242,16 +252,16 @@ async function sendGuided() {
       })
     });
     const data = await res.json();
-    handleResponse(data, loadingId);
+    _cwHandleResponse(data, loadingId);
   } catch (e) {
-    document.getElementById(loadingId).textContent = LANG[currentLang].error;
+    document.getElementById(loadingId).textContent = CW_LANG[currentLang].error;
   }
 }
 
 // ── 랜덤 레시피 ──
 async function sendRandom() {
-  appendMessage('user', '🎲 랜덤 레시피 추천해 주세요!');
-  const loadingId = appendMessage('bot', LANG[currentLang].loading);
+  _cwAppendMsg('user', '🎲 랜덤 레시피 추천해 주세요!');
+  const loadingId = _cwAppendMsg('bot', CW_LANG[currentLang].loading);
 
   try {
     const res = await fetch('/api/chat', {
@@ -265,9 +275,9 @@ async function sendRandom() {
       })
     });
     const data = await res.json();
-    handleResponse(data, loadingId);
+    _cwHandleResponse(data, loadingId);
   } catch (e) {
-    document.getElementById(loadingId).textContent = LANG[currentLang].error;
+    document.getElementById(loadingId).textContent = CW_LANG[currentLang].error;
   }
 }
 </script>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Da-Mi Food | 다미푸드</title>
 <link rel="stylesheet" href="/static/css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Montserrat:wght@400;600;700;900&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="/static/images/brand/logo.png">
 <style>
   :root {
@@ -955,125 +955,6 @@
     .brand-desc { padding-left: 22px; padding-right: 22px; }
     .modal-btns { grid-template-columns: 1fr; }
   }
-
-  /* ══════════════════════════════════════
-     챗봇 플로팅 위젯 CSS
-  ══════════════════════════════════════ */
-  .chatbot-fab {
-    position: fixed; bottom: 28px; right: 28px; z-index: 1500;
-    width: 62px; height: 62px; border-radius: 50%;
-    background: #fff; border: 2px solid #e5e5e5;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.18);
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
-    transition: transform 0.2s, box-shadow 0.2s;
-    padding: 0;
-  }
-  .chatbot-fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(0,0,0,0.25); }
-  .fab-img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
-  .fab-close { font-size: 1.3rem; color: #555; font-weight: bold; line-height: 1; }
-
-  .chat-widget {
-    position: fixed; bottom: 102px; right: 28px; z-index: 1499;
-    width: 360px; max-height: 600px;
-    background: #fff; border-radius: 18px;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.18);
-    display: none; flex-direction: column; overflow: hidden;
-    opacity: 0; transform: translateY(12px) scale(0.97);
-    transition: opacity 0.25s ease, transform 0.25s ease;
-  }
-  .chat-widget.cw-visible { opacity: 1; transform: translateY(0) scale(1); }
-
-  /* 헤더 */
-  .cw-header {
-    background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
-    padding: 10px 16px 8px; color: #fff; flex-shrink: 0;
-  }
-  .cw-header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 0; }
-  .cw-yongdam-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.5rem; letter-spacing: 1.5px; color: #fff; line-height: 1; padding-top: 3px; }
-  .cw-header-controls { margin-top: 2px; }
-
-  /* 언어·모드 컨트롤 */
-  .cw-lang-row, .cw-mode-row { display: flex; gap: 5px; margin-bottom: 6px; justify-content: flex-end; }
-  .cw-lang-btn, .cw-mode-btn {
-    padding: 4px 10px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.5);
-    background: rgba(255,255,255,0.15); color: #fff; font-size: 0.72rem;
-    cursor: pointer; transition: all 0.2s; white-space: nowrap;
-  }
-  .cw-lang-btn:hover, .cw-mode-btn:hover { background: rgba(255,255,255,0.3); }
-  .cw-lang-btn.active, .cw-mode-btn.active { background: #fff; color: #c0392b; font-weight: 700; }
-
-  /* 가이드 패널 */
-  .cw-guided {
-    padding: 10px 14px; background: #fafafa;
-    border-bottom: 1px solid #eee; flex-shrink: 0; max-height: 180px; overflow-y: auto;
-  }
-  .cw-guided-label { font-size: 0.78rem; font-weight: 600; color: #555; margin-bottom: 6px; }
-  .cw-guided-buttons { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
-  .cw-cat-btn, .cw-taste-btn {
-    padding: 5px 12px; border: 1px solid #ddd; border-radius: 16px;
-    background: #fff; cursor: pointer; font-size: 0.78rem; transition: all 0.2s;
-  }
-  .cw-cat-btn:hover, .cw-taste-btn:hover { background: #fee2e2; border-color: #e74c3c; }
-  .cw-cat-btn.active, .cw-taste-btn.active { background: #e74c3c; color: #fff; border-color: #e74c3c; }
-
-  /* 환영 화면 */
-  .cw-welcome {
-    flex: 1; display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    padding: 20px 16px; text-align: center; overflow-y: auto;
-  }
-  .cw-yongdami-wrap { margin-bottom: 10px; }
-  .cw-yongdami { width: 110px; height: 110px; object-fit: contain; mix-blend-mode: multiply; }
-  .cw-hello { font-size: 1.05rem; font-weight: 700; color: #222; margin: 0 0 4px; }
-  .cw-help  { font-size: 0.82rem; color: #777; margin: 0 0 14px; }
-  .cw-quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; width: 100%; }
-  .cw-quick-btn {
-    padding: 8px 6px; border: 1px solid #e5e5e5; border-radius: 10px;
-    background: #fff; cursor: pointer; font-size: 0.78rem; color: #333;
-    text-align: center; transition: all 0.2s; line-height: 1.3;
-  }
-  .cw-quick-btn:hover { background: #fee2e2; border-color: #e74c3c; color: #c0392b; }
-
-  /* 메시지 영역 */
-  .cw-messages {
-    flex: 1; overflow-y: auto; padding: 12px 14px;
-    display: flex; flex-direction: column; gap: 10px;
-  }
-  .cw-msg { max-width: 88%; padding: 9px 13px; border-radius: 14px; font-size: 0.85rem; line-height: 1.55; word-break: break-word; }
-  .cw-msg-user { background: #e74c3c; color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
-  .cw-msg-bot  { background: #f3f3f3; color: #222; align-self: flex-start; border-bottom-left-radius: 4px; }
-  .cw-loading  { color: #999; font-style: italic; font-size: 0.82rem; }
-  .cw-recipe-img { width: 100%; border-radius: 8px; margin-top: 8px; object-fit: cover; max-height: 180px; }
-  .cw-reply-text { white-space: pre-wrap; }
-
-  /* 입력창 */
-  .cw-input-row {
-    display: flex; align-items: center; gap: 6px;
-    padding: 10px 12px; border-top: 1px solid #eee; flex-shrink: 0;
-  }
-  .cw-reset-btn {
-    width: 32px; height: 32px; border-radius: 50%; border: 1px solid #ddd;
-    background: #fff; cursor: pointer; font-size: 0.9rem; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center; transition: all 0.2s;
-  }
-  .cw-reset-btn:hover { background: #fee2e2; border-color: #e74c3c; }
-  .cw-input {
-    flex: 1; padding: 8px 12px; border: 1px solid #ddd; border-radius: 20px;
-    font-size: 0.85rem; outline: none; transition: border-color 0.2s;
-  }
-  .cw-input:focus { border-color: #e74c3c; }
-  .cw-send-btn {
-    width: 34px; height: 34px; border-radius: 50%; border: none;
-    background: #e74c3c; color: #fff; cursor: pointer; font-size: 1rem;
-    display: flex; align-items: center; justify-content: center;
-    transition: background 0.2s; flex-shrink: 0;
-  }
-  .cw-send-btn:hover { background: #c0392b; }
-
-  @media (max-width: 480px) {
-    .chat-widget { width: calc(100vw - 32px); right: 16px; bottom: 90px; }
-    .chatbot-fab { right: 16px; bottom: 16px; }
-  }
 </style>
 </head>
 <body>
@@ -1810,7 +1691,24 @@ const catFull = {
 const priceTbd = { ko:'가격 확정 예정', en:'Price TBD', vi:'Giá sẽ được công bố' };
 const cartBtnLabel = { ko:'🛒 장바구니 담기', en:'🛒 Add to Cart', vi:'🛒 Thêm vào giỏ' };
 let currentFilter = 'all', currentProduct = null, qty = 1, currentLang = 'ko';
-let cartData = JSON.parse(localStorage.getItem('dami_cart') || '[]');
+/* ── ID 매핑 (HOME numeric ↔ threestar_cart string) ── */
+const ID_MAP = {1:'coin_01',2:'coin_02',3:'coin_03',4:'coin_04',7:'season_01',8:'season_02',9:'season_03',10:'season_04',11:'sauce_01',12:'sauce_02',13:'sauce_03',14:'sauce_05',15:'sauce_06',16:'sauce_04'};
+const REVERSE_ID_MAP = {};
+Object.entries(ID_MAP).forEach(function(e){ REVERSE_ID_MAP[e[1]] = parseInt(e[0]); });
+let cartData = JSON.parse(localStorage.getItem('threestar_cart') || '{}');
+if (Array.isArray(cartData)) cartData = {};
+/* dami_cart → threestar_cart 마이그레이션 */
+(function() {
+  var old = JSON.parse(localStorage.getItem('dami_cart') || 'null');
+  if (old && Array.isArray(old) && old.length) {
+    old.forEach(function(item) {
+      var sid = ID_MAP[item.id];
+      if (sid && !cartData[sid]) cartData[sid] = item.qty || 1;
+    });
+    localStorage.setItem('threestar_cart', JSON.stringify(cartData));
+    localStorage.removeItem('dami_cart');
+  }
+})();
 
 /* ── BRAND DESCRIPTIONS ── */
 const BRAND_DESC = {
@@ -2715,8 +2613,8 @@ function changeSlide(dir) {
 function changeQty(d) { qty = Math.max(1,qty+d); document.getElementById('qtyVal').value = qty; }
 /* ── CART ── */
 function _saveCart() {
-  localStorage.setItem('dami_cart', JSON.stringify(cartData));
-  const total = cartData.reduce((s,i) => s + i.qty, 0);
+  localStorage.setItem('threestar_cart', JSON.stringify(cartData));
+  const total = Object.values(cartData).reduce((s,q) => s + q, 0);
   document.getElementById('cartCount').textContent = total;
   const sb = document.getElementById('sidebarCartCount');
   if (sb) sb.textContent = total;
@@ -2724,48 +2622,57 @@ function _saveCart() {
 function addToCart() {
   const p = currentProduct; const lang = currentLang;
   const name = (lang==='en'&&p.nameEn) ? p.nameEn : (lang==='vi'&&p.nameVi) ? p.nameVi : p.name;
-  const ex = cartData.find(i => i.id === p.id);
-  if (ex) { ex.qty += qty; } else { cartData.push({id:p.id, name, price:p.price, qty}); }
+  const sid = ID_MAP[p.id] || ('product_' + p.id);
+  cartData[sid] = (cartData[sid] || 0) + qty;
   _saveCart(); showToast('"' + name + '" 장바구니에 담겼습니다.'); closeProductModal();
 }
 function addToCartDirect(id) {
   const p = products.find(x => x.id === id); const lang = currentLang;
-  const name = (lang==='en'&&p.nameEn) ? p.nameEn : (lang==='vi'&&p.nameVi) ? p.nameVi : p.name;
-  const ex = cartData.find(i => i.id === p.id);
-  if (ex) { ex.qty++; } else { cartData.push({id:p.id, name, price:p.price, qty:1}); }
+  const name = p ? ((lang==='en'&&p.nameEn) ? p.nameEn : (lang==='vi'&&p.nameVi) ? p.nameVi : p.name) : '';
+  const sid = ID_MAP[id] || ('product_' + id);
+  cartData[sid] = (cartData[sid] || 0) + 1;
   _saveCart(); showToast('"' + name + '" 장바구니에 담겼습니다.');
 }
-function openCart() { _renderCart(); document.getElementById('cartModal').classList.add('show'); }
+function openCart() {
+  cartData = JSON.parse(localStorage.getItem('threestar_cart') || '{}');
+  if (Array.isArray(cartData)) cartData = {};
+  _renderCart(); document.getElementById('cartModal').classList.add('show');
+}
 function _renderCart() {
   const list = document.getElementById('cartList');
   const totalRow = document.getElementById('cartTotalRow');
   const btn = document.getElementById('cartCheckoutBtn');
-  if (cartData.length === 0) {
+  const entries = Object.entries(cartData);
+  if (entries.length === 0) {
     list.innerHTML = '<div class="cart-empty">장바구니가 비어 있습니다.</div>';
     totalRow.style.display = 'none'; btn.style.display = 'none'; return;
   }
   let total = 0;
-  list.innerHTML = cartData.map((item, i) => {
-    const p = parseFloat((item.price+'').replace(/[^0-9.]/g,'')) || 0;
-    const sub = p * item.qty; total += sub;
+  list.innerHTML = entries.map(([sid, qty]) => {
+    const numId = REVERSE_ID_MAP[sid];
+    const p = numId ? products.find(x => x.id === numId) : null;
+    const name = p ? p.name : sid;
+    const priceStr = p ? p.price : '0';
+    const priceNum = parseFloat((priceStr+'').replace(/[^0-9.]/g,'')) || 0;
+    const sub = priceNum * qty; total += sub;
     return `<div class="cart-item">
-      <span class="cart-item-name">${item.name}</span>
+      <span class="cart-item-name">${name}</span>
       <div class="cart-item-ctrl">
-        <button class="cart-qty-btn" onclick="_cartQty(${i},-1)">−</button>
-        <span class="cart-qty-num">${item.qty}</span>
-        <button class="cart-qty-btn" onclick="_cartQty(${i},1)">+</button>
-        <button class="cart-rm" onclick="_cartRm(${i})">✕</button>
+        <button class="cart-qty-btn" onclick="_cartQty('${sid}',-1)">−</button>
+        <span class="cart-qty-num">${qty}</span>
+        <button class="cart-qty-btn" onclick="_cartQty('${sid}',1)">+</button>
+        <button class="cart-rm" onclick="_cartRm('${sid}')">✕</button>
       </div>
-      <span class="cart-item-price">${item.price==='TBD'?'—':sub.toLocaleString()+'₫'}</span>
+      <span class="cart-item-price">${priceStr==='TBD'?'—':sub.toLocaleString()+'₫'}</span>
     </div>`;
   }).join('');
   document.getElementById('cartTotalAmt').textContent = total > 0 ? total.toLocaleString() + '₫' : '—';
   totalRow.style.display = 'flex'; btn.style.display = 'block';
 }
-function _cartQty(i,d) { cartData[i].qty = Math.max(1, cartData[i].qty+d); _saveCart(); _renderCart(); }
-function _cartRm(i) { cartData.splice(i,1); _saveCart(); _renderCart(); }
+function _cartQty(sid,d) { cartData[sid] = Math.max(1, (cartData[sid]||0)+d); _saveCart(); _renderCart(); }
+function _cartRm(sid) { delete cartData[sid]; _saveCart(); _renderCart(); }
 function checkout() {
-  if (!cartData.length) return;
+  if (!Object.keys(cartData).length) return;
   const session = JSON.parse(localStorage.getItem('dami_session')||'null');
   if (!session) {
     document.getElementById('cartModal').classList.remove('show');
@@ -2773,17 +2680,16 @@ function checkout() {
     showToast('주문하려면 먼저 로그인해주세요.'); return;
   }
   const orders = JSON.parse(localStorage.getItem('dami_orders')||'[]');
-  orders.push({date:new Date().toISOString(), user:session.email, items:[...cartData]});
+  orders.push({date:new Date().toISOString(), user:session.email, items:{...cartData}});
   localStorage.setItem('dami_orders', JSON.stringify(orders));
-  cartData = []; _saveCart();
+  cartData = {}; _saveCart();
   document.getElementById('cartModal').classList.remove('show');
   showToast('주문이 접수되었습니다! 빠른 시일 내에 연락드리겠습니다.');
 }
 function buyNow() {
-  const p = currentProduct; const lang = currentLang;
-  const name = (lang==='en'&&p.nameEn) ? p.nameEn : (lang==='vi'&&p.nameVi) ? p.nameVi : p.name;
-  const ex = cartData.find(i => i.id === p.id);
-  if (ex) { ex.qty += qty; } else { cartData.push({id:p.id, name, price:p.price, qty}); }
+  const p = currentProduct;
+  const sid = ID_MAP[p.id] || ('product_' + p.id);
+  cartData[sid] = (cartData[sid] || 0) + qty;
   _saveCart(); closeProductModal(); checkout();
 }
 
@@ -3448,6 +3354,31 @@ function sbToggle(id) {
   document.getElementById(id).classList.toggle('expanded');
 }
 
+/* ── 챗봇 연동용 window 노출 ── */
+window.REVERSE_ID_MAP = REVERSE_ID_MAP;
+window.ID_MAP = ID_MAP;
+window.openProduct = openProduct;
+window.addToCartFromChatbot = function(productId, qty) {
+  cartData[productId] = (cartData[productId] || 0) + (qty || 1);
+  _saveCart();
+  var numId = REVERSE_ID_MAP[productId];
+  var p = numId ? products.find(function(x){ return x.id === numId; }) : null;
+  var name = p ? p.name : productId;
+  showToast('✅ "' + name + '" 장바구니에 추가했어요!');
+};
+
+/* ── URL 파라미터로 제품 상세 열기 (?product=coin_01) ── */
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const pid = params.get('product');
+  if (pid) {
+    const numId = REVERSE_ID_MAP[pid];
+    if (numId) {
+      setTimeout(function() { showPage('products'); openProduct(numId); }, 300);
+    }
+  }
+})();
+
 /* ── 페이지 초기화 (모든 const 선언 이후에 실행) ── */
 renderProducts('all');
 _saveCart();
@@ -3462,18 +3393,21 @@ _updateAuthUI();
 <div class="chat-widget" id="chatWidget" style="display:none">
   <div class="cw-header">
     <div class="cw-header-top">
-      <div class="cw-yongdam-title">YONGDAM</div>
-      <div class="cw-header-controls">
-        <div class="cw-lang-row">
-          <button class="cw-lang-btn active" data-lang="ko" onclick="cwSetLang('ko')">한국어</button>
-          <button class="cw-lang-btn" data-lang="vi" onclick="cwSetLang('vi')">Tiếng Việt</button>
-          <button class="cw-lang-btn" data-lang="en" onclick="cwSetLang('en')">EN</button>
-        </div>
-        <div class="cw-mode-row">
-          <button class="cw-mode-btn active" data-mode="chat" onclick="cwSetMode('chat')">💬 대화</button>
-          <button class="cw-mode-btn" data-mode="guided" onclick="cwSetMode('guided')">📋 가이드</button>
-          <button class="cw-mode-btn" data-mode="random" onclick="cwSetMode('random')">🎲 랜덤</button>
-        </div>
+      <img src="/static/images/brand/yongdamiicon.gif" alt="용담이" class="cw-avatar" id="cwAvatar">
+      <div class="cw-header-text">
+        <div class="cw-title">YongDAMI</div>
+      </div>
+    </div>
+    <div class="cw-header-controls">
+      <div class="cw-lang-row">
+        <button class="cw-lang-btn active" data-lang="ko" onclick="cwSetLang('ko')">한국어</button>
+        <button class="cw-lang-btn" data-lang="vi" onclick="cwSetLang('vi')">Tiếng Việt</button>
+        <button class="cw-lang-btn" data-lang="en" onclick="cwSetLang('en')">EN</button>
+      </div>
+      <div class="cw-mode-row">
+        <button class="cw-mode-btn active" data-mode="chat" onclick="cwSetMode('chat')">💬 대화</button>
+        <button class="cw-mode-btn" data-mode="guided" onclick="cwSetMode('guided')">📋 가이드</button>
+        <button class="cw-mode-btn" data-mode="random" onclick="cwSetMode('random')">🎲 랜덤</button>
       </div>
     </div>
   </div>
@@ -3503,5 +3437,6 @@ _updateAuthUI();
 </div>
 
 
-<script src="/static/js/chatbot-widget.js"></script>
-<div class="toast" id="toast-message"></d
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="/static/js/chatbot-float.js"></script>
+<div class="toast" id="toast-message"></div>

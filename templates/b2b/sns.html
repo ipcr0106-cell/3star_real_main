@@ -566,7 +566,7 @@
         <div class="e-step-body">
           <div class="e-step-title">구독자 수 범위 설정 &amp; 채널 검색</div>
           <div class="e-input-row">
-            <input class="e-input" id="ytKeyword" placeholder="검색 키워드 (예: #vietnamfood #vietnamreview)" value="#vietnamfood #vietnamreview" />
+            <input class="e-input" id="ytKeyword" placeholder="검색 키워드 (예: #vietnamfood #vietnamreview)" value="vietnam food mukbang korean" />
             <input class="e-input" id="ytMinSubs" placeholder="최소 구독자" value="10000" style="max-width:140px;" />
             <input class="e-input" id="ytMaxSubs" placeholder="최대 구독자" value="500000" style="max-width:140px;" />
             <select class="e-select" id="ytCount">
@@ -746,7 +746,8 @@ function renderTrends(trends) {
     return;
   }
   grid.innerHTML = trends.map(t => `
-    <a href="${t.url}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;">
+    <a href="${escHtml(t.url || '#')}" target="_blank" rel="noopener noreferrer"
+       style="text-decoration:none;color:inherit;">
       <div class="e-trend-card">
         ${t.thumbnail ? `<img class="e-trend-thumb" src="${t.thumbnail}" alt="${escHtml(t.title)}" loading="lazy" />` : '<div class="e-trend-thumb"></div>'}
         <div class="e-trend-info">

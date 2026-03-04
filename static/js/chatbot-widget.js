@@ -234,7 +234,16 @@ function _cwRenderWelcome() {
 
 /* ── 메시지 추가 ── */
 function _cwAppendMsg(role, html, id) {
-  const msgs = document.getElementById('cwMessages');
+  // cwMessages(플로팅 위젯) 또는 chatWindow(/chatbot 페이지) 탐색
+  let msgs = document.getElementById('cwMessages');
+  // cwMessages가 숨겨진 chatWidget 안에 있으면 chatWindow로 폴백
+  if (msgs) {
+    const parent = msgs.closest('.chat-widget');
+    if (parent && parent.style.display === 'none') {
+      msgs = document.getElementById('chatWindow') || msgs;
+    }
+  }
+  if (!msgs) msgs = document.getElementById('chatWindow');
   if (!msgs) return null;
 
   // 처음 메시지 추가 시 환영 화면 숨기기
@@ -252,28 +261,163 @@ function _cwAppendMsg(role, html, id) {
   return msgId;
 }
 
+/* ── 다국어 레이블 (레시피 카드용) ── */
+const CW_RECIPE_LABELS = {
+  ko: { ingredients: '📝 재료', steps: '👨‍🍳 조리법', tips: '💡 팁', cart: '🛒 장바구니', favorites: '⭐ 즐겨찾기', servings: '인분' },
+  vi: { ingredients: '📝 Nguyên liệu', steps: '👨‍🍳 Cách làm', tips: '💡 Mẹo', cart: '🛒 Giỏ hàng', favorites: '⭐ Yêu thích', servings: ' phần' },
+  en: { ingredients: '📝 Ingredients', steps: '👨‍🍳 Steps', tips: '💡 Tips', cart: '🛒 Cart', favorites: '⭐ Favorites', servings: ' servings' },
+};
+
+/* ── 장바구니 추가 (cart.js 연동) ── */
+function _cwAddToCart(productId, qty) {
+  qty = qty || 1;
+  if (typeof window.addToCartFromChatbot === 'function') {
+    window.addToCartFromChatbot(productId, qty);
+  } else {
+    var name = (typeof window.PRODUCTS !== 'undefined' && window.PRODUCTS[productId])
+      ? window.PRODUCTS[productId].name : productId;
+    alert('🛒 ' + name + ' ' + qty + (cwLang === 'vi' ? ' đã thêm!' : cwLang === 'en' ? ' added!' : '개 장바구니에 추가!'));
+  }
+}
+
+/* ── 즐겨찾기 추가 ── */
+function _cwAddToFavorites(recipeId, recipeName) {
+  var favs = JSON.parse(localStorage.getItem('chatbot_favorites') || '[]');
+  if (!favs.find(function(f) { return f.id === recipeId; })) {
+    favs.push({ id: recipeId, name: recipeName, savedAt: new Date().toISOString() });
+    localStorage.setItem('chatbot_favorites', JSON.stringify(favs));
+  }
+}
+
 /* ── API 응답 처리 ── */
 function _cwHandleResponse(data, loadingId) {
   const msgEl = document.getElementById(loadingId);
   if (!msgEl) return;
 
+  const RL = CW_RECIPE_LABELS[cwLang] || CW_RECIPE_LABELS.ko;
   let html = '';
 
-  // 응답 텍스트 (reply 또는 response 또는 message 필드 모두 대응)
-  const text = data.reply || data.response || data.message || data.text || '';
-  if (text) {
-    html += `<div class="cw-reply-text">${text.replace(/\n/g, '<br>')}</div>`;
-  }
+  if (data.type === 'recipe') {
+    // 레시피 카드 렌더링
+    html += '<div class="cw-recipe-card">';
 
-  // 레시피 이미지
-  if (data.image_url) {
-    html += `<img src="${data.image_url}" class="cw-recipe-img" alt="recipe">`;
+    if (data.image_url) {
+      html += '<img src="' + data.image_url + '" alt="' + (data.title || '') + '" class="cw-recipe-img" loading="lazy">';
+    }
+
+    html += '<h3>' + (data.title || '') + '</h3>';
+
+    if (data.product) {
+      html += '<p class="cw-product-tag">🏷️ ' + data.product + '</p>';
+    }
+
+    // 인분 조절
+    var baseServ = data.base_servings || 2;
+    html += '<div class="cw-serving-control" data-base="' + baseServ + '">';
+    html += '<button class="cw-serv-btn" onclick="_cwAdjustServing(this, -1)">−</button>';
+    html += '<span class="cw-serv-display">' + baseServ + '</span>';
+    html += '<span class="cw-serv-label">' + RL.servings + '</span>';
+    html += '<button class="cw-serv-btn" onclick="_cwAdjustServing(this, 1)">+</button>';
+    html += '</div>';
+
+    // 재료
+    if (data.ingredients && data.ingredients.length) {
+      html += '<div class="cw-collapse-section open">';
+      html += '<button class="cw-collapse-toggle" onclick="this.parentElement.classList.toggle(\'open\')">';
+      html += '<span class="cw-collapse-title">' + RL.ingredients + ' (' + data.ingredients.length + ')</span>';
+      html += '<span class="cw-collapse-arrow">▸</span>';
+      html += '</button>';
+      html += '<div class="cw-collapse-content"><ul>';
+      data.ingredients.forEach(function(i) { html += '<li class="cw-ingredient-item">' + i + '</li>'; });
+      html += '</ul></div></div>';
+    }
+
+    // 조리법
+    if (data.steps && data.steps.length) {
+      html += '<div class="cw-collapse-section open">';
+      html += '<button class="cw-collapse-toggle" onclick="this.parentElement.classList.toggle(\'open\')">';
+      html += '<span class="cw-collapse-title">' + RL.steps + ' (' + data.steps.length + ')</span>';
+      html += '<span class="cw-collapse-arrow">▸</span>';
+      html += '</button>';
+      html += '<div class="cw-collapse-content"><ol>';
+      data.steps.forEach(function(s) {
+        var cleaned = s.replace(/^\d+\.\s*/, '');
+        html += '<li>' + cleaned + '</li>';
+      });
+      html += '</ol></div></div>';
+    }
+
+    // 팁
+    if (data.tips) {
+      var tipsText = Array.isArray(data.tips) ? data.tips.join(' / ') : data.tips;
+      html += '<div class="cw-tips">' + RL.tips + ': ' + tipsText + '</div>';
+    }
+
+    // 액션 버튼 (장바구니 + 즐겨찾기)
+    html += '<div class="cw-recipe-actions">';
+    if (data.product_id) {
+      html += '<button onclick="_cwAddToCart(\'' + data.product_id + '\', 1)" class="cw-action-btn">' + RL.cart + '</button>';
+    }
+    var recipeId = data.recipe_id || data.product_id || '';
+    var recipeTitle = (data.title || '').replace(/'/g, "\\'");
+    if (recipeId) {
+      html += '<button onclick="_cwAddToFavorites(\'' + recipeId + '\', \'' + recipeTitle + '\')" class="cw-action-btn">' + RL.favorites + '</button>';
+    }
+    html += '</div>';
+
+    html += '</div>';
+
+    // 히스토리 저장
+    cwHistory.push({ role: 'assistant', content: JSON.stringify(data._raw || data) });
+  } else {
+    // 텍스트 응답
+    const text = data.reply || data.response || data.message || data.text || '';
+    if (text) {
+      html += '<div class="cw-reply-text">' + text.replace(/\n/g, '<br>') + '</div>';
+    }
+    if (data.image_url) {
+      html += '<img src="' + data.image_url + '" class="cw-recipe-img" alt="recipe">';
+    }
+    if (text) cwHistory.push({ role: 'assistant', content: text });
   }
 
   msgEl.innerHTML = html || CW_LANG[cwLang].error;
+}
 
-  // 히스토리 저장
-  if (text) cwHistory.push({ role: 'assistant', content: text });
+/* ── 인분 조절 (프론트엔드 계산) ── */
+function _cwAdjustServing(btn, delta) {
+  var control = btn.closest('.cw-serving-control');
+  var display = control.querySelector('.cw-serv-display');
+  var base = parseInt(control.dataset.base) || 2;
+  var current = parseInt(display.textContent) || base;
+  var next = current + delta;
+  if (next < 1 || next > 20) return;
+  display.textContent = next;
+
+  var card = control.closest('.cw-recipe-card');
+  if (!card) return;
+  var items = card.querySelectorAll('.cw-ingredient-item');
+  var multiplier = next / base;
+
+  items.forEach(function(item) {
+    var original = item.dataset.original;
+    if (!original) {
+      item.dataset.original = item.textContent;
+      original = item.textContent;
+    }
+    item.textContent = original.replace(/(\d+)\/(\d+)|(\d+\.?\d*)/g, function(match, fNum, fDen, num) {
+      if (fNum && fDen) {
+        var frac = (parseFloat(fNum) / parseFloat(fDen)) * multiplier;
+        return frac % 1 === 0 ? frac.toString() : frac.toFixed(1);
+      }
+      if (num) {
+        var n = parseFloat(num);
+        var result = n * multiplier;
+        return result % 1 === 0 ? result.toString() : result.toFixed(1);
+      }
+      return match;
+    });
+  });
 }
 
 /* ── API 호출 공통 함수 ── */

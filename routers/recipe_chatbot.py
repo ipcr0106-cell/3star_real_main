@@ -7,8 +7,11 @@ POST /chat — 3가지 모드: chat, guided, random
 """
 
 import copy
+import logging
 
 from fastapi import APIRouter
+
+logger = logging.getLogger(__name__)
 from pydantic import BaseModel, Field
 
 from services.recipe_ai import call_gpt, _format, _apply_translation
@@ -99,13 +102,17 @@ async def chat_endpoint(req: ChatRequest):
         if formatted.get("type") == "recipe":
             rid = formatted.get("recipe_id", "")
             if rid:
-                cached = get_cached_image(rid)
-                if cached:
-                    formatted["image_url"] = cached
-                else:
-                    formatted["image_url"] = await generate_recipe_image(
-                        rid, formatted.get("title", ""),
-                    )
+                try:
+                    cached = get_cached_image(rid)
+                    if cached:
+                        formatted["image_url"] = cached
+                    else:
+                        formatted["image_url"] = await generate_recipe_image(
+                            rid, formatted.get("title", ""),
+                        )
+                except Exception as e:
+                    logger.warning(f"Image generation failed for {rid}: {e}")
+                    formatted["image_url"] = ""
         log_event("recipe_search", {
             "mode": "random",
             "recipe_id": formatted.get("recipe_id", ""),
@@ -123,11 +130,12 @@ async def chat_endpoint(req: ChatRequest):
         cat_filter = CATEGORY_FILTER.get(req.category, {})
         base_filter = {"type": "recipe"}
         if cat_filter:
-            filters = {"$and": [base_filter, cat_filter]}
+            cat_only_filters = {"$and": [base_filter, cat_filter]}
         else:
-            filters = base_filter
+            cat_only_filters = base_filter
 
         # taste 필터 추가
+        filters = copy.deepcopy(cat_only_filters)
         query_parts = []
         if req.category:
             query_parts.append(CATEGORY_PROMPT_NAME.get(req.category, req.category))
@@ -140,13 +148,33 @@ async def chat_endpoint(req: ChatRequest):
             query_parts.append(f"{req.taste} 맛")
 
         query = " ".join(query_parts) if query_parts else "추천 레시피"
+        crag_fallback = False
 
+        # Step 1: 정확 매칭 검색 (카테고리 + 맛)
         search_result = await search_similar_recipes(
-            query=req.taste or query, top_k=3, filters=filters
+            query=query, top_k=3, filters=filters
         )
+
+        # Step 2: CRAG 폴백 — 결과 없으면 맛 필터 제거 후 카테고리만 검색
+        if search_result is None and req.taste:
+            logger.info(f"CRAG fallback: '{req.category}+{req.taste}' 정확 매칭 0건 → 카테고리만 검색")
+            search_result = await search_similar_recipes(
+                query=query, top_k=3, filters=cat_only_filters
+            )
+            crag_fallback = True
+
         rag_context = search_result["context"] if search_result else None
 
-        prompt = f"'{query}' 조건에 맞는 레시피를 추천해 주세요."
+        # 프롬프트: 폴백 시 안내 포함
+        if crag_fallback and rag_context:
+            prompt = (
+                f"'{query}' 조건에 정확히 맞는 레시피가 없어서, "
+                f"같은 카테고리({CATEGORY_PROMPT_NAME.get(req.category, req.category)})의 "
+                f"유사한 레시피를 참고합니다. "
+                f"추천하면서 '정확한 {req.taste} 맛 레시피는 없지만, 비슷한 레시피를 추천합니다'라고 안내해 주세요."
+            )
+        else:
+            prompt = f"'{query}' 조건에 맞는 레시피를 추천해 주세요."
         result = await call_gpt(
             message=prompt,
             language=req.language,
@@ -162,13 +190,17 @@ async def chat_endpoint(req: ChatRequest):
         if formatted.get("type") == "recipe":
             rid = formatted.get("recipe_id", "")
             if rid:
-                cached = get_cached_image(rid)
-                if cached:
-                    formatted["image_url"] = cached
-                else:
-                    formatted["image_url"] = await generate_recipe_image(
-                        rid, formatted.get("title", ""),
-                    )
+                try:
+                    cached = get_cached_image(rid)
+                    if cached:
+                        formatted["image_url"] = cached
+                    else:
+                        formatted["image_url"] = await generate_recipe_image(
+                            rid, formatted.get("title", ""),
+                        )
+                except Exception as e:
+                    logger.warning(f"Image generation failed for {rid}: {e}")
+                    formatted["image_url"] = ""
         log_event("recipe_search", {
             "mode": "guided",
             "recipe_id": formatted.get("recipe_id", ""),
@@ -176,6 +208,7 @@ async def chat_endpoint(req: ChatRequest):
             "category": req.category or "",
             "taste": req.taste or "",
             "language": req.language,
+            "crag_fallback": crag_fallback,
         })
         return formatted
 

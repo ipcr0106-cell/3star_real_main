@@ -9,6 +9,7 @@ _format: GPT 응답 → 프론트엔드 정리
 
 import json
 import os
+import re
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -23,6 +24,20 @@ _client = None
 SYSTEM_PROMPT = ""
 _translations_cache = None
 _products_cache = None
+
+# ── 제품별 영어 이름 변형 매핑 (products.json name_en과 레시피 .md 파일에서 사용되는 변형 이름) ──
+# GPT가 레시피 .md 파일의 영어 제품명을 그대로 가져오므로, products.json name_en과 다른 변형도 매칭해야 함
+PRODUCT_NAME_ALIASES = {
+    "food_01": ["K-Grain Coconut Energy Powder", "Misutgaru Coconut Powder"],
+    "food_02": ["Gim-Bugak Coconut Chips", "Seaweed Coconut Chip"],
+    "coin_02": ["Anchovy Janchi Coin Broth", "Anchovy Noodle Soup Coin Broth"],
+    "coin_03": ["Spicy Veggie Coin Broth / Vegan", "Spicy Vegetable Coin Broth (Vegan)"],
+    "season_02": ["Gamjatang Seasoning", "Pork Bone Soup Seasoning"],
+    "season_03": ["Dakgalbi Seasoning", "Spicy Chicken Galbi Seasoning"],
+    "sauce_02": ["Maesil Seafood Dipping Sauce", "Plum Seafood Dipping Sauce"],
+    "sauce_04": ["K-Rosé Lemongrass Stir-fry Sauce", "K-Rose Lemongrass Stir-fry Sauce"],
+    "sauce_05": ["Bulgogi-Coconut BBQ Glaze", "Bulgogi Coconut BBQ Glaze"],
+}
 
 
 def _load_translations() -> dict:
@@ -54,22 +69,90 @@ def _load_products() -> list:
     return _products_cache
 
 
+def _replace_aliases(text: str, aliases: list[str], replacement: str) -> str:
+    """text 내 aliases 목록의 영어 이름을 replacement(한국어)로 치환."""
+    for alias in aliases:
+        if alias in text:
+            text = text.replace(alias, replacement)
+    return text
+
+
 def _apply_translation(formatted: dict, language: str) -> dict:
-    """language가 vi/en이면 translations.json에서 해당 언어 버전으로 교체."""
-    if language == "ko" or formatted.get("type") != "recipe":
+    """language에 따라 제목/재료/제품명 등을 다국어로 교체."""
+    if formatted.get("type") != "recipe":
         return formatted
 
+    # ── 한국어 모드: title 고정 + product 필드 + ingredients/steps/tips 내 영어 제품명을 한국어로 교체 ──
+    if language == "ko":
+        # title: translations.json에서 name_ko(순수 한국어) 우선, 없으면 name(GPT 변형 방지)
+        recipe_id = formatted.get("recipe_id", "")
+        if not recipe_id and formatted.get("_raw"):
+            raw_content = str(formatted["_raw"])
+            match = re.search(r'recipe_[a-z0-9_]+', raw_content)
+            if match:
+                recipe_id = match.group(0)
+                formatted["recipe_id"] = recipe_id
+        if recipe_id:
+            translations = _load_translations()
+            recipe_tr = translations.get(recipe_id, {})
+            ko_title = recipe_tr.get("name_ko") or recipe_tr.get("name")
+            if ko_title:
+                formatted["title"] = ko_title
+
+        product_id = formatted.get("product_id", "")
+        if product_id:
+            products_data = _load_products()
+            for p in products_data:
+                if p.get("id") == product_id:
+                    ko_name = p.get("name", "")
+                    en_name = p.get("name_en", "")
+                    # product 태그 교체
+                    if ko_name and formatted.get("product"):
+                        formatted["product"] = ko_name
+                    # 영어 이름 변형 목록 수집 (PRODUCT_NAME_ALIASES + products.json name_en)
+                    aliases = list(PRODUCT_NAME_ALIASES.get(product_id, []))
+                    if en_name and en_name not in aliases:
+                        aliases.append(en_name)
+                    # 긴 이름부터 교체 (부분 매칭 충돌 방지)
+                    aliases.sort(key=len, reverse=True)
+                    # ingredients, steps, tips 내 영어 제품명 → 한국어 치환
+                    if ko_name and aliases:
+                        for field in ("ingredients", "steps", "tips"):
+                            items = formatted.get(field, [])
+                            if items:
+                                formatted[field] = [
+                                    _replace_aliases(item, aliases, ko_name)
+                                    for item in items
+                                ]
+                    break
+        return formatted
+
+    # ── vi/en 모드: translations.json 기반 번역 ──
     recipe_id = formatted.get("recipe_id", "")
+
+    # fallback A: recipe_id가 비어있으면 _raw에서 추출 시도
+    if not recipe_id and formatted.get("_raw"):
+        raw_content = str(formatted["_raw"])
+        match = re.search(r'recipe_[a-z0-9_]+', raw_content)
+        if match:
+            recipe_id = match.group(0)
+            formatted["recipe_id"] = recipe_id
+
     if not recipe_id:
         return formatted
 
     translations = _load_translations()
     recipe_tr = translations.get(recipe_id)
     if not recipe_tr:
+        # fallback B: translations.json 조회 실패 시 GPT의 title_vn 활용
+        if language == "vi" and formatted.get("title_vn"):
+            formatted["title"] = formatted["title_vn"]
         return formatted
 
     lang_data = recipe_tr.get(language)
     if not lang_data:
+        if language == "vi" and formatted.get("title_vn"):
+            formatted["title"] = formatted["title_vn"]
         return formatted
 
     # 제목 교체

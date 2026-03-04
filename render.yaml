@@ -2,7 +2,7 @@ services:
   - type: web
     name: threestar-chatbot
     runtime: python
-    buildCommand: pip install -r requirements.txt && mkdir -p data && cp /etc/secrets/admins.json data/admins.json && python -m services.init_vectordb
+    buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: OPENAI_API_KEY

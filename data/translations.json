@@ -89,7 +89,8 @@
         "The thick broth of bánh canh combined with the seasoning's savory flavors from the soybean paste and meat enhances the depth of flavor.",
         "For a richer dish, add crab meat (cua) in the style of Central and Southern Vietnam."
       ]
-    }
+    },
+    "name_ko": "감자탕 시즈닝 타피오카 면 국수"
   },
   "recipe_banh_mi_sauce01_001": {
     "name": "청양마요 반미 샌드위치",
@@ -371,7 +372,8 @@
         "In southern Vietnam, banh xeo is wrapped in lettuce and herbs and dipped in nuoc mam sauce, but the creamy spiciness of Cheongyang mayo sauce pairs excellently with the crispy banh xeo.",
         "Make sure to heat the pan sufficiently when pouring the batter to achieve crispy edges."
       ]
-    }
+    },
+    "name_ko": "청양마요 디핑 베트남식 부침개"
   },
   "recipe_bo_luc_lac_season01_003": {
     "name": "불고기 시즈닝 보 룩 락",
@@ -1279,7 +1281,8 @@
         "Rice noodles (bún) are thin and can break easily when stir-frying, so it's important to stir-fry quickly over high heat.",
         "The fragrant flavor of lemongrass enhances the mild taste of the chicken."
       ]
-    }
+    },
+    "name_ko": "K-로제 볶음 가는 쌀국수"
   },
   "recipe_canh_ca_coin02_004": {
     "name": "생선 맑은탕",
@@ -2080,7 +2083,8 @@
         "In Vietnamese home cooking, canh (soup) is a staple at every meal. It is typically eaten with rice.",
         "The nutty aroma of the seasoning pairs well with the mildness of the radish, creating a deep umami flavor."
       ]
-    }
+    },
+    "name_ko": "감자탕 시즈닝 뼈 육수 국"
   },
   "recipe_chao_bao_ngu_season04_001": {
     "name": "전복죽 시즈닝 짜오 바오 응우 (베트남식 전복죽)",
@@ -2166,7 +2170,8 @@
         "The abalone particles in the abalone porridge seasoning dissolve into the porridge, enhancing the flavor even with a small amount of abalone.",
         "In Vietnam, porridge (Cháo) is considered a nourishing dish, enjoyed on sick days or special occasions."
       ]
-    }
+    },
+    "name_ko": "전복죽 시즈닝 베트남식 전복죽"
   },
   "recipe_chao_ga_season04_002": {
     "name": "전복죽 시즈닝 짜오 가 (닭죽 프리미엄)",
@@ -2255,7 +2260,8 @@
         "The sesame oil flavor and abalone bits in the abalone porridge seasoning upgrade ordinary chicken porridge to a premium health dish.",
         "Vietnamese chicken porridge is characterized by a generous amount of ginger, making it a representative comfort food."
       ]
-    }
+    },
+    "name_ko": "전복죽 시즈닝 닭죽 프리미엄"
   },
   "recipe_chao_hai_san_season04_004": {
     "name": "전복죽 시즈닝 짜오 하이 산 (해산물 죽)",
@@ -2350,7 +2356,8 @@
         "Add seafood at the end to prevent it from becoming tough. Turn off the heat as soon as the shrimp changes color.",
         "The sesame oil and abalone flavor in the seasoning enhance the luxuriousness of the seafood porridge."
       ]
-    }
+    },
+    "name_ko": "전복죽 시즈닝 해산물 죽"
   },
   "recipe_chao_suon_season02_001": {
     "name": "감자탕 시즈닝 짜오 쓰언 (돼지갈비 죽)",
@@ -2430,7 +2437,8 @@
         "The combination of soybean paste and perilla seed flavor in the potato soup seasoning adds a rich depth to the lightness typical of Vietnamese porridge.",
         "In Vietnam, porridge is enjoyed as a breakfast dish, traditionally served with youtiao for dipping."
       ]
-    }
+    },
+    "name_ko": "감자탕 시즈닝 돼지갈비 죽"
   },
   "recipe_cheeseball_season03_006": {
     "name": "닭갈비 시즈닝 치즈볼",
@@ -2685,7 +2693,8 @@
         "Sprinkle the seasoning like furikake at the end to enhance the flavor of the soybean paste and perilla seeds.",
         "In Vietnam, it's common to drizzle a little nuoc mam (fish sauce) over fried rice for a local touch."
       ]
-    }
+    },
+    "name_ko": "감자탕 시즈닝 볶음밥"
   },
   "recipe_com_ga_season03_003": {
     "name": "닭갈비 시즈닝 껌가 (호이안식 닭고기 밥)",
@@ -2774,7 +2783,8 @@
         "The key to Hoi An's Com Ga is the yellow turmeric rice made with chicken broth. The dak-galbi seasoning is used for the accompanying chili sauce.",
         "Locally, it is traditionally served with papaya salad."
       ]
-    }
+    },
+    "name_ko": "닭갈비 시즈닝 호이안식 닭고기 밥"
   },
   "recipe_com_tam_sauce01_004": {
     "name": "쩜떰 청양마요 곁들임",
@@ -3195,7 +3205,8 @@
         "The gochujang base in the chicken galbi seasoning replaces the spicy seasoning of traditional gà nướng while adding a Korean-style sweet and spicy flavor.",
         "In Vietnam, street charcoal grilling is famous, and chicken wings are popular as a late-night snack."
       ]
-    }
+    },
+    "name_ko": "닭갈비 시즈닝 닭구이"
   },
   "recipe_ga_ran_sauce06_002": {
     "name": "망고고추장 베트남 프라이드치킨",
@@ -3364,7 +3375,8 @@
         "Dak Galbi seasoning conveniently replaces traditional seasonings (based on chili, sugar, and fish sauce).",
         "Make sure to peel off 1 to 2 layers of the outer skin of the lemongrass and use only the tender part at the bottom for better aroma."
       ]
-    }
+    },
+    "name_ko": "닭갈비 시즈닝 레몬그라스 닭볶음"
   },
   "recipe_ga_xao_sauce04_004": {
     "name": "K-로제 닭볶음",
@@ -3444,7 +3456,8 @@
         "Inspired by the Vietnamese home dish Gà xào sả ớt (lemongrass chili chicken stir-fry).",
         "The cream base of the rose sauce makes it a great sauce to mix with rice."
       ]
-    }
+    },
+    "name_ko": "K-로제 닭볶음"
   },
   "recipe_gimbugak_biahoi_food02_003": {
     "name": "김부각 칩 맥주 안주 플래터",
@@ -4786,7 +4799,8 @@
         "The soybean paste and perilla seed flavor of the Gamjatang seasoning adds a deep Korean taste to the clear broth of traditional hot pot.",
         "For a local feel, add plenty of vegetables to the Vietnamese hot pot and dip them in satay sauce."
       ]
-    }
+    },
+    "name_ko": "감자탕 시즈닝 뼈 전골"
   },
   "recipe_mango_popsicle_sauce06_005": {
     "name": "망고 고추장 아이스바",
@@ -5056,7 +5070,8 @@
         "Vietnamese egg noodles are thinner and more elastic than Korean Chinese noodles.",
         "The creaminess of the rose sauce and the aroma of lemongrass add a unique fusion flavor to the seafood stir-fried noodles."
       ]
-    }
+    },
+    "name_ko": "K-로제 해산물 볶음면"
   },
   "recipe_misutgaru_banhchuoi_food01_004": {
     "name": "미숫가루 바나나 케이크 (bánh chuối)",
@@ -5127,7 +5142,8 @@
         "To make a traditional steamed version (bánh chuối hấp), steam for 25 minutes instead of using the oven.",
         "The addition of misutgaru powder adds a nutty flavor, giving a unique taste compared to traditional bánh chuối."
       ]
-    }
+    },
+    "name_ko": "미숫가루 바나나 케이크"
   },
   "recipe_misutgaru_che_food01_003": {
     "name": "미숫가루 코코넛 체 (chè)",
@@ -5192,7 +5208,8 @@
         "To enjoy it in the style of Vietnamese chè, add various toppings like sweet potatoes, taro, or corn.",
         "It tastes good hot, but it's popular to enjoy it cold in the Vietnamese weather."
       ]
-    }
+    },
+    "name_ko": "미숫가루 코코넛 디저트"
   },
   "recipe_misutgaru_iceblend_food01_005": {
     "name": "미숫가루 베트남 커피 아이스 블렌드",
@@ -5387,7 +5404,8 @@
         "For a Vietnamese sinh tố style, add plenty of crushed ice to make it refreshing.",
         "Adding mango or avocado will enhance the local smoothie feel of Vietnam."
       ]
-    }
+    },
+    "name_ko": "미숫가루 코코넛 스무디"
   },
   "recipe_nem_nuong_sauce03_003": {
     "name": "네무엉 쌈장허브 디핑",
@@ -5948,7 +5966,8 @@
         "For stir-fried rice noodles, cook quickly over high heat to prevent the noodles from becoming soggy.",
         "The gochujang flavor in the dak galbi seasoning adds a spicy kick that is not traditionally found in phở xào."
       ]
-    }
+    },
+    "name_ko": "닭갈비 시즈닝 닭고기 볶음 쌀국수"
   },
   "recipe_pho_xao_sauce04_002": {
     "name": "K-로제 볶음 쌀국수",
@@ -6031,7 +6050,8 @@
         "The key to Hanoi's Phở xào is quickly stir-frying the wide rice noodles over high heat.",
         "The creaminess of the rose sauce provides a smooth flavor that differs from the traditional soy sauce and oyster sauce base."
       ]
-    }
+    },
+    "name_ko": "K-로제 볶음 쌀국수"
   },
   "recipe_popcorn_season01_006": {
     "name": "불고기 시즈닝 팝콘",
@@ -6431,7 +6451,8 @@
         "The abalone porridge seasoning enhances the umami flavor of the seafood soup and adds a chewy texture from the abalone pieces.",
         "This is a signature soup that is a must-have at Vietnamese wedding receptions, characterized by its thick consistency from the starch."
       ]
-    }
+    },
+    "name_ko": "전복죽 시즈닝 해산물 수프"
   },
   "recipe_thit_nuong_sauce05_004": {
     "name": "불고기코코넛 숯불고기",
@@ -6603,7 +6624,8 @@
         "The roasted sesame and coarse particles in the bulgogi seasoning enhance the traditional flavor and add a nutty taste.",
         "In southern Vietnam, it is characteristic to add plenty of Vietnamese balm (tía tô) and basil (húng quế)."
       ]
-    }
+    },
+    "name_ko": "불고기 시즈닝 숯불구이"
   },
   "recipe_tom_hap_sauce02_004": {
     "name": "찐 새우 매실 디핑",
@@ -6831,7 +6853,8 @@
         "A representative dish of Hanoi street breakfast. Adding seasoning instead of or along with shredded pork enhances the flavor.",
         "Wrapping in banana leaves instead of plastic bags infuses a local aroma and feel."
       ]
-    }
+    },
+    "name_ko": "불고기 시즈닝 찹쌀밥 토핑"
   },
   "recipe_xoi_season04_005": {
     "name": "전복죽 시즈닝 쏘이 (전복 풍미 찹쌀밥)",
@@ -6905,6 +6928,7 @@
         "The abalone particles in the abalone porridge seasoning combined with the aroma of sesame oil create a premium breakfast experience.",
         "In Vietnam, this dish is synonymous with street food for breakfast. Wrapping it in banana leaves enhances the aroma."
       ]
-    }
+    },
+    "name_ko": "전복죽 시즈닝 전복 풍미 찹쌀밥"
   }
 }

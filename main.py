@@ -15,7 +15,9 @@ PM 전용 파일 — 팀원들은 이 파일을 수정하지 마세요!
 
 import os
 import json
+import shutil
 from pathlib import Path
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -44,11 +46,31 @@ from starlette.middleware.sessions import SessionMiddleware
 from routers import recipe_analytics
 from routers import search
 
+# ─── 서버 시작/종료 이벤트 ───
+@asynccontextmanager
+async def lifespan(app):
+    # ── 시작: ChromaDB 초기화 (삭제 → 재생성) ──
+    chroma_path = Path("data/chromadb")
+    if chroma_path.exists():
+        shutil.rmtree(chroma_path)
+        print("[startup] data/chromadb 삭제 완료")
+
+    from services.init_vectordb import main as init_vectordb
+    init_vectordb()
+    print("[startup] ChromaDB 재생성 완료")
+
+    # recipe_search 싱글턴 초기화
+    from services import recipe_search
+    recipe_search._collection = None
+
+    yield
+
 # ─── FastAPI 앱 생성 ───
 app = FastAPI(
     title="Dami Food Tech Platform",
     description="베트남 K-푸드 브랜드 론칭 · 마케팅 자동화 플랫폼",
-    version="0.3.0"
+    version="0.3.0",
+    lifespan=lifespan,
 )
 
 
@@ -368,4 +390,4 @@ if __name__ == "__main__":
     import uvicorn
     # Render는 0.0.0.0 호스트와 환경변수 PORT를 사용해야 정상 작동합니다.
     port = int(os.environ.get("PORT", 8000))
-    uvicorn.run("main:app", host="0.0.0.0", port=port)
+    uvicorn.run("main:app", host="127.0.0.1", port=port)

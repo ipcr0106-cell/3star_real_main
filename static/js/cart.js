@@ -27,7 +27,13 @@ const STORAGE_KEY = "threestar_cart"; // localStorage 키 이름
 
 // ─── 장바구니 데이터 로드/저장 ───
 function getCart() {
-  return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+  let data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+  // Array 형식 마이그레이션 (이전 버전 호환)
+  if (Array.isArray(data)) {
+    data = {};
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+  return data;
   // 형태: { "coin_01": 2, "sauce_01": 1 } (id: 수량)
 }
 

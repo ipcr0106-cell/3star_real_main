@@ -71,14 +71,20 @@ def load_recipes():
             val = fm.get(key, False)
             metadata[key] = "true" if val else "false"
 
-        # name_vn을 임베딩 텍스트 앞에 추가 (베트남어 검색 개선)
+        # 다국어 이름을 임베딩 텍스트 앞에 추가 (검색 개선)
+        name_ko = fm.get("name", "")
         name_vn = fm.get("name_vn", "")
         name_en = fm.get("name_en", "")
         prefix = ""
+        if name_ko:
+            prefix += f"Korean: {name_ko}\n"
         if name_vn:
             prefix += f"Vietnamese: {name_vn}\n"
         if name_en:
             prefix += f"English: {name_en}\n"
+        search_keywords = fm.get("search_keywords", "")
+        if search_keywords:
+            prefix += f"Keywords: {search_keywords}\n"
 
         ids.append(doc_id)
         docs.append(prefix + text)

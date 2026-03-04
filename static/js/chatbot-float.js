@@ -170,12 +170,12 @@ function toggleChatWidget() {
 
   if (cwIsOpen) {
     widget.style.display = 'flex';
-    widget.classList.add('cw-slide-up');
+    setTimeout(function() { widget.classList.add('cw-visible'); }, 10);
     fabImg.style.display = 'none';
     fabClose.style.display = 'block';
   } else {
-    widget.classList.remove('cw-slide-up');
-    widget.style.display = 'none';
+    widget.classList.remove('cw-visible');
+    setTimeout(function() { widget.style.display = 'none'; }, 250);
     fabImg.style.display = 'block';
     fabClose.style.display = 'none';
   }
@@ -333,7 +333,7 @@ function cwSend(text) {
       mode: cwMode,
       category: cwSelectedCat,
       taste: cwSelectedTaste,
-      conversation_history: cwConversationHistory.slice(-10)
+      conversation_history: cwConversationHistory.slice(-6)
     })
   })
   .then(function(res) {
@@ -355,6 +355,11 @@ function cwSend(text) {
 
 // ─── 가이드 전송 ───
 function cwSendGuided() {
+  // null 방어: 카테고리와 맛 모두 선택되지 않으면 전송하지 않음
+  if (!cwSelectedCat || !cwSelectedTaste) {
+    cwShowToast(cwLang === 'vi' ? 'Vui lòng chọn cả danh mục và vị!' : cwLang === 'en' ? 'Please select both category and taste!' : '카테고리와 맛을 모두 선택해주세요!');
+    return;
+  }
   cwSetAvatar('cooking');
   document.getElementById('cwGuided').style.display = 'none';
   document.getElementById('cwWelcome').style.display = 'none';
@@ -364,8 +369,8 @@ function cwSendGuided() {
   var L = CW_LANG[cwLang];
   var catIdx = L.catValues.indexOf(cwSelectedCat);
   var tasteIdx = L.tasteValues.indexOf(cwSelectedTaste);
-  var displayCat = catIdx >= 0 ? L.categories[catIdx] : cwSelectedCat;
-  var displayTaste = tasteIdx >= 0 ? L.tastes[tasteIdx] : cwSelectedTaste;
+  var displayCat = catIdx >= 0 ? L.categories[catIdx] : (cwSelectedCat || '');
+  var displayTaste = tasteIdx >= 0 ? L.tastes[tasteIdx] : (cwSelectedTaste || '');
   var guideLabel = {ko: '📋 가이드', vi: '📋 Hướng dẫn', en: '📋 Guide'}[cwLang] || '📋 가이드';
   cwAppendMessage('user', guideLabel + ': ' + displayCat + ' + ' + displayTaste);
 
@@ -388,7 +393,7 @@ function cwSendGuided() {
       mode: 'guided',
       category: cwSelectedCat,
       taste: cwSelectedTaste,
-      conversation_history: cwConversationHistory.slice(-10)
+      conversation_history: cwConversationHistory.slice(-6)
     })
   })
   .then(function(res) {
@@ -401,6 +406,9 @@ function cwSendGuided() {
     cwConversationHistory.push({ role: 'user', content: guideLabel + ': ' + displayCat + ' + ' + displayTaste });
     var rawContent = data._raw || data;
     cwConversationHistory.push({ role: 'assistant', content: JSON.stringify(rawContent) });
+    // 가이드 완료 후 선택값 초기화
+    cwSelectedCat = null;
+    cwSelectedTaste = null;
     cwSetMode('chat');
   })
   .catch(function(err) {
@@ -435,7 +443,7 @@ function cwSendRandom() {
       message: '',
       language: cwLang,
       mode: 'random',
-      conversation_history: cwConversationHistory.slice(-10)
+      conversation_history: cwConversationHistory.slice(-6)
     })
   })
   .then(function(res) {
@@ -470,6 +478,17 @@ function cwAddToCart(productId, quantity) {
   if (typeof window.addToCartFromChatbot === 'function') {
     window.addToCartFromChatbot(productId, quantity);
   } else {
+    // cart.js 미로드 시 직접 Object 형식으로 localStorage 저장
+    var cartData = JSON.parse(localStorage.getItem('threestar_cart') || '{}');
+    // Array로 저장된 경우 Object로 마이그레이션
+    if (Array.isArray(cartData)) cartData = {};
+    cartData[productId] = (cartData[productId] || 0) + quantity;
+    localStorage.setItem('threestar_cart', JSON.stringify(cartData));
+    // navbar 카운트 업데이트
+    var totalQty = Object.values(cartData).reduce(function(s, q) { return s + q; }, 0);
+    document.querySelectorAll('.btn-cart').forEach(function(btn) {
+      btn.textContent = '🛒 Cart (' + totalQty + ')';
+    });
     var name = (typeof window.PRODUCTS !== 'undefined' && window.PRODUCTS[productId])
       ? window.PRODUCTS[productId].name : productId;
     cwShowToast('🛒 ' + name + ' ' + quantity +
@@ -531,8 +550,13 @@ function cwAdjustServing(btn, delta) {
 
 // ─── 제품 상세보기 ───
 function cwShowProduct(productId) {
-  var productUrl = '/products#' + productId;
-  window.open(productUrl, '_blank');
+  // HOME 페이지: 직접 openProduct 호출
+  if (window.location.pathname === '/' && typeof window.openProduct === 'function' && typeof window.REVERSE_ID_MAP !== 'undefined') {
+    var numId = window.REVERSE_ID_MAP[productId];
+    if (numId) { window.openProduct(numId); return; }
+  }
+  // 다른 페이지: HOME으로 이동 (URL 파라미터)
+  window.open('/?product=' + encodeURIComponent(productId), '_blank');
 }
 
 // ─── 대화 초기화 ───

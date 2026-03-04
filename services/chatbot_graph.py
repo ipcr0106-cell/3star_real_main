@@ -11,12 +11,17 @@ input_guardrail → classify_intent → (의도별 분기) → generate → outp
 import copy
 import json
 import logging
+import os
 import re
 from typing import TypedDict
 
 logger = logging.getLogger(__name__)
 
 from langgraph.graph import StateGraph, END
+
+CRAG_CORRECT_THRESHOLD = float(os.getenv("CRAG_CORRECT_THRESHOLD", "0.5"))
+CRAG_AMBIGUOUS_THRESHOLD = float(os.getenv("CRAG_AMBIGUOUS_THRESHOLD", "0.3"))
+CRAG_INCORRECT_RETRY_THRESHOLD = float(os.getenv("CRAG_INCORRECT_RETRY_THRESHOLD", "0.25"))
 
 VALID_TASTES = {"매운", "고소", "담백", "달콤", "새콤", "짭짤", "바삭", "감칠맛", "얼큰"}
 
@@ -31,6 +36,18 @@ TASTE_ALIASES = {
     "얼큰한": "얼큰",
     "감칠맛나는": "감칠맛", "우마미": "감칠맛",
     "담백한": "담백", "깔끔": "담백", "깔끔한": "담백",
+}
+
+CATEGORY_KEYWORDS = {
+    "면": ["국수", "쌀국수", "분짜", "분보", "분", "면", "라면", "미꽝", "후띠에우", "팟타이", "phở", "bún", "mì"],
+    "국물": ["국", "탕", "찌개", "전골", "수프", "라우", "까인", "lẩu", "canh"],
+    "볶음": ["볶음", "볶다", "xào"],
+    "구이": ["구이", "굽다", "바비큐", "BBQ", "nướng"],
+    "밥": ["밥", "볶음밥", "비빔밥", "cơm", "xôi"],
+    "샐러드": ["샐러드", "겉절이", "gỏi"],
+    "음료": ["음료", "주스", "스무디", "라떼", "sinh tố"],
+    "디저트": ["디저트", "과자", "케이크", "아이스크림"],
+    "스낵": ["스낵", "간식", "튀김", "팝콘"],
 }
 
 
@@ -140,7 +157,11 @@ async def classify_intent(message: str) -> str:
 
 
 async def classify_intent_node(state: PipelineState) -> dict:
-    intent = await classify_intent(state["message"])
+    try:
+        intent = await classify_intent(state["message"])
+    except Exception as e:
+        logger.warning(f"classify_intent failed: {e}, defaulting to recipe_request")
+        intent = "recipe_request"
     return {"intent": intent}
 
 
@@ -171,8 +192,12 @@ async def query_rewrite_node(state: PipelineState) -> dict:
 현재 질문: {message}
 재작성:"""
 
-    rewritten = await call_gpt_mini(prompt, max_tokens=100, temperature=0.2)
-    return {"rewritten_query": rewritten.strip() or message}
+    try:
+        rewritten = await call_gpt_mini(prompt, max_tokens=100, temperature=0.2)
+        return {"rewritten_query": rewritten.strip() or message}
+    except Exception as e:
+        logger.warning(f"query_rewrite failed: {e}, using original message")
+        return {"rewritten_query": message}
 
 
 # ─── 노드 4: query_understanding ───
@@ -207,6 +232,24 @@ JSON:"""
     except json.JSONDecodeError:
         parsed = {}
 
+    # category 키워드 교차검증: GPT 결과를 키워드로 검증/보정
+    query_lower = query.lower()
+    keyword_category = None
+    for cat, keywords in CATEGORY_KEYWORDS.items():
+        if any(kw in query_lower for kw in keywords):
+            keyword_category = cat
+            break
+
+    if not parsed.get("category"):
+        # GPT가 category 추출 실패 시 키워드 폴백
+        if keyword_category:
+            parsed["category"] = keyword_category
+            logger.info(f"Keyword fallback → category: {keyword_category}")
+    elif keyword_category and parsed["category"] != keyword_category:
+        # GPT가 추출한 category와 키워드 매칭 결과가 다르면 키워드 우선
+        logger.info(f"Keyword override: GPT={parsed['category']} → keyword={keyword_category}")
+        parsed["category"] = keyword_category
+
     # taste와 exclude_taste가 리스트인지 보장
     if not isinstance(parsed.get("taste"), list):
         parsed["taste"] = [parsed["taste"]] if parsed.get("taste") else []
@@ -224,6 +267,15 @@ JSON:"""
         else:
             logger.warning(f"Unknown taste filter ignored: {t}")
     parsed["taste"] = list(set(normalized))
+
+    # taste 키워드 폴백: GPT가 빈 리스트 반환 시 TASTE_ALIASES로 보충
+    if not parsed["taste"]:
+        query_lower = query.lower()
+        for alias, canonical in TASTE_ALIASES.items():
+            if alias in query_lower:
+                parsed["taste"] = [canonical]
+                logger.info(f"Keyword fallback → taste: {canonical}")
+                break
 
     # exclude_taste도 동일 처리
     normalized_ex = []
@@ -245,20 +297,24 @@ async def hyde_node(state: PipelineState) -> dict:
 
     query = state.get("rewritten_query") or state["message"]
 
-    # 한국어 비율 30% 이상이면 HyDE 스킵 (DB가 한국어이므로)
-    korean_chars = sum(1 for c in query if '\uac00' <= c <= '\ud7a3')
-    if len(query) > 0 and korean_chars / len(query) > 0.3:
-        logger.info(f"HyDE skipped: Korean ratio {korean_chars/len(query):.0%}")
+    prompt = f"""Generate a hypothetical recipe document for the following query.
+Include Vietnamese name, English name, Korean title, main ingredients (3-5), and brief cooking steps (2-3).
+Format:
+Vietnamese: [Vietnamese dish name]
+English: [English dish name]
+[Korean recipe title]
+재료: ...
+조리법: ...
+
+Query: {query}
+Document:"""
+
+    try:
+        doc = await call_gpt_mini(prompt, max_tokens=200, temperature=0.3)
+        return {"hyde_doc": doc.strip()}
+    except Exception as e:
+        logger.warning(f"hyde_node failed: {e}, skipping HyDE")
         return {"hyde_doc": ""}
-
-    prompt = f"""다음 질문에 대한 가상의 한국-베트남 퓨전 레시피를 한국어로 간략히 작성하세요.
-제목, 재료 3~5개, 조리법 2~3단계만 포함하세요.
-
-질문: {query}
-가상 레시피:"""
-
-    doc = await call_gpt_mini(prompt, max_tokens=200, temperature=0.3)
-    return {"hyde_doc": doc.strip()}
 
 
 # ─── CRAG: 저관련도 청크 제거 ───
@@ -275,6 +331,14 @@ def _refine_context(context: str, threshold: float = 0.3) -> str:
 
 # ─── 노드 6: search (CRAG 포함) ───
 async def search_node(state: PipelineState) -> dict:
+    try:
+        return await _search_node_inner(state)
+    except Exception as e:
+        logger.error(f"search_node failed: {e}")
+        return {"rag_context": "", "max_similarity": 0.0, "search_result": None}
+
+
+async def _search_node_inner(state: PipelineState) -> dict:
     from services.recipe_search import search_similar_recipes
 
     intent = state["intent"]
@@ -350,14 +414,25 @@ async def search_node(state: PipelineState) -> dict:
         exclude_ids=exclude_ids if exclude_ids else None,
     )
 
-    # recipe_request 필터 fallback: 결과가 부족하면 필터 완화 후 재검색
+    # recipe_request 필터 fallback: 결과가 부족하면 단계적 필터 완화
     if intent == "recipe_request" and (not result or result.get("result_count", 0) < 2):
-        logger.info(f"Filter fallback: 결과 부족 ({result.get('result_count', 0) if result else 0}개), type=recipe만으로 재검색")
-        fallback_where = {"type": "recipe"}
-        result = await search_similar_recipes(
-            query=search_query, top_k=5, filters=fallback_where,
-            exclude_ids=exclude_ids if exclude_ids else None,
-        )
+        count = result.get("result_count", 0) if result else 0
+        # Step 1: taste 필터만 제거, category 유지
+        if filters.get("category"):
+            logger.info(f"Filter fallback step1: 결과 {count}개, taste 제거 → category={filters['category']}만")
+            cat_only_where = {"$and": [{"type": "recipe"}, {"category": filters["category"]}]}
+            result = await search_similar_recipes(
+                query=search_query, top_k=5, filters=cat_only_where,
+                exclude_ids=exclude_ids if exclude_ids else None,
+            )
+        # Step 2: 여전히 부족하면 모든 필터 제거
+        if not result or result.get("result_count", 0) < 2:
+            logger.info(f"Filter fallback step2: category도 제거 → type=recipe만")
+            fallback_where = {"type": "recipe"}
+            result = await search_similar_recipes(
+                query=search_query, top_k=5, filters=fallback_where,
+                exclude_ids=exclude_ids if exclude_ids else None,
+            )
 
     if not result:
         return {"rag_context": "", "max_similarity": 0.0, "search_result": None}
@@ -365,11 +440,11 @@ async def search_node(state: PipelineState) -> dict:
     max_sim = result["max_similarity"]
 
     # CRAG 3단계 판별
-    if max_sim >= 0.5:
+    if max_sim >= CRAG_CORRECT_THRESHOLD:
         context = result["context"]
         logger.info(f"CRAG: Correct (sim={max_sim:.3f})")
-    elif max_sim >= 0.3:
-        context = _refine_context(result["context"], threshold=0.3)
+    elif max_sim >= CRAG_AMBIGUOUS_THRESHOLD:
+        context = _refine_context(result["context"], threshold=CRAG_AMBIGUOUS_THRESHOLD)
         logger.info(f"CRAG: Ambiguous (sim={max_sim:.3f}), refined")
     else:
         # ★ CRAG Incorrect: 원본 메시지로 재검색 시도 (hyde/rewrite 우회)
@@ -380,7 +455,7 @@ async def search_node(state: PipelineState) -> dict:
             retry_result = await search_similar_recipes(
                 query=original_message, top_k=5, filters=where
             )
-            if retry_result and retry_result["max_similarity"] >= 0.25:
+            if retry_result and retry_result["max_similarity"] >= CRAG_INCORRECT_RETRY_THRESHOLD:
                 context = retry_result["context"]
                 max_sim = retry_result["max_similarity"]
                 result = retry_result
@@ -439,6 +514,13 @@ async def generate_node(state: PipelineState) -> dict:
         # serving_adjust는 GPT가 recipe 구조를 반환할 수 있으므로 GPT 응답을 존중
         if intent == "serving_adjust" and formatted.get("type") == "recipe":
             pass  # GPT가 recipe를 반환했으면 그대로 유지
+        elif (formatted.get("type") == "recipe"
+              and formatted.get("title")
+              and formatted.get("ingredients")
+              and formatted.get("steps")
+              and formatted.get("recipe_id")):
+            # GPT가 유효한 recipe_id 포함 완전한 레시피를 반환 → type 존중
+            logger.info(f"Type override skipped: complete recipe with id={formatted.get('recipe_id')} for intent '{intent}'")
         elif formatted.get("type") != expected_type:
             logger.warning(f"Type mismatch: GPT returned '{formatted.get('type')}', forcing '{expected_type}' for intent '{intent}'")
             formatted["type"] = expected_type

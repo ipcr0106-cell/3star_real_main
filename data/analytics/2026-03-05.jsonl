@@ -1,1 +1,91 @@
-{"ts": "2026-03-05T00:30:10.877770", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "후에식 매운 소고기 국수 (Bún bò Huế)", "language": "ko"}
+{"ts": "2026-03-05T00:28:06.112406", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_lau_chua_cay_coin04_002", "recipe_name": "새콤매콤 전골 (Lẩu chua cay)", "category": "국물탕", "taste": "매운", "language": "ko"}
+{"ts": "2026-03-05T00:28:23.978393", "event": "cart_add", "product_id": "coin_04", "product_name": "coin_04", "quantity": 1}
+{"ts": "2026-03-05T00:28:47.584357", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_lau_chua_cay_coin04_002", "recipe_name": "Lẩu chua cay", "category": "국물탕", "taste": "매운", "language": "vi"}
+{"ts": "2026-03-05T00:30:37.019926", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_bun_xao_sauce04_003", "recipe_name": "K-로제 볶음 분 (Bún xào)", "category": "면볶음면", "taste": "고소", "language": "ko"}
+{"ts": "2026-03-05T00:32:25.528017", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_bun_xao_sauce04_003", "recipe_name": "Bún xào", "category": "면볶음면", "taste": "고소", "language": "vi"}
+{"ts": "2026-03-05T00:33:55.220860", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_misutgaru_latte_food01_001", "recipe_name": "미숫가루-코코넛 라떼", "category": "간식음료", "taste": "감칠맛", "language": "ko"}
+{"ts": "2026-03-05T00:34:17.412445", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_misutgaru_latte_food01_001", "recipe_name": "미숫가루-코코넛 라떼", "category": "간식음료", "taste": "감칠맛", "language": "vi"}
+{"ts": "2026-03-05T00:35:12.130928", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_misutgaru_smoothie_food01_001", "recipe_name": "Sinh tố ngũ cốc Hàn Quốc dừa", "category": "간식음료", "taste": "달콤", "language": "vi"}
+{"ts": "2026-03-05T00:35:29.678004", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_misutgaru_smoothie_food01_001", "recipe_name": "Sinh tố ngũ cốc Hàn Quốc dừa (미숫가루 코코넛 스무디)", "category": "간식음료", "taste": "달콤", "language": "ko"}
+{"ts": "2026-03-05T00:39:36.502827", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "후에식 매운 소고기 국수 (Bún bò Huế)", "language": "ko"}
+{"ts": "2026-03-05T00:40:09.036651", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "후에식 매운 소고기 국수 (Bún bò Huế)", "language": "ko"}
+{"ts": "2026-03-05T00:41:20.714721", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "후에식 매운 소고기 국수 (Bún bò Huế)", "language": "ko"}
+{"ts": "2026-03-05T00:41:47.499733", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_pho_bo_coin01_001", "recipe_name": "소고기 쌀국수 (Phở bò)", "language": "ko"}
+{"ts": "2026-03-05T00:42:29.423857", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_xao_coin01_005", "recipe_name": "소고기 볶음 쌀국수 국물 버전 (Bún bò nước)", "language": "ko"}
+{"ts": "2026-03-05T00:43:12.954050", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_patbingsu_food01_005", "recipe_name": "미숫가루 코코넛 빙수 (Chè đá bào ngũ cốc dừa)", "language": "ko"}
+{"ts": "2026-03-05T00:46:51.669442", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "후에식 매운 소고기 국수 (Bún bò Huế)", "language": "ko"}
+{"ts": "2026-03-05T00:53:30.644854", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "후에식 매운 소고기 국수 (Bún bò Huế)", "language": "ko"}
+{"ts": "2026-03-05T00:54:02.828844", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_pho_chay_cay_coin03_001", "recipe_name": "칼칼 매콤 채수 쌀국수", "language": "ko"}
+{"ts": "2026-03-05T00:54:49.509997", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_lau_chua_cay_coin04_002", "recipe_name": "새콤매콤 전골 (Lẩu chua cay)", "category": "국물탕", "taste": "매운", "language": "ko"}
+{"ts": "2026-03-05T01:20:39.376804", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "후에식 매운 소고기 국수 (Bún bò Huế)", "language": "ko"}
+{"ts": "2026-03-05T01:20:46.655712", "event": "cart_add", "product_id": "coin_01", "product_name": "coin_01", "quantity": 1}
+{"ts": "2026-03-05T01:20:50.553684", "event": "cart_add", "product_id": "coin_01", "product_name": "coin_01", "quantity": 1}
+{"ts": "2026-03-05T01:20:58.865696", "event": "cart_add", "product_id": "coin_01", "product_name": "coin_01", "quantity": 1}
+{"ts": "2026-03-05T01:23:13.522643", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_misutgaru_smoothie_food01_001", "recipe_name": "Sinh tố ngũ cốc Hàn Quốc dừa", "category": "간식음료", "taste": "감칠맛", "language": "vi"}
+{"ts": "2026-03-05T01:23:43.138470", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_misutgaru_smoothie_food01_001", "recipe_name": "Sinh tố ngũ cốc Hàn Quốc dừa", "language": "vi"}
+{"ts": "2026-03-05T01:24:31.368245", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "Bún bò Huế", "language": "vi"}
+{"ts": "2026-03-05T01:25:24.939142", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_misutgaru_latte_food01_002", "recipe_name": "Latte ngũ cốc Hàn Quốc (미숫가루 라떼 — Cà phê sữa đá 대체)", "language": "ko"}
+{"ts": "2026-03-05T01:48:40.061080", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_misutgaru_latte_food01_002", "recipe_name": "Latte ngũ cốc Hàn Quốc (미숫가루 라떼 — Cà phê sữa đá 대체)", "language": "ko"}
+{"ts": "2026-03-05T01:49:12.699784", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_hai_san_nuong_sauce02_002", "recipe_name": "구운 해산물 플래터 매실 디핑 (Hải sản nướng)", "language": "ko"}
+{"ts": "2026-03-05T01:49:41.096310", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_ga_xao_sa_ot_season03_002", "recipe_name": "닭갈비 시즈닝 가 싸오 사 엇 (Gà xào sả ớt)", "language": "ko"}
+{"ts": "2026-03-05T01:50:18.329345", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_mi_xao_roselemongrass_sauce04_001", "recipe_name": "K-로제 레몬그라스 볶음면", "category": "면볶음면", "taste": "짭짤", "language": "ko"}
+{"ts": "2026-03-05T01:53:25.479943", "event": "cart_add", "product_id": "sauce_04", "product_name": "sauce_04", "quantity": 1}
+{"ts": "2026-03-05T01:53:37.875554", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_pho_ga_xao_season03_004", "recipe_name": "닭갈비 시즈닝 퍼가 싸오 (Phở gà xào)", "language": "ko"}
+{"ts": "2026-03-05T01:54:06.600856", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_pho_xao_sauce04_002", "recipe_name": "K-로제 볶음 쌀국수 (Phở xào)", "language": "ko"}
+{"ts": "2026-03-05T01:58:22.413574", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_canh_xuong_season02_004", "recipe_name": "감자탕 시즈닝 까인 쓰엉 (Canh xương)", "language": "ko"}
+{"ts": "2026-03-05T02:02:37.377036", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_mi_xao_hai_san_sauce04_001", "recipe_name": "K-로제 해산물 볶음면 (Mì xào hải sản)", "category": "면볶음면", "taste": "매운", "language": "ko"}
+{"ts": "2026-03-05T02:03:05.466756", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_mi_xao_hai_san_sauce04_001", "recipe_name": "Mì xào hải sản", "category": "면볶음면", "taste": "매운", "language": "vi"}
+{"ts": "2026-03-05T02:03:44.461201", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_pho_ga_xao_season03_004", "recipe_name": "Phở gà xào", "language": "vi"}
+{"ts": "2026-03-05T02:09:33.693951", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_canh_xuong_season02_004", "recipe_name": "감자탕 시즈닝 뼈 육수 국", "language": "ko"}
+{"ts": "2026-03-05T02:10:02.464981", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_xoi_season04_005", "recipe_name": "전복죽 시즈닝 전복 풍미 찹쌀밥", "language": "ko"}
+{"ts": "2026-03-05T02:10:22.932640", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_misutgaru_che_food01_003", "recipe_name": "미숫가루 코코넛 디저트", "language": "ko"}
+{"ts": "2026-03-05T02:10:41.657814", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_bun_ca_coin04_004", "recipe_name": "생선 국수 (새콤한 버전)", "category": "면볶음면", "taste": "새콤", "language": "ko"}
+{"ts": "2026-03-05T02:11:06.095102", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_bun_ca_coin04_004", "recipe_name": "Bún cá chua", "category": "면볶음면", "taste": "새콤", "language": "vi"}
+{"ts": "2026-03-05T02:11:28.264422", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_canh_chua_ca_coin04_001", "recipe_name": "Canh chua cá", "language": "vi"}
+{"ts": "2026-03-05T02:11:48.404487", "event": "recipe_search", "mode": "random", "recipe_id": "recipe_chao_hai_san_season04_004", "recipe_name": "Cháo hải sản", "language": "vi"}
+{"ts": "2026-03-05T02:12:01.296823", "event": "recipe_search", "mode": "random", "recipe_id": "recipe_goi_cuon_thit_nuong_sauce03_001", "recipe_name": "구운고기 월남쌈 쌈장허브 디핑", "language": "ko"}
+{"ts": "2026-03-05T02:12:26.360535", "event": "recipe_search", "mode": "random", "recipe_id": "recipe_ga_nuong_mat_ong_sauce05_003", "recipe_name": "불고기코코넛 꿀 닭구이", "language": "ko"}
+{"ts": "2026-03-05T02:20:33.325510", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_banh_canh_season02_005", "recipe_name": "감자탕 시즈닝 타피오카 면 국수", "language": "ko"}
+{"ts": "2026-03-05T03:18:36.638439", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_chay_coin03_001", "recipe_name": "채식 전골", "language": "ko"}
+{"ts": "2026-03-05T03:20:17.068021", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_chay_coin03_001", "recipe_name": "채식 전골", "language": "ko"}
+{"ts": "2026-03-05T03:20:52.975141", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_chay_coin03_001", "recipe_name": "채식 전골", "language": "ko"}
+{"ts": "2026-03-05T05:24:05.673030", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_chay_coin03_001", "recipe_name": "채식 전골", "language": "ko"}
+{"ts": "2026-03-05T05:24:58.254543", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_chay_coin03_001", "recipe_name": "채식 전골", "language": "ko"}
+{"ts": "2026-03-05T05:26:03.727764", "event": "cart_add", "product_id": "coin_03", "product_name": "coin_03", "quantity": 1}
+{"ts": "2026-03-05T05:28:50.636260", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "후에식 매운 소고기 국수", "language": "ko"}
+{"ts": "2026-03-05T05:29:50.584064", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "후에식 매운 소고기 국수", "language": "ko"}
+{"ts": "2026-03-05T05:39:02.258964", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_bun_xao_sauce04_003", "recipe_name": "K-로제 볶음 가는 쌀국수", "category": "면볶음면", "taste": "매운", "language": "ko"}
+{"ts": "2026-03-05T05:39:40.944677", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_xao_coin01_005", "recipe_name": "소고기 볶음 쌀국수 (국물 버전)", "language": "ko"}
+{"ts": "2026-03-05T05:45:19.559646", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "후에식 매운 소고기 국수", "language": "ko"}
+{"ts": "2026-03-05T06:01:07.974859", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_chua_cay_coin04_002", "recipe_name": "새콤매콤 전골", "language": "ko"}
+{"ts": "2026-03-05T06:01:45.922402", "event": "cart_add", "product_id": "coin_04", "product_name": "coin_04", "quantity": 1}
+{"ts": "2026-03-05T06:01:45.932411", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "후에식 매운 소고기 국수", "language": "ko"}
+{"ts": "2026-03-05T06:02:25.062267", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_chua_cay_coin04_002", "recipe_name": "Lẩu chua cay", "language": "vi"}
+{"ts": "2026-03-05T06:04:49.243864", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_lau_chua_cay_coin04_002", "recipe_name": "새콤매콤 전골", "category": "국물탕", "taste": "매운", "language": "ko"}
+{"ts": "2026-03-05T06:04:59.879278", "event": "cart_add", "product_id": "coin_04", "product_name": "coin_04", "quantity": 1}
+{"ts": "2026-03-05T06:08:39.997410", "event": "recipe_search", "mode": "random", "recipe_id": "recipe_gimbugak_pho_food02_004", "recipe_name": "김부각 칩 쌀국수 토핑", "language": "ko"}
+{"ts": "2026-03-05T06:33:15.432441", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_chua_cay_coin04_002", "recipe_name": "새콤매콤 전골", "language": "ko"}
+{"ts": "2026-03-05T06:34:32.612382", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_mi_xao_hai_san_sauce04_001", "recipe_name": "K-로제 해산물 볶음면", "category": "면볶음면", "taste": "매운", "language": "ko"}
+{"ts": "2026-03-05T06:34:56.858385", "event": "cart_add", "product_id": "sauce_04", "product_name": "sauce_04", "quantity": 1}
+{"ts": "2026-03-05T06:35:25.309033", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_chua_cay_coin04_002", "recipe_name": "새콤매콤 전골", "language": "ko"}
+{"ts": "2026-03-05T06:35:48.318417", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_chua_cay_coin04_002", "recipe_name": "Lẩu chua cay", "language": "vi"}
+{"ts": "2026-03-05T06:36:12.043094", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "Hue-Style Spicy Beef Noodle Soup", "language": "en"}
+{"ts": "2026-03-05T06:37:02.386171", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_ssamjang_springroll_sauce03_001", "recipe_name": "허브 쌈장 소스 월남쌈", "category": "쌈샐러드", "taste": "감칠맛", "language": "ko"}
+{"ts": "2026-03-05T06:37:15.167338", "event": "cart_add", "product_id": "sauce_03", "product_name": "sauce_03", "quantity": 1}
+{"ts": "2026-03-05T06:37:32.454413", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_goi_cuon_thit_nuong_sauce03_001", "recipe_name": "구운고기 월남쌈 쌈장허브 디핑", "language": "ko"}
+{"ts": "2026-03-05T06:39:00.026416", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_canh_ga_nuong_sauce06_003", "recipe_name": "망고고추장 닭날개 구이", "category": "구이볶음", "taste": "매운", "language": "ko"}
+{"ts": "2026-03-05T06:39:34.290080", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_ga_nuong_sauce05_002", "recipe_name": "불고기-코코넛 BBQ 소스 닭구이", "language": "ko"}
+{"ts": "2026-03-05T06:39:56.809325", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_xao_coin01_005", "recipe_name": "소고기 볶음 쌀국수 (국물 버전)", "language": "ko"}
+{"ts": "2026-03-05T06:40:45.191206", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_ga_ran_sauce06_002", "recipe_name": "망고고추장 베트남 프라이드치킨", "language": "ko"}
+{"ts": "2026-03-05T06:57:46.949969", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_bun_ca_coin04_004", "recipe_name": "생선 국수 (새콤한 버전)", "category": "면볶음면", "taste": "새콤", "language": "ko", "crag_fallback": false}
+{"ts": "2026-03-05T07:08:37.349543", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_chua_cay_coin04_002", "recipe_name": "새콤매콤 전골", "language": "ko"}
+{"ts": "2026-03-05T07:08:42.619815", "event": "cart_add", "product_id": "coin_04", "product_name": "coin_04", "quantity": 1}
+{"ts": "2026-03-05T07:09:16.654453", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_chua_cay_coin04_002", "recipe_name": "새콤매콤 전골", "language": "ko"}
+{"ts": "2026-03-05T07:14:10.907907", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "후에식 매운 소고기 국수", "language": "ko"}
+{"ts": "2026-03-05T07:14:19.678326", "event": "cart_add", "product_id": "coin_01", "product_name": "coin_01", "quantity": 1}
+{"ts": "2026-03-05T07:15:16.798259", "event": "cart_add", "product_id": "coin_01", "product_name": "coin_01", "quantity": 1}
+{"ts": "2026-03-05T07:17:57.321470", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_gimbugak_goi_food02_002", "recipe_name": "김부각 칩 베트남 샐러드 토핑", "category": "쌈샐러드", "taste": "감칠맛", "language": "ko", "crag_fallback": true}
+{"ts": "2026-03-05T07:18:16.509467", "event": "recipe_search", "mode": "guided", "recipe_id": "recipe_xoi_season01_005", "recipe_name": "불고기 시즈닝 찹쌀밥 토핑", "category": "밥죽", "taste": "짭짤", "language": "ko", "crag_fallback": false}
+{"ts": "2026-03-05T07:39:25.820009", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "후에식 매운 소고기 국수", "language": "ko"}
+{"ts": "2026-03-05T07:39:29.021882", "event": "cart_add", "product_id": "coin_01", "product_name": "coin_01", "quantity": 1}
+{"ts": "2026-03-05T07:39:33.736308", "event": "cart_add", "product_id": "coin_01", "product_name": "coin_01", "quantity": 1}
