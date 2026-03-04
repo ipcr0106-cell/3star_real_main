@@ -17,3 +17,13 @@
 {"ts": "2026-03-04T13:58:02.187363", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_bo_coin01_003", "recipe_name": "소고기 전골 (Lẩu bò)", "language": "ko"}
 {"ts": "2026-03-04T13:58:31.005883", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "후에식 매운 소고기 국수 (Bún bò Huế)", "language": "ko"}
 {"ts": "2026-03-04T22:39:42.859640", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_banh_mi_sauce01_001", "recipe_name": "청양마요 반미 샌드위치 (Bánh mì)", "language": "ko"}
+{"ts": "2026-03-04T23:36:07.431794", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "후에식 매운 소고기 국수 (Bún bò Huế)", "language": "ko"}
+{"ts": "2026-03-04T23:36:53.148078", "event": "cart_add", "product_id": "coin_01", "product_name": "coin_01", "quantity": 1}
+{"ts": "2026-03-04T23:36:55.746618", "event": "cart_add", "product_id": "coin_01", "product_name": "coin_01", "quantity": 1}
+{"ts": "2026-03-04T23:36:57.187501", "event": "cart_add", "product_id": "coin_01", "product_name": "coin_01", "quantity": 1}
+{"ts": "2026-03-04T23:36:59.054411", "event": "cart_add", "product_id": "coin_01", "product_name": "coin_01", "quantity": 1}
+{"ts": "2026-03-04T23:37:14.718645", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_rieu_chay_coin03_004", "recipe_name": "채식 분리우 (Bún riêu chay)", "language": "ko"}
+{"ts": "2026-03-04T23:38:25.496337", "event": "cart_add", "product_id": "coin_03", "product_name": "coin_03", "quantity": 1}
+{"ts": "2026-03-04T23:40:55.921235", "event": "cart_add", "product_id": "coin_03", "product_name": "coin_03", "quantity": 1}
+{"ts": "2026-03-04T23:43:00.045389", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_pho_chay_coin03_002", "recipe_name": "채식 쌀국수 (Phở chay)", "language": "ko"}
+{"ts": "2026-03-04T23:53:01.296731", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_xao_coin01_005", "recipe_name": "분보볶음 (Bún bò xào)", "language": "ko"}
