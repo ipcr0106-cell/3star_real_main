@@ -746,13 +746,15 @@ function renderTrends(trends) {
     return;
   }
   grid.innerHTML = trends.map(t => `
-    <div class="e-trend-card">
-      ${t.thumbnail ? `<img class="e-trend-thumb" src="${t.thumbnail}" alt="${escHtml(t.title)}" loading="lazy" />` : '<div class="e-trend-thumb"></div>'}
-      <div class="e-trend-info">
-        <div class="e-trend-title">${escHtml(t.title)}</div>
-        <div class="e-trend-meta">${escHtml(t.channel || '')} · ${escHtml(t.views || '')}</div>
+    <a href="${t.url}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;">
+      <div class="e-trend-card">
+        ${t.thumbnail ? `<img class="e-trend-thumb" src="${t.thumbnail}" alt="${escHtml(t.title)}" loading="lazy" />` : '<div class="e-trend-thumb"></div>'}
+        <div class="e-trend-info">
+          <div class="e-trend-title">${escHtml(t.title)}</div>
+          <div class="e-trend-meta">${escHtml(t.channel || '')} · ${escHtml(t.views || '')}</div>
+        </div>
       </div>
-    </div>
+    </a>
   `).join('');
   grid.style.display = 'grid';
 }

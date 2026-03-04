@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Da-Mi Food | 다미푸드</title>
 <link rel="stylesheet" href="/static/css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Montserrat:wght@400;600;700;900&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="/static/images/brand/logo.png">
 <style>
   :root {
@@ -986,15 +986,14 @@
   /* 헤더 */
   .cw-header {
     background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
-    padding: 14px 16px 10px; color: #fff; flex-shrink: 0;
+    padding: 10px 16px 8px; color: #fff; flex-shrink: 0;
   }
-  .cw-header-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .cw-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.6); }
-  .cw-title { font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px; }
-  .cw-subtitle { font-size: 0.72rem; opacity: 0.85; margin-top: 1px; }
+  .cw-header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 0; }
+  .cw-yongdam-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.5rem; letter-spacing: 1.5px; color: #fff; line-height: 1; padding-top: 3px; }
+  .cw-header-controls { margin-top: 2px; }
 
   /* 언어·모드 컨트롤 */
-  .cw-lang-row, .cw-mode-row { display: flex; gap: 5px; margin-bottom: 6px; }
+  .cw-lang-row, .cw-mode-row { display: flex; gap: 5px; margin-bottom: 6px; justify-content: flex-end; }
   .cw-lang-btn, .cw-mode-btn {
     padding: 4px 10px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.5);
     background: rgba(255,255,255,0.15); color: #fff; font-size: 0.72rem;
@@ -1024,7 +1023,7 @@
     padding: 20px 16px; text-align: center; overflow-y: auto;
   }
   .cw-yongdami-wrap { margin-bottom: 10px; }
-  .cw-yongdami { width: 80px; height: 80px; object-fit: contain; }
+  .cw-yongdami { width: 110px; height: 110px; object-fit: contain; mix-blend-mode: multiply; }
   .cw-hello { font-size: 1.05rem; font-weight: 700; color: #222; margin: 0 0 4px; }
   .cw-help  { font-size: 0.82rem; color: #777; margin: 0 0 14px; }
   .cw-quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; width: 100%; }
@@ -3463,22 +3462,18 @@ _updateAuthUI();
 <div class="chat-widget" id="chatWidget" style="display:none">
   <div class="cw-header">
     <div class="cw-header-top">
-      <img src="/static/images/brand/yongdamiicon.gif" alt="용담이" class="cw-avatar" id="cwAvatar">
-      <div class="cw-header-text">
-        <div class="cw-title">★ Recipe Bot</div>
-        <div class="cw-subtitle">Powered by 용담이 🐉</div>
-      </div>
-    </div>
-    <div class="cw-header-controls">
-      <div class="cw-lang-row">
-        <button class="cw-lang-btn active" data-lang="ko" onclick="cwSetLang('ko')">한국어</button>
-        <button class="cw-lang-btn" data-lang="vi" onclick="cwSetLang('vi')">Tiếng Việt</button>
-        <button class="cw-lang-btn" data-lang="en" onclick="cwSetLang('en')">EN</button>
-      </div>
-      <div class="cw-mode-row">
-        <button class="cw-mode-btn active" data-mode="chat" onclick="cwSetMode('chat')">💬 대화</button>
-        <button class="cw-mode-btn" data-mode="guided" onclick="cwSetMode('guided')">📋 가이드</button>
-        <button class="cw-mode-btn" data-mode="random" onclick="cwSetMode('random')">🎲 랜덤</button>
+      <div class="cw-yongdam-title">YONGDAM</div>
+      <div class="cw-header-controls">
+        <div class="cw-lang-row">
+          <button class="cw-lang-btn active" data-lang="ko" onclick="cwSetLang('ko')">한국어</button>
+          <button class="cw-lang-btn" data-lang="vi" onclick="cwSetLang('vi')">Tiếng Việt</button>
+          <button class="cw-lang-btn" data-lang="en" onclick="cwSetLang('en')">EN</button>
+        </div>
+        <div class="cw-mode-row">
+          <button class="cw-mode-btn active" data-mode="chat" onclick="cwSetMode('chat')">💬 대화</button>
+          <button class="cw-mode-btn" data-mode="guided" onclick="cwSetMode('guided')">📋 가이드</button>
+          <button class="cw-mode-btn" data-mode="random" onclick="cwSetMode('random')">🎲 랜덤</button>
+        </div>
       </div>
     </div>
   </div>
