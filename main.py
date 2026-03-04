@@ -368,4 +368,4 @@ if __name__ == "__main__":
     import uvicorn
     # Render는 0.0.0.0 호스트와 환경변수 PORT를 사용해야 정상 작동합니다.
     port = int(os.environ.get("PORT", 8000))
-    uvicorn.run("main:app", host="127.0.0.1", port=port)
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
