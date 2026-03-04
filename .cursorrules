@@ -1,0 +1,43 @@
+# Three Star — Cursor Rules
+# Cursor가 이 프로젝트에서 코드를 짤 때 자동으로 적용하는 규칙입니다.
+
+## 프로젝트 개요
+베트남 K-푸드 브랜드 "Three Star(쓰리스타)" 웹 플랫폼
+- 백엔드: Python FastAPI + Jinja2
+- 프론트: 순수 HTML/CSS/JS
+
+## 절대 수정 금지 파일
+- main.py
+- templates/base_b2c.html
+- templates/base_b2b.html
+- static/js/cart.js
+- routers/auth.py
+- routers/contact.py
+- data/products.json
+- data/admins.json
+
+## 코드 작성 규칙
+
+### Python (routers/*.py)
+- 반드시 `from fastapi import APIRouter` 후 `router = APIRouter()` 사용
+- 모든 엔드포인트는 `/api/` 접두사로 시작
+- API 키는 반드시 `os.getenv("KEY_NAME")` 사용 — 하드코딩 절대 금지
+- return 값은 반드시 딕셔너리
+
+### HTML (templates/**/*.html)
+- 반드시 `{% extends "base_b2c.html" %}` 또는 `{% extends "base_b2b.html" %}` 로 시작
+- 내용은 반드시 `{% block content %}` 안에만 작성
+- 새 CSS/JS는 `{% block extra_css %}`, `{% block extra_js %}` 블록 사용
+
+### CSS (static/css/*.css)
+- B2C 스타일: style.css
+- B2B 스타일: portal.css
+- 파트별 클래스 prefix 필수: .a-, .b-, .c-, .d-, .e-, .f-
+- 전역 스타일(body, html, :root 변수)은 각 base css 파일 상단에만 정의
+
+### JS (static/js/*.js)
+- cart.js 함수와 이름 겹치는 함수 생성 금지
+- 전역 함수명에 파트 prefix 권장: aFunction, bFunction...
+
+## API 응답 형식
+각 파트별 API가 반환해야 하는 형식은 prompts/PART_*.md 파일 참고

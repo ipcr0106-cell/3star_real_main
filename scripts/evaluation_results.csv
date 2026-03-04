@@ -1,0 +1,24 @@
+query,expected_intent,actual_intent,intent_correct,context_precision,actual_type,type_correct,faithfulness,answer_relevancy
+매콤한 쌀국수 만들고 싶어,recipe_request,recipe_request,1,0.5,recipe,1,0.5266666666666666,0.8
+담백한 국물 요리 추천,recipe_request,recipe_request,1,0.5,recipe,1,0.7,0.5
+Phở cay recipe,recipe_request,recipe_request,1,1.0,recipe,1,0.7,0.2
+간단하고 빠른 볶음 요리,recipe_request,recipe_request,1,1.0,recipe,1,0.76,0.8
+비건 요리 만들고 싶어,recipe_request,recipe_request,1,0.0,recipe,1,1.0,1.0
+달콤한 디저트 레시피,recipe_request,recipe_request,1,1.0,recipe,1,0.7,1.0
+BBQ 구이 레시피,recipe_request,recipe_request,1,1.0,recipe,1,0.7899999999999999,0.8
+매콤하고 30분 이내 쉬운 면,recipe_request,recipe_request,1,1.0,recipe,1,0.38,0.8
+청양마요 소스 성분이 뭐야?,product_info,product_info,1,1.0,chat,1,0.8,0.2
+코인육수 가격 얼마야?,product_info,product_info,1,1.0,chat,1,1.0,1.0
+비건 제품 있어?,product_info,company_info,0,0.0,chat,1,1.0,1.0
+소스 종류 알려줘,product_info,product_info,1,1.0,chat,1,0.8,1.0
+김부각 칼로리?,product_info,product_info,1,1.0,chat,1,0.5,0.2
+Giá viên nước dùng bò?,product_info,product_info,1,0.0,chat,1,0.7,0.8
+다미푸드 연락처,company_info,company_info,1,0.5,chat,1,1.0,1.0
+배송 얼마나 걸려?,company_info,company_info,1,1.0,chat,1,0.3,0.2
+대량 구매 가능?,company_info,company_info,1,0.5,chat,1,0.7,0.5
+고수는 어떻게 보관해?,cooking_tip,cooking_tip,1,0.5,chat,1,1.0,1.0
+쌀국수 삶는 팁,cooking_tip,cooking_tip,1,1.0,chat,1,1.0,0.8
+"소고기, 양파, 당근 있어",ingredient_search,ingredient_search,1,1.0,recipe,1,0.7,0.2
+4인분으로 바꿔줘,serving_adjust,serving_adjust,1,1.0,chat,1,1.0,0.8
+고수 대신 뭘 쓸까?,ingredient_sub,ingredient_sub,1,0.5,chat,1,1.0,0.8
+Món gì nấu nhanh?,recipe_request,recipe_request,1,1.0,recipe,1,0.38,0.5

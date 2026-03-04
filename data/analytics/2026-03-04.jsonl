@@ -1,0 +1,19 @@
+{"ts": "2026-03-04T03:07:48.219547", "event": "recipe_search", "mode": "random", "recipe_id": "recipe_canh_ca_coin02_004", "recipe_name": "Vietnamese Fish Clear Soup", "language": "en"}
+{"ts": "2026-03-04T03:08:38.423111", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_xoi_season01_005", "recipe_name": "불고기 시즈닝 쏘이 (Xôi mặn)", "language": "ko"}
+{"ts": "2026-03-04T03:08:47.582556", "event": "cart_add", "product_id": "season_01", "product_name": "K-BBQ Bulgogi Seasoning", "quantity": 1}
+{"ts": "2026-03-04T03:09:07.420045", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_com_tam_suon_nuong_season01_002", "recipe_name": "불고기 시즈닝 쩜떰 (Cơm tấm sườn nướng)", "language": "ko"}
+{"ts": "2026-03-04T03:09:45.636598", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_thit_nuong_season01_004", "recipe_name": "불고기 시즈닝 숯불구이 — 분팃느엉 (Bún thịt nướng)", "language": "ko"}
+{"ts": "2026-03-04T03:13:34.585631", "event": "recipe_search", "mode": "random", "recipe_id": "recipe_pho_chay_coin03_002", "recipe_name": "채식 쌀국수 (Phở chay)", "language": "ko"}
+{"ts": "2026-03-04T03:13:34.591759", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "후에식 매운 소고기 국수 (Bún bò Huế)", "language": "ko"}
+{"ts": "2026-03-04T03:13:42.050226", "event": "recipe_search", "mode": "random", "recipe_id": "recipe_sinh_to_xoai_cay_sauce06_006", "recipe_name": "매콤 망고 스무디 (Sinh tố xoài cay gochujang)", "language": "ko"}
+{"ts": "2026-03-04T12:44:58.816156", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_chua_cay_coin04_002", "recipe_name": "새콤매콤 전골 (Lẩu chua cay)", "language": "ko"}
+{"ts": "2026-03-04T12:45:30.588126", "event": "recipe_search", "mode": "random", "recipe_id": "recipe_lau_chua_cay_coin04_002", "recipe_name": "새콤매콤 전골 (Lẩu chua cay)", "language": "ko"}
+{"ts": "2026-03-04T12:45:53.893535", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_canh_chua_thap_cam_coin04_005", "recipe_name": "모둠 새콤탕 (Canh chua thập cẩm)", "language": "ko"}
+{"ts": "2026-03-04T12:49:02.988252", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_chua_cay_coin04_002", "recipe_name": "새콤매콤 전골 (Lẩu chua cay)", "language": "ko"}
+{"ts": "2026-03-04T12:49:43.997581", "event": "cart_add", "product_id": "coin_04", "product_name": "Kimchi-Tamarind Fusion Coin Broth", "quantity": 1}
+{"ts": "2026-03-04T13:40:37.314733", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_chay_coin03_001", "recipe_name": "채식 전골 (Lẩu chay)", "language": "ko"}
+{"ts": "2026-03-04T13:42:40.816894", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_nam_coin03_005", "recipe_name": "버섯 전골 (Lẩu nấm)", "language": "ko"}
+{"ts": "2026-03-04T13:57:49.334397", "event": "cart_add", "product_id": "coin_03", "product_name": "Spicy Vegetable Coin Broth (Vegan)", "quantity": 1}
+{"ts": "2026-03-04T13:58:02.187363", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_lau_bo_coin01_003", "recipe_name": "소고기 전골 (Lẩu bò)", "language": "ko"}
+{"ts": "2026-03-04T13:58:31.005883", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_bun_bo_hue_coin01_002", "recipe_name": "후에식 매운 소고기 국수 (Bún bò Huế)", "language": "ko"}
+{"ts": "2026-03-04T22:39:42.859640", "event": "recipe_search", "mode": "chat", "recipe_id": "recipe_banh_mi_sauce01_001", "recipe_name": "청양마요 반미 샌드위치 (Bánh mì)", "language": "ko"}

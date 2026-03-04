@@ -1,0 +1,1090 @@
+{% extends "base_b2b.html" %}
+{% block title %}SNS 콘텐츠 자동 생성{% endblock %}
+
+{% block content %}
+<style>
+/* ── SNS 탭 전용 스타일 (prefix: .e-) ── */
+.e-page-header {
+  margin-bottom: 28px;
+}
+.e-page-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary, #111);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.e-page-subtitle {
+  font-size: 13px;
+  color: var(--text-muted, #888);
+}
+
+/* 탭 네비 */
+.e-tab-nav {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #e5e7eb;
+  margin-bottom: 28px;
+}
+.e-tab-btn {
+  padding: 11px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #888;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  transition: color .2s, border-color .2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.e-tab-btn.active {
+  color: #1d4ed8;
+  border-bottom-color: #1d4ed8;
+}
+.e-tab-btn:hover:not(.active) { color: #374151; }
+
+/* 탭 패널 */
+.e-tab-panel { display: none; }
+.e-tab-panel.active { display: block; }
+
+/* 카드 섹션 */
+.e-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+.e-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.e-card-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+.e-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+}
+.e-card-desc {
+  font-size: 12.5px;
+  color: #6b7280;
+  margin-bottom: 20px;
+  margin-left: 28px;
+  line-height: 1.6;
+}
+.e-card-warn {
+  font-size: 12px;
+  color: #d97706;
+  margin-bottom: 16px;
+  margin-left: 28px;
+}
+
+/* 입력 행 */
+.e-input-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.e-input {
+  flex: 1;
+  min-width: 160px;
+  padding: 9px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 13.5px;
+  background: #f9fafb;
+  color: #111;
+  outline: none;
+  transition: border-color .18s;
+}
+.e-input:focus { border-color: #1d4ed8; background: #fff; }
+.e-select {
+  padding: 9px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 13.5px;
+  background: #f9fafb;
+  color: #111;
+  outline: none;
+  cursor: pointer;
+}
+
+/* 버튼 */
+.e-btn {
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: opacity .18s, transform .15s;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.e-btn:hover { opacity: .88; transform: translateY(-1px); }
+.e-btn:active { transform: translateY(0); }
+.e-btn-blue { background: #1d4ed8; color: #fff; }
+.e-btn-red  { background: #dc2626; color: #fff; }
+.e-btn-green{ background: #059669; color: #fff; }
+.e-btn-gray { background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; }
+
+/* 슬라이더 (기간) */
+.e-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.e-slider-label {
+  font-size: 13px;
+  color: #6b7280;
+  white-space: nowrap;
+}
+.e-slider {
+  -webkit-appearance: none;
+  flex: 1;
+  min-width: 120px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, #1d4ed8 0%, #1d4ed8 var(--fill,8.3%), #e5e7eb var(--fill,8.3%));
+  outline: none;
+  cursor: pointer;
+}
+.e-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: #1d4ed8;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 6px rgba(29,78,216,.3);
+}
+.e-slider-val {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1d4ed8;
+  min-width: 60px;
+}
+
+/* 결과 영역 */
+.e-result-box {
+  display: none;
+  margin-top: 20px;
+}
+.e-result-box.show { display: block; }
+.e-result-inner {
+  background: #f8faff;
+  border: 1px solid #bfdbfe;
+  border-left: 4px solid #1d4ed8;
+  border-radius: 10px;
+  padding: 20px 22px;
+  font-size: 14px;
+  line-height: 1.85;
+  color: #1e293b;
+  white-space: pre-wrap;
+  position: relative;
+}
+.e-result-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+/* 트렌드 카드 그리드 */
+.e-trend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.e-trend-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,.07);
+  transition: box-shadow .18s, transform .18s;
+}
+.e-trend-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.1); transform: translateY(-2px); }
+.e-trend-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  background: #e5e7eb;
+  display: block;
+}
+.e-trend-info { padding: 12px 14px; }
+.e-trend-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.5;
+}
+.e-trend-meta {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* 쇼츠 바이럴 카드 (기존 video-card 스타일 계승) */
+.e-shorts-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-top: 3px solid #1d4ed8;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,.07);
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  transition: box-shadow .2s, transform .2s;
+}
+.e-shorts-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.1); transform: translateY(-2px); }
+.e-shorts-left { position: relative; background: #111; }
+.e-shorts-left img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: .9; }
+.e-shorts-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.82) 0%, transparent 55%);
+  display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 12px;
+}
+.e-shorts-stats { display: flex; gap: 8px; flex-wrap: wrap; }
+.e-stat-pill {
+  background: rgba(255,255,255,.18);
+  backdrop-filter: blur(4px);
+  color: #fff; font-size: 12px;
+  padding: 4px 10px; border-radius: 4px;
+}
+.e-shorts-link {
+  display: inline-block; margin-top: 8px;
+  background: #1d4ed8; color: #fff;
+  text-decoration: none; font-size: 12px; font-weight: 700;
+  padding: 6px 14px; border-radius: 4px; transition: background .18s; width: fit-content;
+}
+.e-shorts-link:hover { background: #1e40af; }
+.e-shorts-right { padding: 22px 26px; overflow: hidden; }
+.e-shorts-num { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #1d4ed8; font-weight: 700; margin-bottom: 6px; }
+.e-shorts-title { font-size: 15px; font-weight: 700; color: #111; margin-bottom: 16px; line-height: 1.5; }
+
+/* 기획안 박스 */
+.e-idea-box {
+  background: #f8faff;
+  border: 1px solid #e0e7ff;
+  border-left: 3px solid #1d4ed8;
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+.e-idea-box-title {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: #1d4ed8; font-weight: 700; margin-bottom: 12px;
+  padding-bottom: 8px; border-bottom: 1px solid #e0e7ff;
+}
+.e-idea-section { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid #f0f0f0; }
+.e-idea-section:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.e-idea-section-label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; color: #059669; margin-bottom: 6px; }
+.e-idea-section-body { font-size: 14px; line-height: 1.85; color: #1e293b; white-space: pre-wrap; }
+.e-idea-raw { font-size: 14px; line-height: 1.85; color: #1e293b; white-space: pre-wrap; }
+
+/* 인플루언서 섹션 */
+.e-influencer-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.e-flow-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.e-step-num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: #1d4ed8;
+  color: #fff;
+  font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.e-step-body { flex: 1; }
+.e-step-title { font-size: 14px; font-weight: 700; color: #111; margin-bottom: 10px; }
+
+/* 이메일 영역 */
+.e-email-box {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-top: 14px;
+}
+.e-email-field { margin-bottom: 12px; }
+.e-email-label { font-size: 12px; color: #6b7280; font-weight: 600; margin-bottom: 5px; display: block; }
+.e-email-to-row { display: flex; gap: 8px; }
+.e-email-subject { width: 100%; }
+.e-email-body-ta {
+  width: 100%;
+  min-height: 120px;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 13.5px;
+  resize: vertical;
+  background: #fff;
+  color: #111;
+  outline: none;
+}
+.e-email-body-ta:focus { border-color: #1d4ed8; }
+
+/* 로딩 스피너 (인라인) */
+.e-spinner {
+  display: none;
+  width: 20px; height: 20px;
+  border: 2px solid #e5e7eb;
+  border-top-color: #1d4ed8;
+  border-radius: 50%;
+  animation: e-spin .8s linear infinite;
+}
+@keyframes e-spin { to { transform: rotate(360deg); } }
+.e-loading-row {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  font-size: 13px;
+  color: #6b7280;
+}
+.e-loading-row.show { display: flex; }
+.e-loading-row .e-spinner { display: block; }
+
+/* 밈/숏폼 영상 섹션 */
+.e-meme-link-box {
+  background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.e-meme-icon { font-size: 36px; flex-shrink: 0; }
+.e-meme-text h4 { font-size: 15px; font-weight: 700; color: #1e3a8a; margin-bottom: 4px; }
+.e-meme-text p { font-size: 13px; color: #374151; line-height: 1.6; }
+.e-meme-actions { margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* 구독자 검색 결과 */
+.e-subscriber-list { margin-top: 18px; display: none; }
+.e-subscriber-list.show { display: block; }
+.e-sub-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background: #fff;
+}
+.e-sub-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #bfdbfe, #c7d2fe);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: #1d4ed8; font-size: 16px;
+  flex-shrink: 0;
+}
+.e-sub-info { flex: 1; }
+.e-sub-name { font-size: 14px; font-weight: 600; color: #111; }
+.e-sub-meta { font-size: 12px; color: #6b7280; }
+.e-sub-actions { display: flex; gap: 6px; }
+
+/* 반응형 */
+@media (max-width: 640px) {
+  .e-shorts-card { grid-template-columns: 1fr; }
+  .e-shorts-left { height: 180px; }
+  .e-input-row { flex-direction: column; }
+  .e-meme-actions { margin-left: 0; }
+}
+</style>
+
+<!-- 페이지 헤더 -->
+<div class="e-page-header">
+  <div class="e-page-title">
+    <span>📱</span> SNS 콘텐츠 자동 생성
+  </div>
+  <div class="e-page-subtitle">유튜브 트렌드 · 쇼츠 기획안 · 유튜브/인플루언서 협찬 DM 문구까지 한 번에 만들어드립니다</div>
+</div>
+
+<!-- 탭 네비 -->
+<div class="e-tab-nav">
+  <button class="e-tab-btn active" onclick="switchTab('youtube', this)">
+    ▶ YouTube
+  </button>
+  <button class="e-tab-btn" onclick="switchTab('influencer', this)">
+    👤 인플루언서 파인더
+  </button>
+</div>
+
+<!-- ════════════════════════════════════════
+     YOUTUBE 탭
+════════════════════════════════════════ -->
+<div class="e-tab-panel active" id="tab-youtube">
+
+  <!-- 1. 베트남 유튜브 먹방 트렌드 -->
+  <div class="e-card">
+    <div class="e-card-header">
+      <span class="e-card-icon">🔥</span>
+      <span class="e-card-title">베트남 유튜브 먹방 트렌드</span>
+    </div>
+    <div class="e-card-desc">버튼을 눌러 최신 유튜브 먹방 트렌드를 가져오세요</div>
+
+    <div class="e-input-row">
+      <button class="e-btn e-btn-blue" id="btnTrend" onclick="loadTrends()">
+        트렌드 불러오기
+      </button>
+    </div>
+
+    <div class="e-loading-row" id="loadingTrend">
+      <div class="e-spinner"></div>
+      <span>유튜브 먹방 트렌드 수집 중…</span>
+    </div>
+
+    <div class="e-trend-grid" id="trendGrid" style="display:none;"></div>
+  </div>
+
+  <!-- 2. 유튜브 쇼츠 바이럴 스캔 & 기획안 매칭 -->
+  <div class="e-card">
+    <div class="e-card-header">
+      <span class="e-card-icon">📊</span>
+      <span class="e-card-title">유튜브 쇼츠 바이럴 스캔 &amp; 기획안 매칭</span>
+    </div>
+    <div class="e-card-desc">분석 기간을 설정하고, 베트남 쇼츠 트렌드를 분석하여 AI 마케팅 기획안을 생성합니다</div>
+
+    <div class="e-slider-row" style="margin-bottom:16px;">
+      <span class="e-slider-label">분석 기간</span>
+      <input type="range" class="e-slider" id="shortsSlider" min="1" max="12" value="1"
+             oninput="onShortsSlider(this.value)" style="flex:1;min-width:120px;" />
+      <span class="e-slider-val" id="shortsSliderVal">최근 1개월</span>
+      <button class="e-btn e-btn-blue" id="btnShorts" onclick="scanShorts()">
+        🔍 쇼츠 스캔 시작
+      </button>
+    </div>
+
+    <div class="e-loading-row" id="loadingShorts">
+      <div class="e-spinner"></div>
+      <span>베트남 쇼츠 바이럴 분석 중… (30~60초 소요)</span>
+    </div>
+
+    <div id="shortsResult" style="margin-top:20px;"></div>
+  </div>
+
+  <!-- 3. 밈&쇼츠 숏폼 영상 자동 생성 -->
+  <div class="e-card">
+    <div class="e-card-header">
+      <span class="e-card-icon">🎬</span>
+      <span class="e-card-title">밈&amp;쇼츠 숏폼 영상 자동 생성</span>
+    </div>
+    <div class="e-card-desc">
+      유튜브 댓글을 AI가 분석해 5초짜리 밈 숏폼 영상을 자동으로 만들어드려요.<br>
+      <span style="color:#d97706;">⚠ 1회 생성 시 약 100~150 크레딧 소요 · 렌더링 1~3분 소요</span>
+    </div>
+
+    <div class="e-input-row" style="margin-bottom:16px;">
+      <input class="e-input" id="memeKeyword" placeholder="K-food Vietnam mukbang" />
+      <button class="e-btn e-btn-blue" id="btnMeme" onclick="generateMeme()">
+        🎥 영상 생성 시작
+      </button>
+    </div>
+
+    <div class="e-loading-row" id="loadingMeme">
+      <div class="e-spinner"></div>
+      <span>영상 생성 요청 중…</span>
+    </div>
+
+    <!-- 매직아워 AI 링크 박스 (항상 노출) -->
+    <div class="e-meme-link-box" id="memeBox">
+      <div class="e-meme-icon">✨</div>
+      <div class="e-meme-text">
+        <h4>AI 영상 생성 플랫폼 — Magic Hour AI</h4>
+        <p>자동 생성이 어려운 경우, 아래 링크에서 직접 프롬프트를 입력해 영상을 제작할 수 있습니다.</p>
+      </div>
+      <div class="e-meme-actions">
+        <a href="https://magichour.ai/my-library" target="_blank" class="e-btn e-btn-blue">
+          ✨ Magic Hour AI 열기
+        </a>
+      </div>
+    </div>
+
+    <div class="e-result-box" id="memeResult">
+      <div class="e-result-inner" id="memeResultText"></div>
+      <div class="e-result-actions">
+        <button class="e-btn e-btn-gray" onclick="copyText('memeResultText')">📋 복사</button>
+        <a href="https://magichour.ai/my-library" target="_blank" class="e-btn e-btn-blue">✨ Magic Hour AI에서 제작</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /tab-youtube -->
+
+
+<!-- ════════════════════════════════════════
+     인플루언서 파인더 탭
+════════════════════════════════════════ -->
+<div class="e-tab-panel" id="tab-influencer">
+
+  <div class="e-card">
+    <div class="e-card-header">
+      <span class="e-card-icon">🎯</span>
+      <span class="e-card-title">YouTube 인플루언서 파인더</span>
+    </div>
+    <div class="e-card-desc">구독자 수 범위로 베트남 유튜버를 검색하고, 협찬 DM 문구를 생성한 뒤 이메일을 발송하세요</div>
+
+    <div class="e-influencer-flow">
+
+      <!-- STEP 1: 구독자 범위 설정 & 검색 -->
+      <div class="e-flow-step">
+        <div class="e-step-num">1</div>
+        <div class="e-step-body">
+          <div class="e-step-title">구독자 수 범위 설정 &amp; 채널 검색</div>
+          <div class="e-input-row">
+            <input class="e-input" id="ytKeyword" placeholder="검색 키워드 (예: #vietnamfood #vietnamreview)" value="#vietnamfood #vietnamreview" />
+            <input class="e-input" id="ytMinSubs" placeholder="최소 구독자" value="10000" style="max-width:140px;" />
+            <input class="e-input" id="ytMaxSubs" placeholder="최대 구독자" value="500000" style="max-width:140px;" />
+            <select class="e-select" id="ytCount">
+              <option value="10">10명</option>
+              <option value="20" selected>20명</option>
+              <option value="30">30명</option>
+              <option value="50">50명</option>
+            </select>
+            <button class="e-btn e-btn-red" id="btnYtSearch" onclick="searchYoutubers()">
+              🔴 검색 시작
+            </button>
+          </div>
+          <div class="e-loading-row" id="loadingYt">
+            <div class="e-spinner"></div>
+            <span>유튜버 검색 중… 잠시 기다려주세요</span>
+          </div>
+          <div class="e-subscriber-list" id="ytList"></div>
+        </div>
+      </div>
+
+      <!-- STEP 2: 협찬 DM 문구 생성 -->
+      <div class="e-flow-step">
+        <div class="e-step-num">2</div>
+        <div class="e-step-body">
+          <div class="e-step-title">협찬 DM 문구 생성</div>
+          <div class="e-input-row">
+            <input class="e-input" id="dmInfluencer" placeholder="인플루언서 채널명 (예: @mukbang_hanoi)" />
+            <select class="e-select" id="dmProduct">
+              <option value="코인육수">🟤 코인육수</option>
+              <option value="가루 시즈닝">🟡 가루 시즈닝</option>
+              <option value="액체 소스">🟠 액체 소스</option>
+            </select>
+            <button class="e-btn e-btn-blue" id="btnDm" onclick="generateDM()">
+              ✉ DM 생성
+            </button>
+          </div>
+          <div class="e-loading-row" id="loadingDm">
+            <div class="e-spinner"></div>
+            <span>DM 문구 생성 중…</span>
+          </div>
+          <div class="e-result-box" id="dmResult">
+            <div class="e-result-inner" id="dmResultText"></div>
+            <div class="e-result-actions">
+              <button class="e-btn e-btn-gray" onclick="copyText('dmResultText')">📋 복사</button>
+              <button class="e-btn e-btn-green" onclick="prefillEmail()">✉ 이메일로 보내기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: 이메일 발송 -->
+      <div class="e-flow-step">
+        <div class="e-step-num">3</div>
+        <div class="e-step-body">
+          <div class="e-step-title">이메일 발송</div>
+          <div class="e-email-box" id="emailBox">
+            <div class="e-email-field">
+              <label class="e-email-label">받는 사람 이메일</label>
+              <div class="e-email-to-row">
+                <input class="e-input" id="emailTo" placeholder="influencer@example.com" style="flex:1;" />
+              </div>
+            </div>
+            <div class="e-email-field">
+              <label class="e-email-label">제목</label>
+              <input class="e-input e-email-subject" id="emailSubject" value="[다미푸드] 협찬 제안 드립니다 🍜" />
+            </div>
+            <div class="e-email-field">
+              <label class="e-email-label">본문</label>
+              <textarea class="e-email-body-ta" id="emailBody" placeholder="DM 생성 버튼을 먼저 눌러 자동으로 채워보세요"></textarea>
+            </div>
+            <div class="e-input-row">
+              <button class="e-btn e-btn-green" onclick="sendEmail()">✉ 발송하기</button>
+              <span id="emailStatus" style="font-size:13px;color:#6b7280;"></span>
+            </div>
+          </div>
+
+          <!-- 유튜브 15초 대본 & 프롬프트 (구 틱톡 대본 → 유튜브 관련으로 변경) -->
+          <div style="margin-top:28px;">
+            <div class="e-step-title" style="margin-bottom:10px;">📝 유튜브 쇼츠 15초 대본 &amp; 프롬프트 자동 생성</div>
+            <div class="e-input-row">
+              <select class="e-select" id="scriptProduct">
+                <option value="코인육수">🟤 코인육수</option>
+                <option value="가루 시즈닝">🟡 가루 시즈닝</option>
+                <option value="액체 소스">🟠 액체 소스</option>
+              </select>
+              <button class="e-btn e-btn-blue" id="btnScript" onclick="generateScript()">
+                대본 생성 ✨
+              </button>
+            </div>
+            <div class="e-loading-row" id="loadingScript">
+              <div class="e-spinner"></div>
+              <span>대본 생성 중…</span>
+            </div>
+            <div class="e-result-box" id="scriptResult">
+              <div class="e-result-inner" id="scriptResultText"></div>
+              <div class="e-result-actions">
+                <button class="e-btn e-btn-gray" onclick="copyText('scriptResultText')">📋 복사</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /influencer-flow -->
+  </div>
+
+</div><!-- /tab-influencer -->
+
+
+<script>
+/* ─────────────────────────────────────────────
+   유틸
+───────────────────────────────────────────── */
+function switchTab(name, btn) {
+  document.querySelectorAll('.e-tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.e-tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+function setLoading(rowId, show) {
+  const el = document.getElementById(rowId);
+  if (el) el.classList.toggle('show', show);
+}
+function showResult(boxId, textId, content) {
+  const box = document.getElementById(boxId);
+  const txt = document.getElementById(textId);
+  if (box && txt) {
+    txt.textContent = content;
+    box.classList.add('show');
+  }
+}
+function copyText(elId) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  navigator.clipboard.writeText(el.textContent).then(() => {
+    alert('복사되었습니다!');
+  });
+}
+
+/* ─────────────────────────────────────────────
+   슬라이더 (쇼츠 기간)
+───────────────────────────────────────────── */
+function onShortsSlider(val) {
+  val = parseInt(val);
+  document.getElementById('shortsSliderVal').textContent = `최근 ${val}개월`;
+  const pct = ((val - 1) / 11 * 100).toFixed(1) + '%';
+  document.getElementById('shortsSlider').style.setProperty('--fill', pct);
+}
+onShortsSlider(1);
+
+/* ─────────────────────────────────────────────
+   1. 먹방 트렌드 불러오기
+───────────────────────────────────────────── */
+async function loadTrends() {
+  setLoading('loadingTrend', true);
+  document.getElementById('btnTrend').disabled = true;
+  document.getElementById('trendGrid').style.display = 'none';
+  try {
+    const res = await fetch('/api/sns/trends');
+    const data = await res.json();
+    renderTrends(data.trends || []);
+  } catch (e) {
+    alert('트렌드 수집 중 오류가 발생했습니다.\n' + e.message);
+  } finally {
+    setLoading('loadingTrend', false);
+    document.getElementById('btnTrend').disabled = false;
+  }
+}
+
+function renderTrends(trends) {
+  const grid = document.getElementById('trendGrid');
+  if (!trends.length) {
+    grid.innerHTML = '<p style="color:#6b7280;font-size:13px;">수집된 트렌드가 없습니다.</p>';
+    grid.style.display = 'block';
+    return;
+  }
+  grid.innerHTML = trends.map(t => `
+    <div class="e-trend-card">
+      ${t.thumbnail ? `<img class="e-trend-thumb" src="${t.thumbnail}" alt="${escHtml(t.title)}" loading="lazy" />` : '<div class="e-trend-thumb"></div>'}
+      <div class="e-trend-info">
+        <div class="e-trend-title">${escHtml(t.title)}</div>
+        <div class="e-trend-meta">${escHtml(t.channel || '')} · ${escHtml(t.views || '')}</div>
+      </div>
+    </div>
+  `).join('');
+  grid.style.display = 'grid';
+}
+
+/* ─────────────────────────────────────────────
+   2. 유튜브 쇼츠 바이럴 스캔 & 기획안
+───────────────────────────────────────────── */
+async function scanShorts() {
+  const months = parseInt(document.getElementById('shortsSlider').value);
+  setLoading('loadingShorts', true);
+  document.getElementById('btnShorts').disabled = true;
+  document.getElementById('shortsResult').innerHTML = '';
+  try {
+    const res = await fetch('/api/sns/shorts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ months_ago: months })
+    });
+    const data = await res.json();
+    renderShorts(data.videos || []);
+  } catch (e) {
+    document.getElementById('shortsResult').innerHTML =
+      '<p style="color:#dc2626;font-size:13px;">쇼츠 스캔 중 오류: ' + escHtml(e.message) + '</p>';
+  } finally {
+    setLoading('loadingShorts', false);
+    document.getElementById('btnShorts').disabled = false;
+  }
+}
+
+function renderShorts(videos) {
+  const container = document.getElementById('shortsResult');
+  if (!videos.length) {
+    container.innerHTML = '<p style="color:#6b7280;font-size:13px;">해당 기간에 조건을 만족하는 쇼츠를 찾지 못했습니다.</p>';
+    return;
+  }
+  container.innerHTML = videos.map((v, i) => `
+    <div class="e-shorts-card">
+      <div class="e-shorts-left">
+        ${v.thumbnail
+          ? `<img src="${escHtml(v.thumbnail)}" alt="${escHtml(v.title)}" loading="lazy" />`
+          : '<div style="height:100%;background:#111;"></div>'}
+        <div class="e-shorts-overlay">
+          <div class="e-shorts-stats">
+            <span class="e-stat-pill">좋아요 ${escHtml(v.likes)}</span>
+            <span class="e-stat-pill">댓글 ${escHtml(v.comments)}</span>
+          </div>
+          <a href="${escHtml(v.url)}" target="_blank" class="e-shorts-link">영상 보기</a>
+        </div>
+      </div>
+      <div class="e-shorts-right">
+        <div class="e-shorts-num">No. ${i+1}</div>
+        <div class="e-shorts-title">${escHtml(v.title)}</div>
+        <div class="e-idea-box">
+          <div class="e-idea-box-title">AI 마케팅 기획안</div>
+          <div class="e-idea-raw">${escHtml(v.idea || '기획안 없음')}</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // 기획안 포맷팅
+  container.querySelectorAll('.e-idea-raw').forEach(el => formatIdeaEl(el));
+}
+
+/* ─────────────────────────────────────────────
+   3. 밈&쇼츠 영상 생성 (프롬프트 + 매직아워 링크)
+───────────────────────────────────────────── */
+async function generateMeme() {
+  const keyword = document.getElementById('memeKeyword').value.trim() || 'K-food Vietnam mukbang';
+  setLoading('loadingMeme', true);
+  document.getElementById('btnMeme').disabled = true;
+  document.getElementById('memeResult').classList.remove('show');
+  try {
+    const res = await fetch('/api/sns/meme', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: keyword })
+    });
+    const data = await res.json();
+    const msg = data.prompt_used
+      ? `✅ 영상 생성 요청 완료!\n\n🎬 사용된 프롬프트:\n${data.prompt_used}\n\n📁 Magic Hour AI 라이브러리에서 렌더링 완료 후 확인하세요.\n(보통 1~3분 소요)`
+      : JSON.stringify(data);
+    showResult('memeResult', 'memeResultText', msg);
+  } catch (e) {
+    // API 없어도 매직아워 링크 박스는 항상 보임
+    showResult('memeResult', 'memeResultText',
+      '영상 생성 API 연결 오류.\nMagic Hour AI에서 직접 제작하시거나, 백엔드 /api/sns/meme 엔드포인트를 확인해주세요.');
+  } finally {
+    setLoading('loadingMeme', false);
+    document.getElementById('btnMeme').disabled = false;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   인플루언서: 유튜버 검색
+───────────────────────────────────────────── */
+function searchYoutubers() {
+  const keyword = document.getElementById('ytKeyword').value.trim();
+  const minSubs = document.getElementById('ytMinSubs').value;
+  const maxSubs = document.getElementById('ytMaxSubs').value;
+  const count   = document.getElementById('ytCount').value;
+
+  setLoading('loadingYt', true);
+  document.getElementById('btnYtSearch').disabled = true;
+  document.getElementById('ytList').classList.remove('show');
+  document.getElementById('ytList').innerHTML = '';
+
+  const params = new URLSearchParams({ keyword, min_subs: minSubs, max_subs: maxSubs, results_count: count });
+  const es = new EventSource(`/api/sns/youtubers?${params}`);
+
+  es.onmessage = function(e) {
+    const data = JSON.parse(e.data);
+    if (data.type === 'status') {
+      const span = document.querySelector('#loadingYt span');
+      if (span) span.textContent = data.message;
+    } else if (data.type === 'result') {
+      appendYtItem(data);
+      document.getElementById('ytList').classList.add('show');
+    } else if (data.type === 'done') {
+      if (!document.getElementById('ytList').children.length) {
+        document.getElementById('ytList').innerHTML = '<p style="color:#6b7280;font-size:13px;">검색 결과가 없습니다.</p>';
+        document.getElementById('ytList').classList.add('show');
+      }
+      setLoading('loadingYt', false);
+      document.getElementById('btnYtSearch').disabled = false;
+      es.close();
+    } else if (data.type === 'error') {
+      document.getElementById('ytList').innerHTML =
+        `<p style="color:#dc2626;font-size:13px;">검색 중 오류: ${escHtml(data.message)}</p>`;
+      document.getElementById('ytList').classList.add('show');
+      setLoading('loadingYt', false);
+      document.getElementById('btnYtSearch').disabled = false;
+      es.close();
+    }
+  };
+
+  es.onerror = function() {
+    document.getElementById('ytList').innerHTML =
+      '<p style="color:#dc2626;font-size:13px;">연결 오류가 발생했습니다. 잠시 후 다시 시도해주세요.</p>';
+    document.getElementById('ytList').classList.add('show');
+    setLoading('loadingYt', false);
+    document.getElementById('btnYtSearch').disabled = false;
+    es.close();
+  };
+}
+
+function appendYtItem(r) {
+  const list = document.getElementById('ytList');
+  const div = document.createElement('div');
+  div.className = 'e-sub-item';
+  div.innerHTML = `
+    <div class="e-sub-avatar">${(r.name || '?')[0].toUpperCase()}</div>
+    <div class="e-sub-info">
+      <div class="e-sub-name">${escHtml(r.name || '-')}</div>
+      <div class="e-sub-meta">
+        구독자 ${fmtNum(r.subscribers)}
+        ${r.email && r.email !== 'N/A' ? ` · ✉ ${escHtml(r.email)}` : ''}
+      </div>
+      ${r.bio ? `<div class="e-sub-meta" style="margin-top:2px;font-size:11px;">${escHtml(r.bio)}</div>` : ''}
+    </div>
+    <div class="e-sub-actions">
+      <button class="e-btn e-btn-gray" style="font-size:12px;padding:6px 12px;"
+        onclick="prefillDM('${escAttr(r.name || '')}', '${escAttr(r.email && r.email !== 'N/A' ? r.email : '')}')">
+        DM 작성
+      </button>
+      ${r.link ? `<a href="${escHtml(r.link)}" target="_blank" class="e-btn e-btn-blue" style="font-size:12px;padding:6px 12px;">채널 보기</a>` : ''}
+    </div>
+  `;
+  list.appendChild(div);
+}
+
+function prefillDM(name, email) {
+  document.getElementById('dmInfluencer').value = name || '';
+  if (email) document.getElementById('emailTo').value = email;
+}
+
+/* ─────────────────────────────────────────────
+   인플루언서: 협찬 DM 문구 생성
+───────────────────────────────────────────── */
+async function generateDM() {
+  const influencer = document.getElementById('dmInfluencer').value.trim();
+  const product    = document.getElementById('dmProduct').value;
+  if (!influencer) { alert('인플루언서 채널명을 입력해주세요.'); return; }
+
+  setLoading('loadingDm', true);
+  document.getElementById('btnDm').disabled = true;
+  document.getElementById('dmResult').classList.remove('show');
+
+  try {
+    const res  = await fetch('/api/sns/dm', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ influencer_name: influencer, product })
+    });
+    const data = await res.json();
+    showResult('dmResult', 'dmResultText', data.dm_text || JSON.stringify(data));
+  } catch (e) {
+    showResult('dmResult', 'dmResultText', 'DM 생성 오류: ' + e.message);
+  } finally {
+    setLoading('loadingDm', false);
+    document.getElementById('btnDm').disabled = false;
+  }
+}
+
+function prefillEmail() {
+  const dmText = document.getElementById('dmResultText')?.textContent || '';
+  document.getElementById('emailBody').value = dmText;
+  document.getElementById('emailBox').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ─────────────────────────────────────────────
+   인플루언서: 이메일 발송
+───────────────────────────────────────────── */
+async function sendEmail() {
+  const to      = document.getElementById('emailTo').value.trim();
+  const subject = document.getElementById('emailSubject').value.trim();
+  const body    = document.getElementById('emailBody').value.trim();
+
+  if (!to)   { alert('받는 사람 이메일을 입력해주세요.'); return; }
+  if (!body) { alert('본문을 입력해주세요.'); return; }
+
+  const status = document.getElementById('emailStatus');
+  status.textContent = '발송 중…';
+
+  try {
+    const res = await fetch('/api/sns/email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ to, subject, body })
+    });
+    const data = await res.json();
+    status.textContent = data.success ? '✅ 발송 완료!' : '❌ 발송 실패: ' + (data.error || '');
+    status.style.color = data.success ? '#059669' : '#dc2626';
+  } catch (e) {
+    status.textContent = '❌ 오류: ' + e.message;
+    status.style.color = '#dc2626';
+  }
+}
+
+/* ─────────────────────────────────────────────
+   인플루언서: 유튜브 쇼츠 15초 대본 생성
+───────────────────────────────────────────── */
+async function generateScript() {
+  const product = document.getElementById('scriptProduct').value;
+  setLoading('loadingScript', true);
+  document.getElementById('btnScript').disabled = true;
+  document.getElementById('scriptResult').classList.remove('show');
+
+  try {
+    const res  = await fetch('/api/sns/tiktok', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ product })
+    });
+    const data = await res.json();
+    const text = [
+      data.script_vn ? `🇻🇳 베트남어 대본:\n${data.script_vn}` : '',
+      data.prompt_ko ? `\n\n📝 쇼츠 제작 프롬프트:\n${data.prompt_ko}` : ''
+    ].filter(Boolean).join('') || JSON.stringify(data);
+    showResult('scriptResult', 'scriptResultText', text);
+  } catch (e) {
+    showResult('scriptResult', 'scriptResultText', '대본 생성 오류: ' + e.message);
+  } finally {
+    setLoading('loadingScript', false);
+    document.getElementById('btnScript').disabled = false;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   기획안 포맷팅 (쇼츠 바이럴 결과)
+───────────────────────────────────────────── */
+function formatIdeaEl(el) {
+  let text = el.textContent;
+  text = text.replace(/[\u{1F300}-\u{1FAFF}]|[\u{2600}-\u{27BF}]|[\u{FE00}-\u{FE0F}]|[\u{1F1E0}-\u{1F1FF}]/gu, '');
+  text = text.replace(/^#{1,6}\s*/gm, '');
+  text = text.replace(/\*\*(.*?)\*\*/g, '$1');
+  text = text.trim();
+
+  const sectionKeys = [
+    '바이럴 핵심 분석', '행동/대사 패러디 연출 포인트', '최적화 포맷 선정',
+    '상세 실행 기획안', '구매 전환', 'CTA 카피', '추천 BGM'
+  ];
+  const lines = text.split('\n');
+  let html = '', currentSection = null, bodyLines = [];
+
+  function flush() {
+    if (currentSection !== null) {
+      const body = bodyLines.join('\n').trim();
+      if (body) {
+        html += `<div class="e-idea-section">`;
+        html += `<div class="e-idea-section-label">${currentSection}</div>`;
+        html += `<div class="e-idea-section-body">${body}</div>`;
+        html += `</div>`;
+      }
+      bodyLines = []; currentSection = null;
+    }
+  }
+
+  lines.forEach(line => {
+    const cleaned = line.replace(/^#{1,6}\s*/, '').trim();
+    const mk = sectionKeys.find(k => cleaned.includes(k));
+    if (mk && cleaned.length < 100) {
+      flush();
+      const ci = cleaned.indexOf(':');
+      let label = ci > -1 ? cleaned.slice(0, ci).trim() : cleaned;
+      label = label.replace(/^[\W\d]+/, '').trim();
+      const inline = ci > -1 ? cleaned.slice(ci + 1).trim() : '';
+      currentSection = label || mk;
+      if (inline) bodyLines.push(inline);
+    } else {
+      bodyLines.push(line.replace(/^#{1,6}\s*/, ''));
+    }
+  });
+  flush();
+
+  if (html) { el.innerHTML = html; el.style.whiteSpace = 'normal'; }
+}
+
+/* ─────────────────────────────────────────────
+   헬퍼
+───────────────────────────────────────────── */
+function escHtml(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function escAttr(str) {
+  return String(str || '').replace(/'/g, "\\'");
+}
+function fmtNum(n) {
+  const num = parseInt(n) || 0;
+  if (num >= 10000) return (num / 10000).toFixed(1) + '만';
+  if (num >= 1000)  return (num / 1000).toFixed(1) + 'K';
+  return String(num);
+}
+</script>
+{% endblock %}

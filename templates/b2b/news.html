@@ -1,0 +1,661 @@
+{% extends "base_b2b.html" %}
+
+{% block extra_css %}
+<style>
+  /* ── 스켈레톤 카드 ── */
+  .skeleton-card {
+    background: #fff;
+    border: 1px solid #E8EDF3;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  .sk-line { height: 14px; border-radius: 6px; margin-bottom: 10px; }
+  .sk-line.short { width: 30%; }
+  .sk-line.medium { width: 60%; }
+  .sk-line.full { width: 100%; }
+  .sk-line.thin { height: 10px; width: 85%; }
+
+  /* ── SEO 탭 ── */
+  .seo-reason { font-size: 12px; color: #64748B; margin: 2px 0 10px 4px; }
+  .c-keyword-input-wrap {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .c-keyword-input {
+    flex: 1;
+    min-width: 200px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+    outline: none;
+    transition: border-color .15s;
+  }
+  .c-keyword-input:focus { border-color: #3B6FD4; }
+  html.dark .c-keyword-input {
+    background: #162230;
+    border-color: #1E3347;
+    color: #E2E8F0;
+  }
+  .c-keyword-hint {
+    font-size: 11px;
+    color: #94A3B8;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .c-translate-btn {
+    background: #10B981;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 7px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .c-translate-btn:hover { background: #059669; }
+  .c-translate-btn:disabled { background: #94A3B8; cursor: not-allowed; }
+
+  /* ── 법령 탭 ── */
+  .c-law-coming {
+    border-left: 4px solid #3B6FD4;
+    background: #EBF4FF;
+    border-radius: 0 10px 10px 0;
+    padding: 14px 20px;
+    font-size: 14px;
+    color: #1E40AF;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  html.dark .c-law-coming {
+    background: #1e3a5f;
+    color: #93C5FD;
+  }
+  .c-law-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 16px;
+    background: #fff;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  html.dark .c-law-item {
+    background: #162230;
+    border-color: #1E3347;
+  }
+  .c-law-badge {
+    font-size: 11px;
+    font-weight: 800;
+    color: #3B6FD4;
+    background: #EBF4FF;
+    border: 1px solid #BFDBFE;
+    padding: 3px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .c-law-desc { font-size: 13px; color: #475569; line-height: 1.6; }
+  .c-law-desc strong { color: #1E293B; font-weight: 700; }
+  html.dark .c-law-desc { color: #94A3B8; }
+  html.dark .c-law-desc strong { color: #E2E8F0; }
+
+  /* ── 빈 상태 ── */
+  .c-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    color: #94A3B8;
+  }
+  .c-empty-icon { font-size: 2.5rem; margin-bottom: 10px; }
+  .c-empty-text { font-size: 14px; }
+
+  /* ── 법령 수집 결과 ── */
+  .c-gov-card {
+    background: #fff;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  html.dark .c-gov-card {
+    background: #162230;
+    border-color: #1E3347;
+  }
+  .c-gov-source {
+    font-size: 11px;
+    font-weight: 700;
+    color: #3B6FD4;
+    margin-bottom: 6px;
+  }
+  .c-gov-summary {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.7;
+    white-space: pre-wrap;
+  }
+  html.dark .c-gov-summary { color: #94A3B8; }
+  .c-gov-summary table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    font-size: 12px;
+  }
+  .c-gov-summary th, .c-gov-summary td {
+    border: 1px solid #E2E8F0;
+    padding: 6px 10px;
+    text-align: left;
+  }
+  .c-gov-summary th {
+    background: #EBF4FF;
+    font-weight: 700;
+    color: #1E40AF;
+  }
+</style>
+{% endblock %}
+
+{% block page_title %}📰 오늘의 베트남 뉴스{% endblock %}
+{% block page_desc %}베트남 식음료 최신 뉴스를 자동 번역+요약해서 보여줍니다{% endblock %}
+
+{% block page_actions %}
+<button class="btn-portal-action" onclick="loadNews()">🔄 새로 불러오기</button>
+{% endblock %}
+
+{% block content %}
+
+<!-- 탭 네비게이션 -->
+<div class="portal-tabs">
+  <button class="portal-tab active" onclick="switchTab('issue', this)">🔥 오늘의 이슈</button>
+  <button class="portal-tab" onclick="switchTab('seo', this)">🎯 SEO 키워드</button>
+  <button class="portal-tab" onclick="switchTab('law', this)">📋 법령 분석</button>
+</div>
+
+<!-- ── 탭 1: 오늘의 이슈 ── -->
+<div id="tab-issue" class="tab-panel" style="display:block;">
+  <div class="portal-card">
+    <div class="portal-section-title">베트남 식음료 이슈</div>
+    <div id="issueContent">
+      <!-- 스켈레톤 초기 표시 -->
+      <div class="skeleton-card">
+        <div class="news-card-header">
+          <div class="skeleton sk-line short" style="height:18px;border-radius:99px;"></div>
+          <div class="skeleton sk-line" style="width:15%;height:12px;"></div>
+        </div>
+        <div class="skeleton sk-line medium" style="height:18px;margin-bottom:8px;"></div>
+        <div class="skeleton sk-line full"></div>
+        <div class="skeleton sk-line thin"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="news-card-header">
+          <div class="skeleton sk-line short" style="height:18px;border-radius:99px;"></div>
+          <div class="skeleton sk-line" style="width:15%;height:12px;"></div>
+        </div>
+        <div class="skeleton sk-line medium" style="height:18px;margin-bottom:8px;"></div>
+        <div class="skeleton sk-line full"></div>
+        <div class="skeleton sk-line thin"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="news-card-header">
+          <div class="skeleton sk-line short" style="height:18px;border-radius:99px;"></div>
+          <div class="skeleton sk-line" style="width:15%;height:12px;"></div>
+        </div>
+        <div class="skeleton sk-line medium" style="height:18px;margin-bottom:8px;"></div>
+        <div class="skeleton sk-line full"></div>
+        <div class="skeleton sk-line thin"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 탭 2: SEO 키워드 ── -->
+<div id="tab-seo" class="tab-panel">
+  <div class="portal-card">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+      <div class="portal-section-title" style="margin-bottom:0;">🎯 SEO 마케팅 키워드 분석</div>
+    </div>
+
+    <!-- 직원 키워드 입력 영역 -->
+    <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:14px 16px;margin-bottom:16px;">
+      <div style="font-size:13px;font-weight:700;color:#1E293B;margin-bottom:8px;">🔑 키워드 입력 (한글로 입력)</div>
+      <div class="c-keyword-hint">
+        찾고 싶은 키워드를 한글로 입력하세요. 베트남어로 자동 변환 후 베트남 구글에서 연관검색어를 수집합니다.<br>
+        예시: 소스, 코인육수, 한국 식품, 볶음밥 양념
+      </div>
+      <div class="c-keyword-input-wrap">
+        <input
+          type="text"
+          id="seoKeywordInput"
+          class="c-keyword-input"
+          placeholder="키워드 입력 후 Enter 또는 + 버튼 (최대 5개)"
+          onkeydown="if(event.key==='Enter') addKeyword()"
+        />
+        <button onclick="addKeyword()"
+          style="background:#3B6FD4;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;">
+          + 추가
+        </button>
+      </div>
+      <!-- 입력된 키워드 태그 -->
+      <div id="keywordTags" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;min-height:28px;"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button onclick="loadSeo()" id="seoLoadBtn"
+          style="background:#3B6FD4;color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer;">
+          🔍 SEO 분석 실행
+        </button>
+        <button onclick="clearKeywords()"
+          style="background:#F1F5F9;color:#64748B;border:1px solid #E2E8F0;border-radius:8px;padding:8px 14px;font-size:12px;cursor:pointer;">
+          초기화
+        </button>
+      </div>
+    </div>
+
+    <!-- SEO 결과 영역 -->
+    <div id="seoContent">
+      <div class="c-empty">
+        <div class="c-empty-icon">🎯</div>
+        <div class="c-empty-text">키워드를 입력하고 SEO 분석 실행 버튼을 눌러주세요. (1~2분 소요)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 탭 3: 법령 분석 ── -->
+<div id="tab-law" class="tab-panel">
+  <div class="portal-card">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+      <div class="portal-section-title" style="margin-bottom:0;">🏛️ 베트남 식품 관련 법령</div>
+      <button onclick="loadGov()" id="govLoadBtn"
+        style="background:#3B6FD4;color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;">
+        🔄 최신 법령 수집
+      </button>
+    </div>
+
+    <!-- 기본 하드코딩 법령 (자동수집 전 항상 표시) -->
+    <div id="lawStaticContent">
+      <div class="c-law-coming">
+        📡 아래는 주요 법령 요약입니다. 최신 법령 수집 버튼을 눌러 실시간 업데이트하세요.
+      </div>
+
+      <div class="c-law-item">
+        <span class="c-law-badge">15/2018/NĐ-CP</span>
+        <div class="c-law-desc">
+          <strong>식품 안전 규정</strong><br>
+          식품 제조·유통·수입 시 위생 안전 기준, 성분 표시, 보존 방법 등을 규정합니다.
+          한국산 소스류 수입 시 반드시 사전 적합성 심사를 통과해야 합니다.
+        </div>
+      </div>
+
+      <div class="c-law-item">
+        <span class="c-law-badge">43/2017/NĐ-CP</span>
+        <div class="c-law-desc">
+          <strong>식품 원산지·라벨링 표시</strong><br>
+          모든 식품 포장재에 베트남어 원산지 및 생산자 정보를 필수 기재해야 합니다.
+          "Made in Korea" 등 한국어 병기는 허용되나 베트남어 표기가 우선입니다.
+        </div>
+      </div>
+
+      <div class="c-law-item">
+        <span class="c-law-badge">2026 신규</span>
+        <div class="c-law-desc">
+          <strong>해외 기업 광고 현지 대행사 의무화</strong><br>
+          2026년부터 베트남 내 광고를 집행하는 외국 기업은 반드시 베트남 정부에 등록된
+          현지 광고 대행사를 통해야 합니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- 자동 수집 결과 (수집 후 표시) -->
+    <div id="lawAutoContent" style="display:none;">
+      <div style="height:1px;background:#E2E8F0;margin:20px 0;"></div>
+      <div style="font-size:13px;font-weight:700;color:#1E293B;margin-bottom:12px;">📡 실시간 수집 결과</div>
+      <div id="lawAutoItems"></div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  /* ── 탭 전환 ── */
+  function switchTab(name, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
+    document.querySelectorAll('.portal-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).style.display = 'block';
+    btn.classList.add('active');
+  }
+
+  /* ── 스켈레톤 표시 ── */
+  function showSkeletons() {
+    const skHtml = Array(3).fill(0).map(() => `
+      <div class="skeleton-card">
+        <div class="news-card-header">
+          <div class="skeleton sk-line short" style="height:18px;border-radius:99px;"></div>
+          <div class="skeleton sk-line" style="width:15%;height:12px;"></div>
+        </div>
+        <div class="skeleton sk-line medium" style="height:18px;margin-bottom:8px;"></div>
+        <div class="skeleton sk-line full"></div>
+        <div class="skeleton sk-line thin"></div>
+      </div>
+    `).join('');
+    document.getElementById('issueContent').innerHTML = skHtml;
+  }
+
+  /* ── 빈 상태 ── */
+  function showEmpty() {
+    document.getElementById('issueContent').innerHTML = `
+      <div class="c-empty">
+        <div class="c-empty-icon">📭</div>
+        <div class="c-empty-text">아직 수집된 뉴스가 없습니다. 새로 불러오기를 눌러주세요.</div>
+      </div>
+    `;
+  }
+
+  /* ── 에러 표시 ── */
+  function showError(msg) {
+    document.getElementById('issueContent').innerHTML = `
+      <div class="portal-error" style="padding:20px;text-align:center;">${msg}</div>
+    `;
+  }
+
+  /* ── 뉴스 카드 렌더링 ── */
+  function renderIssues(items) {
+    if (!items || items.length === 0) { showEmpty(); return; }
+    const html = items.map(item => `
+      <div class="news-card">
+        <div class="news-card-header">
+          <span class="news-source">${item.source || '출처 불명'}</span>
+          <span class="news-date">${item.date || ''}</span>
+        </div>
+        <div class="news-title">${item.title_ko || item.title || '제목 없음'}</div>
+        <div class="news-summary">${item.summary_ko || ''}</div>
+        ${item.url ? `<a class="news-link" href="${item.url}" target="_blank" rel="noopener">원문 보기 →</a>` : ''}
+      </div>
+    `).join('');
+    document.getElementById('issueContent').innerHTML = `<div class="news-list">${html}</div>`;
+  }
+
+  /* ══════════════════════════════════════════════
+     SEO 키워드 태그 관리
+  ══════════════════════════════════════════════ */
+  let seoKeywords = [];
+
+  function addKeyword() {
+    const input = document.getElementById('seoKeywordInput');
+    const val = input.value.trim();
+    if (!val) return;
+    if (seoKeywords.length >= 5) {
+      alert('키워드는 최대 5개까지 입력 가능합니다.');
+      return;
+    }
+    if (seoKeywords.includes(val)) {
+      input.value = '';
+      return;
+    }
+    seoKeywords.push(val);
+    renderKeywordTags();
+    input.value = '';
+    input.focus();
+  }
+
+  function removeKeyword(idx) {
+    seoKeywords.splice(idx, 1);
+    renderKeywordTags();
+  }
+
+  function clearKeywords() {
+    seoKeywords = [];
+    renderKeywordTags();
+  }
+
+  function renderKeywordTags() {
+    const wrap = document.getElementById('keywordTags');
+    if (seoKeywords.length === 0) {
+      wrap.innerHTML = '<span style="font-size:12px;color:#94A3B8;">입력된 키워드가 없습니다</span>';
+      return;
+    }
+    wrap.innerHTML = seoKeywords.map((kw, i) => `
+      <span style="display:inline-flex;align-items:center;gap:4px;background:#EBF4FF;color:#1E40AF;
+                   border:1px solid #BFDBFE;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:600;">
+        ${kw}
+        <button onclick="removeKeyword(${i})"
+          style="background:none;border:none;cursor:pointer;color:#64748B;font-size:12px;padding:0;line-height:1;">✕</button>
+      </span>
+    `).join('');
+  }
+
+  /* ── SEO 분석 실행 ── */
+  async function loadSeo() {
+    const btn = document.getElementById('seoLoadBtn');
+    const content = document.getElementById('seoContent');
+    btn.disabled = true;
+    btn.textContent = '⏳ 분석 중...';
+    content.innerHTML = `
+      <div class="c-empty">
+        <div class="c-empty-icon">⏳</div>
+        <div class="c-empty-text">베트남 실시간 검색어 + 연관 키워드 수집 중입니다… (1~2분 소요)</div>
+      </div>`;
+
+    try {
+      const res = await fetch('/api/fetch-seo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ keywords: seoKeywords }),
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.error || '실패');
+      const seoData = data.data || {};
+
+      let html = '';
+
+      // 입력 키워드 → 베트남어 변환 표시
+      if (seoData.keywords_vn && seoData.keywords_vn.length > 0) {
+        html += `
+          <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:12px;">
+            <span style="font-weight:700;color:#065F46;">🔄 베트남어 변환:</span>
+            ${seoData.keywords_vn.map(k => `<span style="background:#DCFCE7;color:#065F46;border-radius:99px;padding:2px 8px;margin-left:4px;">${k}</span>`).join('')}
+          </div>`;
+      }
+
+      // OpenAI 인사이트
+      if (seoData.insight) {
+        html += `
+          <div style="background:#EBF4FF;border-radius:10px;padding:14px 16px;margin-bottom:16px;
+                      font-size:13px;line-height:1.7;color:#1E293B;white-space:pre-wrap;">
+            ${seoData.insight}
+          </div>`;
+      }
+
+      // 실시간 검색어 TOP 10
+      if (seoData.rss_trends && seoData.rss_trends.length > 0) {
+        html += `<div style="font-size:12px;font-weight:700;color:#64748B;margin-bottom:8px;margin-top:4px;">📈 베트남 실시간 검색어 TOP ${seoData.rss_trends.length}</div>`;
+        html += `<div id="seo-trends-chips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">`;
+        seoData.rss_trends.forEach((t, i) => {
+          html += `
+            <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:6px 12px;font-size:12px;">
+              <span style="color:#94A3B8;margin-right:4px;">${i+1}</span>
+              <span style="font-weight:600;color:#1E293B;">${t.keyword_ko || t.keyword}</span>
+              ${t.keyword_ko && t.keyword_ko !== t.keyword ? `<span style="color:#94A3B8;margin-left:4px;">(${t.keyword})</span>` : ''}
+              <span style="color:#3B6FD4;margin-left:6px;font-size:11px;">${t.traffic || ''}</span>
+            </div>`;
+        });
+        html += `</div>`;
+
+        // 전체 번역 버튼 (베트남어 → 한국어 인플레이스)
+        html += `
+          <button id="translateAllBtn" class="c-translate-btn" onclick="translateAllKeywords()"
+            style="margin-bottom:16px;">
+            🌐 전체 번역 (베트남어 → 한국어)
+          </button>`;
+      }
+
+      // 연관검색어
+      if (seoData.related_kws && seoData.related_kws.length > 0) {
+        html += `<div style="font-size:12px;font-weight:700;color:#64748B;margin-bottom:8px;">🔗 베트남 연관 검색어</div>`;
+        const grouped = {};
+        seoData.related_kws.forEach(k => {
+          const seed = k.seed || '기타';
+          if (!grouped[seed]) grouped[seed] = [];
+          grouped[seed].push(k);
+        });
+        Object.entries(grouped).forEach(([seed, kws]) => {
+          html += `<div style="font-size:12px;color:#64748B;margin-bottom:6px;font-weight:600;">▶ "${seed}" 연관</div>`;
+          html += `<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">`;
+          kws.slice(0, 10).forEach(k => {
+            const tag   = k.type === 'rising' ? '🔥' : '⭐';
+            const label = k.keyword_ko ? `${k.keyword_ko} <span style="color:#94A3B8;font-size:10px;">(${k.keyword})</span>` : k.keyword;
+            html += `
+              <span style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;
+                           padding:5px 10px;font-size:12px;color:#1E293B;">
+                ${tag} ${label}
+              </span>`;
+          });
+          html += `</div>`;
+        });
+      }
+
+      if (!html) {
+        html = `<div class="c-empty"><div class="c-empty-icon">📭</div><div class="c-empty-text">관련 키워드가 없습니다.</div></div>`;
+      }
+
+      content.innerHTML = html;
+
+      // 수집된 RSS 키워드 전역 저장 (번역 버튼용)
+      window._lastRssTrends = seoData.rss_trends || [];
+
+    } catch(e) {
+      content.innerHTML = `<div class="portal-error" style="padding:20px;text-align:center;">⚠️ SEO 분석 실패: ${e.message}</div>`;
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '🔍 SEO 분석 실행';
+    }
+  }
+
+  /* ── 전체 번역 버튼 (베트남어 키워드 → 한국어 인플레이스) ── */
+  async function translateAllKeywords() {
+    const btn = document.getElementById('translateAllBtn');
+    if (!btn) return;
+    btn.disabled = true;
+    btn.textContent = '⏳ 번역 중...';
+    try {
+      const kwList = (window._lastRssTrends || []).map(t => t.keyword);
+      if (!kwList.length) return;
+      const res = await fetch('/api/seo/translate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ keywords: kwList }),
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.error);
+
+      // 개별 번역 결과로 각 키워드에 매핑
+      (data.translations || []).forEach((t, i) => {
+        if (window._lastRssTrends[i]) window._lastRssTrends[i].keyword_ko = t.translated;
+      });
+
+      // 번역 완료 후 버튼 변경
+      btn.textContent = '✅ 번역 완료';
+      btn.style.background = '#10B981';
+
+      // 검색어 칩 컨테이너 리렌더링
+      const chipsEl = document.getElementById('seo-trends-chips');
+      if (chipsEl) {
+        chipsEl.innerHTML = (window._lastRssTrends || []).map((t, i) => `
+          <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:6px 12px;font-size:12px;">
+            <span style="color:#94A3B8;margin-right:4px;">${i+1}</span>
+            <span style="font-weight:600;color:#1E293B;">${t.keyword_ko || t.keyword}</span>
+            ${t.keyword_ko && t.keyword_ko !== t.keyword ? `<span style="color:#94A3B8;margin-left:4px;">(${t.keyword})</span>` : ''}
+            <span style="color:#3B6FD4;margin-left:6px;font-size:11px;">${t.traffic || ''}</span>
+          </div>`).join('');
+      }
+    } catch(e) {
+      btn.textContent = '⚠️ 번역 실패';
+      btn.disabled = false;
+    }
+  }
+
+  /* ── 법령 자동 수집 ── */
+  async function loadGov() {
+    const btn = document.getElementById('govLoadBtn');
+    const autoContent = document.getElementById('lawAutoContent');
+    const autoItems = document.getElementById('lawAutoItems');
+    btn.disabled = true;
+    btn.textContent = '⏳ 수집 중...';
+    autoContent.style.display = 'block';
+    autoItems.innerHTML = `
+      <div class="c-empty">
+        <div class="c-empty-icon">⏳</div>
+        <div class="c-empty-text">베트남 정부 포털에서 최신 법령을 수집 중입니다… (2~3분 소요)</div>
+      </div>`;
+
+    try {
+      const res  = await fetch('/api/fetch-gov', { method: 'POST' });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.error || '실패');
+
+      const articles = data.gov_articles || [];
+      if (articles.length === 0) {
+        autoItems.innerHTML = `
+          <div class="c-empty">
+            <div class="c-empty-icon">📭</div>
+            <div class="c-empty-text">수집된 법령 정보가 없습니다.</div>
+          </div>`;
+        return;
+      }
+
+      autoItems.innerHTML = articles.map(a => `
+        <div class="c-gov-card">
+          <div class="c-gov-source">${a.flag || ''} ${a.source || ''}</div>
+          <div class="c-gov-summary">${a.summary || ''}</div>
+          ${a.url ? `<a href="${a.url}" target="_blank" rel="noopener"
+            style="display:inline-block;margin-top:8px;font-size:12px;color:#3B6FD4;">원문 보기 →</a>` : ''}
+        </div>
+      `).join('');
+
+    } catch(e) {
+      autoItems.innerHTML = `<div class="portal-error" style="padding:20px;text-align:center;">⚠️ 법령 수집 실패: ${e.message}</div>`;
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '🔄 최신 법령 수집';
+    }
+  }
+
+  /* ── 페이지 로드 시 캐시 자동 불러오기 ── */
+  document.addEventListener('DOMContentLoaded', async () => {
+    showSkeletons();
+    try {
+      const res  = await fetch('/api/news/cache');
+      const data = await res.json();
+      const items = data.issues || (Array.isArray(data) ? data : []);
+      if (items.length > 0) {
+        renderIssues(items);
+      } else {
+        showEmpty();
+      }
+    } catch (e) {
+      showEmpty();
+    }
+
+    // 키워드 태그 초기화
+    renderKeywordTags();
+  });
+
+  /* ── 새로 불러오기 ── */
+  async function loadNews() {
+    showSkeletons();
+    try {
+      const res  = await fetch('/api/news', { method: 'POST' });
+      const data = await res.json();
+      renderIssues(data.issues || []);
+    } catch (e) {
+      showError('⚠️ 뉴스를 불러올 수 없습니다. 잠시 후 다시 시도해 주세요.');
+    }
+  }
+</script>
+{% endblock %}

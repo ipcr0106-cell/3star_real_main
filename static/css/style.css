@@ -1,0 +1,255 @@
+/* ★ 쓰리스타 B2C 자사몰 CSS ★ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', sans-serif; color: #333; }
+a { text-decoration: none; color: inherit; }
+
+/* 네비게이션 */
+.navbar { display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 100; }
+.logo { font-size: 1.5rem; font-weight: bold; color: #d4380d; }
+.nav-links { display: flex; list-style: none; gap: 2rem; }
+.nav-links a:hover { color: #d4380d; }
+.nav-links .active { color: #d4380d; font-weight: bold; }
+.btn-portal { background: #1a1a2e; color: #fff !important; padding: 0.4rem 1rem; border-radius: 6px; }
+.nav-actions { display: flex; gap: 0.5rem; }
+.btn-cart, .btn-login { padding: 0.4rem 1rem; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; }
+
+/* 히어로 배너 */
+.hero { text-align: center; padding: 5rem 2rem; background: linear-gradient(135deg, #d4380d 0%, #ff7a45 100%); color: #fff; }
+.hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+
+/* 제품 그리드 */
+.products-preview, .product-list { padding: 3rem 2rem; max-width: 1200px; margin: 0 auto; }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 1.5rem; }
+.product-card { border: 1px solid #eee; border-radius: 12px; padding: 1.5rem; text-align: center; transition: transform 0.2s; }
+.product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+.product-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; background: #f5f5f5; }
+.price { color: #d4380d; font-size: 1.2rem; font-weight: bold; margin: 0.5rem 0; }
+.btn-add-cart { background: #d4380d; color: #fff; border: none; padding: 0.6rem 1.5rem; border-radius: 6px; cursor: pointer; }
+
+/* 챗봇 플로팅 버튼 */
+.chatbot-floating { position: fixed; bottom: 2rem; right: 2rem; background: #d4380d; color: #fff; padding: 1rem 1.5rem; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 12px rgba(212,56,13,0.4); font-weight: bold; z-index: 999; }
+
+/* 챗봇 페이지 */
+.chatbot-container { max-width: 700px; margin: 2rem auto; padding: 0 1rem; }
+.chat-window { height: 400px; overflow-y: auto; border: 1px solid #eee; border-radius: 12px; padding: 1rem; background: #fafafa; margin: 1rem 0; }
+.bot-message { background: #fff; padding: 0.8rem; border-radius: 12px; margin-bottom: 0.5rem; border-left: 3px solid #d4380d; }
+.user-message { background: #d4380d; color: #fff; padding: 0.8rem; border-radius: 12px; margin-bottom: 0.5rem; text-align: right; }
+.chat-input-area { display: flex; gap: 0.5rem; }
+.chat-input-area input { flex: 1; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; }
+.chat-input-area button { background: #d4380d; color: #fff; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; }
+
+/* 문의 페이지 */
+.contact-section { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+.contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 8px; }
+.contact-form button { background: #d4380d; color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 8px; cursor: pointer; }
+
+footer { text-align: center; padding: 2rem; background: #1a1a2e; color: #888; margin-top: 3rem; }
+
+@media (max-width: 768px) {
+    .navbar { flex-wrap: wrap; }
+    .nav-links { gap: 1rem; font-size: 0.9rem; }
+    .hero h1 { font-size: 1.8rem; }
+}
+
+/* ═══════════════════════════════════════════
+   플로팅 챗봇 위젯 CSS
+═══════════════════════════════════════════ */
+
+/* 애니메이션 */
+@keyframes cwFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes cwGlow {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+@keyframes cwFabBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+@keyframes cwSlideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* 플로팅 버튼 (FAB) */
+.chatbot-fab {
+  position: fixed; bottom: 20px; right: 20px;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: linear-gradient(135deg, #FF8A65, #D4380D);
+  border: none; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(212,56,13,0.45);
+  z-index: 10000;
+  display: flex; align-items: center; justify-content: center;
+  animation: cwFabBounce 2.5s ease-in-out infinite;
+  transition: transform 0.2s;
+}
+.chatbot-fab:hover { transform: scale(1.1); animation: none; }
+.fab-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+.fab-close { font-size: 22px; color: #fff; font-weight: bold; line-height: 1; }
+
+/* 위젯 팝업 */
+.chat-widget {
+  position: fixed; bottom: 96px; right: 20px;
+  width: 350px; height: 460px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  z-index: 9999;
+  display: none; flex-direction: column;
+  overflow: hidden;
+}
+.chat-widget.cw-slide-up { animation: cwSlideUp 0.3s ease-out; }
+
+/* 헤더 */
+.cw-header {
+  background: linear-gradient(135deg, #FF8A65, #D4380D, #BF360C);
+  color: #fff; padding: 12px 14px 10px;
+}
+.cw-header-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.cw-avatar { width: 36px; height: 36px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.5); object-fit: cover; }
+.cw-header-text { flex: 1; }
+.cw-title { font-weight: bold; font-size: 15px; }
+.cw-subtitle { font-size: 11px; opacity: 0.85; }
+
+/* 언어 / 모드 버튼 행 */
+.cw-header-controls { display: flex; flex-direction: column; gap: 6px; }
+.cw-lang-row, .cw-mode-row { display: flex; gap: 4px; }
+.cw-lang-btn, .cw-mode-btn {
+  padding: 3px 10px; border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 12px; background: rgba(255,255,255,0.15);
+  color: #fff; font-size: 11px; cursor: pointer; transition: all 0.2s;
+}
+.cw-lang-btn.active, .cw-mode-btn.active {
+  background: rgba(255,255,255,0.9); color: #BF360C; font-weight: bold;
+}
+.cw-lang-btn:hover, .cw-mode-btn:hover { background: rgba(255,255,255,0.3); }
+
+/* 가이드 모드 */
+.cw-guided { padding: 10px 14px; background: #FFF8F0; border-bottom: 1px solid #ffe0cc; overflow-y: auto; }
+.cw-guided-label { font-size: 13px; font-weight: bold; color: #BF360C; margin-bottom: 6px; }
+.cw-guided-buttons { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.cw-cat-btn, .cw-taste-btn {
+  padding: 5px 12px; border: 1px solid #ddd; border-radius: 16px;
+  background: #fff; font-size: 12px; cursor: pointer; transition: all 0.2s;
+}
+.cw-cat-btn:hover, .cw-taste-btn:hover { background: #fee2e2; border-color: #ef4444; }
+.cw-cat-btn.active, .cw-taste-btn.active { background: #D4380D; color: #fff; border-color: #D4380D; }
+
+/* 웰컴 화면 */
+.cw-welcome {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 20px 14px; text-align: center;
+  overflow-y: auto;
+}
+.cw-yongdami-wrap { position: relative; margin-bottom: 10px; }
+.cw-yongdami {
+  width: 120px; height: 120px; object-fit: contain;
+  animation: cwFloat 3s ease-in-out infinite;
+  filter: drop-shadow(0 4px 12px rgba(212,56,13,0.3));
+}
+.cw-yongdami-wrap::after {
+  content: ''; position: absolute; inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,138,101,0.25) 0%, transparent 70%);
+  animation: cwGlow 2.5s ease-in-out infinite;
+  z-index: -1;
+}
+.cw-hello { color: #BF360C; font-size: 18px; margin-bottom: 4px; }
+.cw-help { color: #666; font-size: 13px; margin-bottom: 14px; }
+
+/* 퀵 액션 그리드 */
+.cw-quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
+.cw-quick-btn {
+  padding: 10px 8px; border: 1px solid #eee; border-radius: 10px;
+  background: #fff; font-size: 12px; cursor: pointer; transition: all 0.2s;
+  text-align: center;
+}
+.cw-quick-btn:hover { border-color: #FF8A65; background: #FFF3EE; }
+
+/* 메시지 영역 */
+.cw-messages {
+  flex: 1; display: flex; flex-direction: column; gap: 8px;
+  padding: 10px 14px; overflow-y: auto; background: #FAFAFA;
+}
+.cw-msg { display: flex; gap: 6px; max-width: 100%; }
+.cw-msg-bot { align-items: flex-start; }
+.cw-msg-user { justify-content: flex-end; }
+.cw-msg-avatar { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; flex-shrink: 0; margin-top: 2px; }
+.cw-bot-text {
+  background: #fff; border: 1px solid #eee; border-radius: 12px;
+  padding: 8px 12px; font-size: 13px; line-height: 1.5;
+  max-width: 260px; word-break: break-word;
+}
+.cw-user-text {
+  background: linear-gradient(135deg, #FF8A65, #D4380D);
+  color: #fff; border-radius: 12px; padding: 8px 12px;
+  font-size: 13px; line-height: 1.5; max-width: 240px; word-break: break-word;
+}
+
+/* 레시피 카드 (위젯 내) */
+.cw-recipe-card { font-size: 12px; }
+.cw-recipe-card h3 { color: #BF360C; margin-bottom: 4px; font-size: 14px; }
+.cw-product-tag { font-size: 11px; color: #795548; margin-bottom: 4px; }
+.cw-recipe-img { width: 100%; border-radius: 8px; margin: 6px 0; max-height: 140px; object-fit: cover; }
+.cw-tips { font-size: 11.5px; color: #5D4037; background: #FFF8E1; border-radius: 6px; padding: 6px 8px; margin: 6px 0; line-height: 1.5; }
+.cw-recipe-actions { display: flex; gap: 6px; margin-top: 8px; }
+.cw-action-btn {
+  padding: 4px 10px; border: 1px solid #D4380D; border-radius: 14px;
+  background: #fff; color: #D4380D; font-size: 11px; cursor: pointer; transition: all 0.2s;
+}
+.cw-action-btn:hover { background: #D4380D; color: #fff; }
+
+/* 접기/펼치기 */
+.cw-collapse-section { border-top: 1px solid #f0e0d6; }
+.cw-collapse-toggle {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 4px; background: none; border: none; cursor: pointer;
+  font-size: 12.5px; font-weight: 600; color: #5D4037;
+}
+.cw-collapse-arrow { transition: transform 0.2s; font-size: 11px; color: #aaa; }
+.cw-collapse-section.open .cw-collapse-arrow { transform: rotate(90deg); }
+.cw-collapse-content {
+  max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+  padding: 0 4px; font-size: 12px; line-height: 1.6;
+}
+.cw-collapse-content ul, .cw-collapse-content ol { padding-left: 18px; margin: 0; }
+.cw-collapse-content li { margin-bottom: 2px; }
+.cw-collapse-section.open .cw-collapse-content { max-height: 500px; padding: 0 4px 8px; }
+
+/* 퀵 답장 */
+.cw-quick-replies { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.cw-qr-btn {
+  padding: 5px 10px; border-radius: 14px;
+  border: 1px solid #FFB74D; background: #FFF8F0;
+  font-size: 11.5px; color: #E65100; cursor: pointer;
+  transition: all 0.15s;
+}
+.cw-qr-btn:hover { background: #FFE0B2; border-color: #FF9800; }
+
+/* 입력행 */
+.cw-input-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px; border-top: 1px solid #eee; background: #fff;
+}
+.cw-input {
+  flex: 1; padding: 8px 14px; border: 1px solid #ddd;
+  border-radius: 20px; font-size: 13px; outline: none; transition: border-color 0.2s;
+}
+.cw-input:focus { border-color: #FF8A65; }
+.cw-send-btn {
+  width: 34px; height: 34px; border-radius: 50%; border: none;
+  background: linear-gradient(135deg, #FF8A65, #D4380D);
+  color: #fff; font-size: 16px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s;
+}
+.cw-send-btn:hover { transform: scale(1.1); }
+
+/* 모바일 반응형 */
+@media (max-width: 480px) {
+  .chat-widget { width: calc(100vw - 20px); right: 10px; bottom: 80px; height: 70vh; }
+}

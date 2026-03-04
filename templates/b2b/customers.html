@@ -1,0 +1,281 @@
+{% extends "base_b2b.html" %}
+{% set active_menu = 'customers' %}
+
+{% block title %}고객 관리{% endblock %}
+{% block page_title %}고객 관리{% endblock %}
+{% block page_desc %}자사몰 이용 현황 — 레시피 검색, 장바구니, 맛 트렌드 분석{% endblock %}
+
+{% block extra_css %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block page_actions %}
+<div class="flex gap-1.5" id="periodPills">
+  <button data-days="7"  class="pill active">7일</button>
+  <button data-days="14" class="pill">14일</button>
+  <button data-days="30" class="pill">30일</button>
+</div>
+{% endblock %}
+
+{% block content %}
+<style>
+  .pill {
+    padding: 6px 16px; border-radius: 999px; font-size: 13px; font-weight: 600;
+    border: 1px solid #E8EDF3; background: #F8FAFC; color: #64748B;
+    cursor: pointer; transition: all .15s;
+  }
+  html.dark .pill { background: #162230; border-color: #1E3347; color: #94A3B8; }
+  .pill:hover { border-color: #BFDBFE; color: #3B6FD4; }
+  html.dark .pill:hover { border-color: #2A5080; color: #5B8FE8; }
+  .pill.active { background: #3B6FD4; color: #fff; border-color: #3B6FD4; }
+  html.dark .pill.active { background: #5B8FE8; border-color: #5B8FE8; color: #fff; }
+
+  .cust-card {
+    background: #fff; border-radius: 16px;
+    border: 1px solid #E8EDF3; padding: 20px;
+  }
+  html.dark .cust-card { background: #162230; border-color: #1E3347; }
+
+  .stat-val { font-size: 28px; font-weight: 800; color: #3B6FD4; }
+  html.dark .stat-val { color: #5B8FE8; }
+  .stat-lbl { font-size: 12px; font-weight: 600; color: #64748B; margin-top: 2px; }
+  html.dark .stat-lbl { color: #94A3B8; }
+
+  .rank-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 7px 0; border-bottom: 1px solid #F1F5F9;
+  }
+  html.dark .rank-row { border-color: #1E3347; }
+  .rank-row:last-child { border-bottom: none; }
+
+  .rank-badge {
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800; flex-shrink: 0;
+  }
+  .rb-1 { background: #FEF3C7; color: #B45309; }
+  .rb-2 { background: #F1F5F9; color: #475569; }
+  .rb-3 { background: #DBEAFE; color: #1D4ED8; }
+  .rb-n { background: #F8FAFC; color: #94A3B8; }
+  html.dark .rb-1 { background: #78350F; color: #FCD34D; }
+  html.dark .rb-2 { background: #1E293B; color: #94A3B8; }
+  html.dark .rb-3 { background: #1E3A5F; color: #60A5FA; }
+  html.dark .rb-n { background: #162230; color: #4A6080; }
+
+  .rank-name { flex: 1; font-size: 13px; font-weight: 500; }
+  .rank-cnt  { font-size: 13px; font-weight: 700; color: #3B6FD4; }
+  html.dark .rank-cnt { color: #5B8FE8; }
+
+  .no-data { text-align: center; padding: 24px; font-size: 13px; color: #94A3B8; }
+</style>
+
+<!-- 통계 카드 -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6" id="statsGrid">
+  <div class="cust-card text-center"><div class="stat-val" id="sv-total">—</div><div class="stat-lbl">총 이벤트</div></div>
+  <div class="cust-card text-center"><div class="stat-val" id="sv-search">—</div><div class="stat-lbl">레시피 검색</div></div>
+  <div class="cust-card text-center"><div class="stat-val" id="sv-cart">—</div><div class="stat-lbl">장바구니 추가</div></div>
+  <div class="cust-card text-center"><div class="stat-val" id="sv-recipes">—</div><div class="stat-lbl">등록 레시피</div></div>
+</div>
+
+<!-- 차트 2열 -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+  <div class="cust-card">
+    <h3 class="text-sm font-bold txt-primary mb-3">
+      <i class="hgi-stroke hgi-chart-line-data-01 mr-1"></i> 일별 사용량
+    </h3>
+    <canvas id="dailyChart"></canvas>
+  </div>
+  <div class="cust-card">
+    <h3 class="text-sm font-bold txt-primary mb-3">
+      <i class="hgi-stroke hgi-globe-02 mr-1"></i> 언어별 분포
+    </h3>
+    <canvas id="langChart"></canvas>
+    <div id="langEmpty" class="no-data hidden">데이터 없음</div>
+  </div>
+</div>
+
+<!-- 랭킹 2열 -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+  <div class="cust-card">
+    <h3 class="text-sm font-bold txt-primary mb-3">
+      <i class="hgi-stroke hgi-fire mr-1"></i> 인기 레시피 TOP 10
+    </h3>
+    <div id="popularList"></div>
+  </div>
+  <div class="cust-card">
+    <h3 class="text-sm font-bold txt-primary mb-3">
+      <i class="hgi-stroke hgi-shopping-cart-01 mr-1"></i> 장바구니 TOP 10
+    </h3>
+    <div id="cartList"></div>
+  </div>
+</div>
+
+<!-- 트렌드 -->
+<div class="cust-card mb-6">
+  <h3 class="text-sm font-bold txt-primary mb-3">
+    <i class="hgi-stroke hgi-trending-up mr-1"></i> 맛/카테고리 트렌드 TOP 15
+  </h3>
+  <div id="trendList"></div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function() {
+  /* ── state ── */
+  let currentDays = 7;
+  let dailyChartObj = null;
+  let langChartObj  = null;
+
+  /* ── pill 기간 선택 ── */
+  document.querySelectorAll('#periodPills .pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#periodPills .pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentDays = parseInt(btn.dataset.days);
+      loadAll();
+    });
+  });
+
+  /* ── 데이터 로드 ── */
+  async function loadAll() {
+    try {
+      const res = await fetch(`/portal/api/analytics?days=${currentDays}`);
+      if (!res.ok) throw new Error(res.status);
+      const d = await res.json();
+
+      /* 통계 카드 */
+      const daily = d.daily || [];
+      const totEv = daily.reduce((s, x) => s + x.total, 0);
+      const totSr = daily.reduce((s, x) => s + x.searches, 0);
+      const totCr = daily.reduce((s, x) => s + x.carts, 0);
+      document.getElementById('sv-total').textContent   = totEv.toLocaleString();
+      document.getElementById('sv-search').textContent  = totSr.toLocaleString();
+      document.getElementById('sv-cart').textContent     = totCr.toLocaleString();
+      document.getElementById('sv-recipes').textContent  = (d.total_recipes ?? 0).toLocaleString();
+
+      /* 일별 차트 */
+      renderDaily(daily);
+
+      /* 언어 차트 */
+      renderLang(d.languages || []);
+
+      /* 랭킹 */
+      renderRank('popularList', d.popular || [], 'name', 'count', '검색');
+      renderRank('cartList',    d.cart    || [], 'name', 'count', '추가');
+      renderRank('trendList',   d.trends  || [], 'combination', 'count', '검색');
+    } catch(e) {
+      console.error('analytics load failed', e);
+    }
+  }
+
+  /* ── 일별 라인 차트 ── */
+  function renderDaily(data) {
+    const ctx = document.getElementById('dailyChart').getContext('2d');
+    if (dailyChartObj) dailyChartObj.destroy();
+
+    const isDark = document.documentElement.classList.contains('dark');
+    const gridColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+    const tickColor = isDark ? '#94A3B8' : '#64748B';
+
+    dailyChartObj = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: data.map(d => d.date.slice(5)),
+        datasets: [
+          {
+            label: '검색',
+            data: data.map(d => d.searches),
+            borderColor: '#3B6FD4',
+            backgroundColor: 'rgba(59,111,212,0.10)',
+            fill: true, tension: 0.35, pointRadius: 2, borderWidth: 2
+          },
+          {
+            label: '장바구니',
+            data: data.map(d => d.carts),
+            borderColor: '#27AE60',
+            backgroundColor: 'rgba(39,174,96,0.08)',
+            fill: true, tension: 0.35, pointRadius: 2, borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { labels: { color: tickColor, font: { size: 11, weight: 600 } } } },
+        scales: {
+          x: { ticks: { color: tickColor, font: { size: 10 } }, grid: { color: gridColor } },
+          y: { beginAtZero: true, ticks: { color: tickColor, stepSize: 1, font: { size: 10 } }, grid: { color: gridColor } }
+        }
+      }
+    });
+  }
+
+  /* ── 언어 도넛 차트 ── */
+  function renderLang(data) {
+    const canvas = document.getElementById('langChart');
+    const empty  = document.getElementById('langEmpty');
+    if (langChartObj) langChartObj.destroy();
+
+    if (!data.length) {
+      canvas.style.display = 'none';
+      empty.classList.remove('hidden');
+      return;
+    }
+    canvas.style.display = '';
+    empty.classList.add('hidden');
+
+    const langNames = { ko: '한국어', vi: 'Tiếng Việt', en: 'English' };
+    const colors = ['#3B6FD4', '#27AE60', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899'];
+    const isDark = document.documentElement.classList.contains('dark');
+
+    langChartObj = new Chart(canvas.getContext('2d'), {
+      type: 'doughnut',
+      data: {
+        labels: data.map(d => langNames[d.language] || d.language),
+        datasets: [{
+          data: data.map(d => d.count),
+          backgroundColor: colors.slice(0, data.length),
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        cutout: '60%',
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { color: isDark ? '#94A3B8' : '#64748B', font: { size: 11, weight: 600 }, padding: 12 }
+          }
+        }
+      }
+    });
+  }
+
+  /* ── 랭킹 리스트 ── */
+  function renderRank(elId, data, nameKey, cntKey, unit) {
+    const el = document.getElementById(elId);
+    if (!data.length) {
+      el.innerHTML = '<div class="no-data">데이터 없음</div>';
+      return;
+    }
+    el.innerHTML = data.map((item, i) => {
+      const bc = i === 0 ? 'rb-1' : i === 1 ? 'rb-2' : i === 2 ? 'rb-3' : 'rb-n';
+      const name = esc(item[nameKey] || '—');
+      const cnt  = item[cntKey];
+      return `<div class="rank-row">
+        <span class="rank-badge ${bc}">${i + 1}</span>
+        <span class="rank-name txt-primary">${name}</span>
+        <span class="rank-cnt">${cnt} ${esc(unit)}</span>
+      </div>`;
+    }).join('');
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  /* ── 초기 로드 ── */
+  loadAll();
+})();
+</script>
+{% endblock %}

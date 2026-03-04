@@ -1,0 +1,2062 @@
+[
+  {
+    "query": "해산물 볶음면",
+    "language": "ko",
+    "variable_type": "A",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_mi_xao_hai_san_sauce04_001",
+        "name": "recipe_mi_xao_hai_san_sauce04_001",
+        "similarity": 0.5164,
+        "category": "면",
+        "taste": "매운,고소",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_gimbugak_comtam_food02_001",
+        "name": "recipe_gimbugak_comtam_food02_001",
+        "similarity": 0.4887,
+        "category": "밥",
+        "taste": "고소,바삭",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_chao_hai_san_season04_004",
+        "name": "recipe_chao_hai_san_season04_004",
+        "similarity": 0.466,
+        "category": "국물",
+        "taste": "고소,담백",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_gimbugak_goi_food02_002",
+        "name": "recipe_gimbugak_goi_food02_002",
+        "similarity": 0.4314,
+        "category": "샐러드",
+        "taste": "새콤,바삭",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "season_04",
+        "name": "season_04",
+        "similarity": 0.4284,
+        "category": "",
+        "taste": "",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "recipe_mi_xao_hai_san_sauce04_001",
+    "expected_rank": 1,
+    "verdict": "PASS"
+  },
+  {
+    "query": "mì xào hải sản",
+    "language": "vi",
+    "variable_type": "A",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_mi_xao_hai_san_sauce04_001",
+        "name": "recipe_mi_xao_hai_san_sauce04_001",
+        "similarity": 0.5472,
+        "category": "면",
+        "taste": "매운,고소",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_goi_hai_san_sauce02_003",
+        "name": "recipe_goi_hai_san_sauce02_003",
+        "similarity": 0.4758,
+        "category": "샐러드",
+        "taste": "담백,새콤",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_chao_hai_san_season04_004",
+        "name": "recipe_chao_hai_san_season04_004",
+        "similarity": 0.4493,
+        "category": "국물",
+        "taste": "고소,담백",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_hai_san_nuong_sauce02_002",
+        "name": "recipe_hai_san_nuong_sauce02_002",
+        "similarity": 0.4467,
+        "category": "구이",
+        "taste": "담백,새콤",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_sup_hai_san_season04_003",
+        "name": "recipe_sup_hai_san_season04_003",
+        "similarity": 0.4254,
+        "category": "국물",
+        "taste": "고소,담백",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "recipe_mi_xao_hai_san_sauce04_001",
+    "expected_rank": 1,
+    "verdict": "PASS"
+  },
+  {
+    "query": "seafood stir-fried noodle",
+    "language": "en",
+    "variable_type": "A",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_mi_xao_hai_san_sauce04_001",
+        "name": "recipe_mi_xao_hai_san_sauce04_001",
+        "similarity": 0.5275,
+        "category": "면",
+        "taste": "매운,고소",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_pho_ga_xao_season03_004",
+        "name": "recipe_pho_ga_xao_season03_004",
+        "similarity": 0.4202,
+        "category": "볶음",
+        "taste": "매운,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_chao_hai_san_season04_004",
+        "name": "recipe_chao_hai_san_season04_004",
+        "similarity": 0.4197,
+        "category": "국물",
+        "taste": "고소,담백",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_sup_hai_san_season04_003",
+        "name": "recipe_sup_hai_san_season04_003",
+        "similarity": 0.3981,
+        "category": "국물",
+        "taste": "고소,담백",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_bun_xao_sauce04_003",
+        "name": "recipe_bun_xao_sauce04_003",
+        "similarity": 0.3958,
+        "category": "면",
+        "taste": "매운,고소",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "recipe_mi_xao_hai_san_sauce04_001",
+    "expected_rank": 1,
+    "verdict": "PASS"
+  },
+  {
+    "query": "치킨윙 구이",
+    "language": "ko",
+    "variable_type": "A",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_canh_ga_chien_sauce06_001",
+        "name": "recipe_canh_ga_chien_sauce06_001",
+        "similarity": 0.5326,
+        "category": "볶음",
+        "taste": "매운,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_canh_ga_nuong_sauce06_003",
+        "name": "recipe_canh_ga_nuong_sauce06_003",
+        "similarity": 0.5322,
+        "category": "구이",
+        "taste": "매운,달콤",
+        "relevant": true
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_ga_ran_sauce06_002",
+        "name": "recipe_ga_ran_sauce06_002",
+        "similarity": 0.5102,
+        "category": "볶음",
+        "taste": "매운,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "sauce_06",
+        "name": "sauce_06",
+        "similarity": 0.5002,
+        "category": "",
+        "taste": "",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_ga_nuong_mat_ong_sauce05_003",
+        "name": "recipe_ga_nuong_mat_ong_sauce05_003",
+        "similarity": 0.4604,
+        "category": "구이",
+        "taste": "고소,달콤",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "recipe_canh_ga_nuong_sauce06_003",
+    "expected_rank": 2,
+    "verdict": "PASS"
+  },
+  {
+    "query": "cánh gà nướng",
+    "language": "vi",
+    "variable_type": "A",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_canh_ga_nuong_sauce06_003",
+        "name": "recipe_canh_ga_nuong_sauce06_003",
+        "similarity": 0.5931,
+        "category": "구이",
+        "taste": "매운,달콤",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_ga_nuong_season03_001",
+        "name": "recipe_ga_nuong_season03_001",
+        "similarity": 0.5858,
+        "category": "구이",
+        "taste": "매운,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_ga_nuong_mat_ong_sauce05_003",
+        "name": "recipe_ga_nuong_mat_ong_sauce05_003",
+        "similarity": 0.5593,
+        "category": "구이",
+        "taste": "고소,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_canh_ga_chien_sauce06_001",
+        "name": "recipe_canh_ga_chien_sauce06_001",
+        "similarity": 0.5112,
+        "category": "볶음",
+        "taste": "매운,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_ga_ran_sauce06_002",
+        "name": "recipe_ga_ran_sauce06_002",
+        "similarity": 0.4759,
+        "category": "볶음",
+        "taste": "매운,달콤",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "recipe_canh_ga_nuong_sauce06_003",
+    "expected_rank": 1,
+    "verdict": "PASS"
+  },
+  {
+    "query": "grilled chicken wings",
+    "language": "en",
+    "variable_type": "A",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_canh_ga_nuong_sauce06_003",
+        "name": "recipe_canh_ga_nuong_sauce06_003",
+        "similarity": 0.5788,
+        "category": "구이",
+        "taste": "매운,달콤",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_canh_ga_chien_sauce06_001",
+        "name": "recipe_canh_ga_chien_sauce06_001",
+        "similarity": 0.5175,
+        "category": "볶음",
+        "taste": "매운,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_ga_nuong_season03_001",
+        "name": "recipe_ga_nuong_season03_001",
+        "similarity": 0.4768,
+        "category": "구이",
+        "taste": "매운,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_dui_ga_chien_gion_sauce06_004",
+        "name": "recipe_dui_ga_chien_gion_sauce06_004",
+        "similarity": 0.4499,
+        "category": "볶음",
+        "taste": "매운,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_ga_ran_sauce06_002",
+        "name": "recipe_ga_ran_sauce06_002",
+        "similarity": 0.4426,
+        "category": "볶음",
+        "taste": "매운,달콤",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "recipe_canh_ga_nuong_sauce06_003",
+    "expected_rank": 1,
+    "verdict": "PASS"
+  },
+  {
+    "query": "채식 전골",
+    "language": "ko",
+    "variable_type": "A",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_lau_chay_coin03_001",
+        "name": "recipe_lau_chay_coin03_001",
+        "similarity": 0.4615,
+        "category": "국물",
+        "taste": "매운,담백",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_pho_chay_coin03_002",
+        "name": "recipe_pho_chay_coin03_002",
+        "similarity": 0.4207,
+        "category": "면",
+        "taste": "매운,담백",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_lau_bo_coin01_003",
+        "name": "recipe_lau_bo_coin01_003",
+        "similarity": 0.3852,
+        "category": "국물",
+        "taste": "고소,얼큰",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_lau_chua_cay_coin04_002",
+        "name": "recipe_lau_chua_cay_coin04_002",
+        "similarity": 0.3814,
+        "category": "국물",
+        "taste": "매운,새콤",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "coin_03",
+        "name": "coin_03",
+        "similarity": 0.3674,
+        "category": "",
+        "taste": "",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "recipe_lau_chay_coin03_001",
+    "expected_rank": 1,
+    "verdict": "PASS"
+  },
+  {
+    "query": "lẩu chay",
+    "language": "vi",
+    "variable_type": "A",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_lau_chay_coin03_001",
+        "name": "recipe_lau_chay_coin03_001",
+        "similarity": 0.566,
+        "category": "국물",
+        "taste": "매운,담백",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_pho_chay_coin03_002",
+        "name": "recipe_pho_chay_coin03_002",
+        "similarity": 0.4856,
+        "category": "면",
+        "taste": "매운,담백",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_bun_rieu_chay_coin03_004",
+        "name": "recipe_bun_rieu_chay_coin03_004",
+        "similarity": 0.4428,
+        "category": "면",
+        "taste": "매운,새콤",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_lau_chua_cay_coin04_002",
+        "name": "recipe_lau_chua_cay_coin04_002",
+        "similarity": 0.3832,
+        "category": "국물",
+        "taste": "매운,새콤",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_bun_cha_sauce03_004",
+        "name": "recipe_bun_cha_sauce03_004",
+        "similarity": 0.3793,
+        "category": "면",
+        "taste": "고소,담백",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "recipe_lau_chay_coin03_001",
+    "expected_rank": 1,
+    "verdict": "PASS"
+  },
+  {
+    "query": "vegetarian hot pot",
+    "language": "en",
+    "variable_type": "A",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_lau_chay_coin03_001",
+        "name": "recipe_lau_chay_coin03_001",
+        "similarity": 0.5786,
+        "category": "국물",
+        "taste": "매운,담백",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_pho_chay_coin03_002",
+        "name": "recipe_pho_chay_coin03_002",
+        "similarity": 0.4772,
+        "category": "면",
+        "taste": "매운,담백",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_lau_nam_coin03_005",
+        "name": "recipe_lau_nam_coin03_005",
+        "similarity": 0.4677,
+        "category": "국물",
+        "taste": "매운,고소",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_lau_chua_cay_coin04_002",
+        "name": "recipe_lau_chua_cay_coin04_002",
+        "similarity": 0.4338,
+        "category": "국물",
+        "taste": "매운,새콤",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_bun_rieu_chay_coin03_004",
+        "name": "recipe_bun_rieu_chay_coin03_004",
+        "similarity": 0.4276,
+        "category": "면",
+        "taste": "매운,새콤",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "recipe_lau_chay_coin03_001",
+    "expected_rank": 1,
+    "verdict": "PASS"
+  },
+  {
+    "query": "쌀국수",
+    "language": "ko",
+    "variable_type": "A",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_bun_bo_xao_coin01_005",
+        "name": "recipe_bun_bo_xao_coin01_005",
+        "similarity": 0.4563,
+        "category": "면",
+        "taste": "담백,얼큰",
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_pho_ga_xao_season03_004",
+        "name": "recipe_pho_ga_xao_season03_004",
+        "similarity": 0.4531,
+        "category": "볶음",
+        "taste": "매운,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_pho_xao_sauce04_002",
+        "name": "recipe_pho_xao_sauce04_002",
+        "similarity": 0.4387,
+        "category": "면",
+        "taste": "매운,고소",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_gimbugak_pho_food02_004",
+        "name": "recipe_gimbugak_pho_food02_004",
+        "similarity": 0.4387,
+        "category": "면",
+        "taste": "바삭,감칠맛",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_pho_ga_coin02_002",
+        "name": "recipe_pho_ga_coin02_002",
+        "similarity": 0.4357,
+        "category": "면",
+        "taste": "고소,담백",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "recipe_pho_bo_coin01_001",
+    "expected_rank": null,
+    "verdict": "FAIL"
+  },
+  {
+    "query": "phở",
+    "language": "vi",
+    "variable_type": "A",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_pho_bo_coin01_001",
+        "name": "recipe_pho_bo_coin01_001",
+        "similarity": 0.5291,
+        "category": "면",
+        "taste": "담백,얼큰",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_gimbugak_pho_food02_004",
+        "name": "recipe_gimbugak_pho_food02_004",
+        "similarity": 0.5147,
+        "category": "면",
+        "taste": "바삭,감칠맛",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_pho_xao_sauce04_002",
+        "name": "recipe_pho_xao_sauce04_002",
+        "similarity": 0.493,
+        "category": "면",
+        "taste": "매운,고소",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_pho_ga_coin02_002",
+        "name": "recipe_pho_ga_coin02_002",
+        "similarity": 0.4837,
+        "category": "면",
+        "taste": "고소,담백",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_pho_ga_xao_season03_004",
+        "name": "recipe_pho_ga_xao_season03_004",
+        "similarity": 0.4503,
+        "category": "볶음",
+        "taste": "매운,달콤",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "recipe_pho_bo_coin01_001",
+    "expected_rank": 1,
+    "verdict": "PASS"
+  },
+  {
+    "query": "pho",
+    "language": "en",
+    "variable_type": "A",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_pho_bo_coin01_001",
+        "name": "recipe_pho_bo_coin01_001",
+        "similarity": 0.4669,
+        "category": "면",
+        "taste": "담백,얼큰",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_pho_ga_coin02_002",
+        "name": "recipe_pho_ga_coin02_002",
+        "similarity": 0.4484,
+        "category": "면",
+        "taste": "고소,담백",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_gimbugak_pho_food02_004",
+        "name": "recipe_gimbugak_pho_food02_004",
+        "similarity": 0.4471,
+        "category": "면",
+        "taste": "바삭,감칠맛",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_pho_ga_xao_season03_004",
+        "name": "recipe_pho_ga_xao_season03_004",
+        "similarity": 0.4199,
+        "category": "볶음",
+        "taste": "매운,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_pho_xao_sauce04_002",
+        "name": "recipe_pho_xao_sauce04_002",
+        "similarity": 0.4179,
+        "category": "면",
+        "taste": "매운,고소",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "recipe_pho_bo_coin01_001",
+    "expected_rank": 1,
+    "verdict": "PASS"
+  },
+  {
+    "query": "김치찌개",
+    "language": "ko",
+    "variable_type": "A",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_lau_chua_cay_coin04_002",
+        "name": "recipe_lau_chua_cay_coin04_002",
+        "similarity": 0.4348,
+        "category": "국물",
+        "taste": "매운,새콤",
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_gimbugak_pho_food02_004",
+        "name": "recipe_gimbugak_pho_food02_004",
+        "similarity": 0.4302,
+        "category": "면",
+        "taste": "바삭,감칠맛",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "food_02",
+        "name": "food_02",
+        "similarity": 0.4221,
+        "category": "",
+        "taste": "",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "coin_04",
+        "name": "coin_04",
+        "similarity": 0.4049,
+        "category": "",
+        "taste": "",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_gimbugak_goi_food02_002",
+        "name": "recipe_gimbugak_goi_food02_002",
+        "similarity": 0.3944,
+        "category": "샐러드",
+        "taste": "새콤,바삭",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": null,
+    "expected_rank": null,
+    "verdict": "PASS"
+  },
+  {
+    "query": "canh kim chi",
+    "language": "vi",
+    "variable_type": "A",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_canh_rau_muong_coin02_001",
+        "name": "recipe_canh_rau_muong_coin02_001",
+        "similarity": 0.4571,
+        "category": "국물",
+        "taste": "담백",
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_gimbugak_goi_food02_002",
+        "name": "recipe_gimbugak_goi_food02_002",
+        "similarity": 0.4567,
+        "category": "샐러드",
+        "taste": "새콤,바삭",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_canh_chua_ca_coin04_001",
+        "name": "recipe_canh_chua_ca_coin04_001",
+        "similarity": 0.4383,
+        "category": "국물",
+        "taste": "매운,새콤",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "coin_04",
+        "name": "coin_04",
+        "similarity": 0.4348,
+        "category": "",
+        "taste": "",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_canh_chua_thap_cam_coin04_005",
+        "name": "recipe_canh_chua_thap_cam_coin04_005",
+        "similarity": 0.4297,
+        "category": "국물",
+        "taste": "매운,새콤",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": null,
+    "expected_rank": null,
+    "verdict": "PASS"
+  },
+  {
+    "query": "kimchi stew",
+    "language": "en",
+    "variable_type": "A",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_lau_chua_cay_coin04_002",
+        "name": "recipe_lau_chua_cay_coin04_002",
+        "similarity": 0.4554,
+        "category": "국물",
+        "taste": "매운,새콤",
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_hu_tieu_bo_kho_coin01_004",
+        "name": "recipe_hu_tieu_bo_kho_coin01_004",
+        "similarity": 0.4271,
+        "category": "면",
+        "taste": "고소,얼큰",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_canh_xuong_season02_004",
+        "name": "recipe_canh_xuong_season02_004",
+        "similarity": 0.4158,
+        "category": "국물",
+        "taste": "고소,담백",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "coin_04",
+        "name": "coin_04",
+        "similarity": 0.4133,
+        "category": "",
+        "taste": "",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_bun_xao_sauce04_003",
+        "name": "recipe_bun_xao_sauce04_003",
+        "similarity": 0.4108,
+        "category": "면",
+        "taste": "매운,고소",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": null,
+    "expected_rank": null,
+    "verdict": "PASS"
+  },
+  {
+    "query": "매운 국수",
+    "language": "ko",
+    "variable_type": "B",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_mi_quang_coin02_005",
+        "name": "recipe_mi_quang_coin02_005",
+        "similarity": 0.4759,
+        "category": "면",
+        "taste": "고소,담백",
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "recipe_id": "coin_02",
+        "name": "coin_02",
+        "similarity": 0.4712,
+        "category": "",
+        "taste": "",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_bun_bo_xao_coin01_005",
+        "name": "recipe_bun_bo_xao_coin01_005",
+        "similarity": 0.4704,
+        "category": "면",
+        "taste": "담백,얼큰",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_lau_chua_cay_coin04_002",
+        "name": "recipe_lau_chua_cay_coin04_002",
+        "similarity": 0.4605,
+        "category": "국물",
+        "taste": "매운,새콤",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_bun_bo_hue_coin01_002",
+        "name": "recipe_bun_bo_hue_coin01_002",
+        "similarity": 0.4493,
+        "category": "면",
+        "taste": "매운,얼큰",
+        "relevant": true
+      }
+    ],
+    "expected_recipe": "recipe_bun_bo_hue_coin01_002",
+    "expected_rank": 5,
+    "verdict": "FAIL"
+  },
+  {
+    "query": "분보후에",
+    "language": "ko",
+    "variable_type": "B",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_bun_bo_hue_coin01_002",
+        "name": "recipe_bun_bo_hue_coin01_002",
+        "similarity": 0.2807,
+        "category": "면",
+        "taste": "매운,얼큰",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_gimbugak_pho_food02_004",
+        "name": "recipe_gimbugak_pho_food02_004",
+        "similarity": 0.2645,
+        "category": "면",
+        "taste": "바삭,감칠맛",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_popcorn_season01_006",
+        "name": "recipe_popcorn_season01_006",
+        "similarity": 0.2552,
+        "category": "스낵",
+        "taste": "고소,달콤,짭짤,바삭",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_hu_tieu_bo_kho_coin01_004",
+        "name": "recipe_hu_tieu_bo_kho_coin01_004",
+        "similarity": 0.2497,
+        "category": "면",
+        "taste": "고소,얼큰",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_pho_bo_coin01_001",
+        "name": "recipe_pho_bo_coin01_001",
+        "similarity": 0.2412,
+        "category": "면",
+        "taste": "담백,얼큰",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "recipe_bun_bo_hue_coin01_002",
+    "expected_rank": 1,
+    "verdict": "PASS"
+  },
+  {
+    "query": "bún bò Huế",
+    "language": "vi",
+    "variable_type": "B",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_bun_bo_hue_coin01_002",
+        "name": "recipe_bun_bo_hue_coin01_002",
+        "similarity": 0.6324,
+        "category": "면",
+        "taste": "매운,얼큰",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_hu_tieu_bo_kho_coin01_004",
+        "name": "recipe_hu_tieu_bo_kho_coin01_004",
+        "similarity": 0.5159,
+        "category": "면",
+        "taste": "고소,얼큰",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_bun_bo_xao_coin01_005",
+        "name": "recipe_bun_bo_xao_coin01_005",
+        "similarity": 0.4885,
+        "category": "면",
+        "taste": "담백,얼큰",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_bun_cha_sauce03_004",
+        "name": "recipe_bun_cha_sauce03_004",
+        "similarity": 0.47,
+        "category": "면",
+        "taste": "고소,담백",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_bun_thang_coin02_003",
+        "name": "recipe_bun_thang_coin02_003",
+        "similarity": 0.469,
+        "category": "면",
+        "taste": "고소,담백",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "recipe_bun_bo_hue_coin01_002",
+    "expected_rank": 1,
+    "verdict": "PASS"
+  },
+  {
+    "query": "달콤한 디저트",
+    "language": "ko",
+    "variable_type": "B",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_tteokbokki_sauce06_005",
+        "name": "recipe_tteokbokki_sauce06_005",
+        "similarity": 0.4284,
+        "category": "스낵",
+        "taste": "매운,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_misutgaru_che_food01_003",
+        "name": "recipe_misutgaru_che_food01_003",
+        "similarity": 0.4172,
+        "category": "디저트",
+        "taste": "고소,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_patbingsu_food01_005",
+        "name": "recipe_patbingsu_food01_005",
+        "similarity": 0.4054,
+        "category": "디저트",
+        "taste": "고소,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_misutgaru_banhchuoi_food01_004",
+        "name": "recipe_misutgaru_banhchuoi_food01_004",
+        "similarity": 0.3813,
+        "category": "디저트",
+        "taste": "달콤",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "food_01",
+        "name": "food_01",
+        "similarity": 0.3748,
+        "category": "",
+        "taste": "",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": null,
+    "expected_rank": null,
+    "verdict": "PASS"
+  },
+  {
+    "query": "고기 구이",
+    "language": "ko",
+    "variable_type": "B",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_bo_nuong_sauce05_002",
+        "name": "recipe_bo_nuong_sauce05_002",
+        "similarity": 0.4099,
+        "category": "구이",
+        "taste": "고소,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_lau_xuong_season02_003",
+        "name": "recipe_lau_xuong_season02_003",
+        "similarity": 0.4033,
+        "category": "국물",
+        "taste": "고소,얼큰",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_suon_nuong_sauce05_001",
+        "name": "recipe_suon_nuong_sauce05_001",
+        "similarity": 0.4028,
+        "category": "구이",
+        "taste": "고소,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_thit_nuong_sauce05_004",
+        "name": "recipe_thit_nuong_sauce05_004",
+        "similarity": 0.3951,
+        "category": "구이",
+        "taste": "고소,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_canh_xuong_season02_004",
+        "name": "recipe_canh_xuong_season02_004",
+        "similarity": 0.3904,
+        "category": "국물",
+        "taste": "고소,담백",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": null,
+    "expected_rank": null,
+    "verdict": "PASS"
+  },
+  {
+    "query": "반미",
+    "language": "ko",
+    "variable_type": "B",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_banh_mi_sauce01_001",
+        "name": "recipe_banh_mi_sauce01_001",
+        "similarity": 0.3169,
+        "category": "밥",
+        "taste": "매운,고소",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_banh_mi_thit_nuong_season01_001",
+        "name": "recipe_banh_mi_thit_nuong_season01_001",
+        "similarity": 0.3093,
+        "category": "구이",
+        "taste": "고소,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "season_01",
+        "name": "season_01",
+        "similarity": 0.2784,
+        "category": "",
+        "taste": "",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_banh_canh_season02_005",
+        "name": "recipe_banh_canh_season02_005",
+        "similarity": 0.277,
+        "category": "국물",
+        "taste": "고소,담백",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_ga_ran_sauce06_002",
+        "name": "recipe_ga_ran_sauce06_002",
+        "similarity": 0.2603,
+        "category": "볶음",
+        "taste": "매운,달콤",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "recipe_banh_mi_sauce01_001",
+    "expected_rank": 1,
+    "verdict": "PASS"
+  },
+  {
+    "query": "bánh mì thịt nướng",
+    "language": "vi",
+    "variable_type": "B",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_banh_mi_thit_nuong_season01_001",
+        "name": "recipe_banh_mi_thit_nuong_season01_001",
+        "similarity": 0.6154,
+        "category": "구이",
+        "taste": "고소,달콤",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_thit_nuong_sauce05_004",
+        "name": "recipe_thit_nuong_sauce05_004",
+        "similarity": 0.4982,
+        "category": "구이",
+        "taste": "고소,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_thit_nuong_season01_004",
+        "name": "recipe_thit_nuong_season01_004",
+        "similarity": 0.4927,
+        "category": "구이",
+        "taste": "고소,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_banh_mi_sauce01_001",
+        "name": "recipe_banh_mi_sauce01_001",
+        "similarity": 0.4921,
+        "category": "밥",
+        "taste": "매운,고소",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_bo_nuong_sauce05_002",
+        "name": "recipe_bo_nuong_sauce05_002",
+        "similarity": 0.4405,
+        "category": "구이",
+        "taste": "고소,달콤",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "recipe_banh_mi_thit_nuong_season01_001",
+    "expected_rank": 1,
+    "verdict": "PASS"
+  },
+  {
+    "query": "코인육수로 만들 수 있는 요리",
+    "language": "ko",
+    "variable_type": "C",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_lau_nam_coin03_005",
+        "name": "recipe_lau_nam_coin03_005",
+        "similarity": 0.4266,
+        "category": "국물",
+        "product_id": "coin_03",
+        "taste": "매운,고소",
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_lau_chua_cay_coin04_002",
+        "name": "recipe_lau_chua_cay_coin04_002",
+        "similarity": 0.4142,
+        "category": "국물",
+        "product_id": "coin_04",
+        "taste": "매운,새콤",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_pho_bo_coin01_001",
+        "name": "recipe_pho_bo_coin01_001",
+        "similarity": 0.4133,
+        "category": "면",
+        "product_id": "coin_01",
+        "taste": "담백,얼큰",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_bun_bo_xao_coin01_005",
+        "name": "recipe_bun_bo_xao_coin01_005",
+        "similarity": 0.4125,
+        "category": "면",
+        "product_id": "coin_01",
+        "taste": "담백,얼큰",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_bun_bo_hue_coin01_002",
+        "name": "recipe_bun_bo_hue_coin01_002",
+        "similarity": 0.4102,
+        "category": "면",
+        "product_id": "coin_01",
+        "taste": "매운,얼큰",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "products: ['coin01', 'coin02', 'coin03', 'coin04']",
+    "expected_rank": null,
+    "verdict": "FAIL"
+  },
+  {
+    "query": "K-로제 소스 레시피",
+    "language": "ko",
+    "variable_type": "C",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_pho_xao_sauce04_002",
+        "name": "recipe_pho_xao_sauce04_002",
+        "similarity": 0.411,
+        "category": "면",
+        "product_id": "sauce_04",
+        "taste": "매운,고소",
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_bun_xao_sauce04_003",
+        "name": "recipe_bun_xao_sauce04_003",
+        "similarity": 0.4097,
+        "category": "면",
+        "product_id": "sauce_04",
+        "taste": "매운,고소",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_mi_xao_hai_san_sauce04_001",
+        "name": "recipe_mi_xao_hai_san_sauce04_001",
+        "similarity": 0.3746,
+        "category": "면",
+        "product_id": "sauce_04",
+        "taste": "매운,고소",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_misutgaru_che_food01_003",
+        "name": "recipe_misutgaru_che_food01_003",
+        "similarity": 0.3718,
+        "category": "디저트",
+        "product_id": "food_01",
+        "taste": "고소,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_ga_xao_sauce04_004",
+        "name": "recipe_ga_xao_sauce04_004",
+        "similarity": 0.3647,
+        "category": "볶음",
+        "product_id": "sauce_04",
+        "taste": "매운,달콤",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "products: ['sauce04']",
+    "expected_rank": null,
+    "verdict": "FAIL"
+  },
+  {
+    "query": "윙소스 활용법",
+    "language": "ko",
+    "variable_type": "C",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_sinh_to_xoai_cay_sauce06_006",
+        "name": "recipe_sinh_to_xoai_cay_sauce06_006",
+        "similarity": 0.4084,
+        "category": "음료",
+        "product_id": "sauce_06",
+        "taste": "매운,달콤,새콤",
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_canh_ga_chien_sauce06_001",
+        "name": "recipe_canh_ga_chien_sauce06_001",
+        "similarity": 0.4013,
+        "category": "볶음",
+        "product_id": "sauce_06",
+        "taste": "매운,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_canh_ga_nuong_sauce06_003",
+        "name": "recipe_canh_ga_nuong_sauce06_003",
+        "similarity": 0.377,
+        "category": "구이",
+        "product_id": "sauce_06",
+        "taste": "매운,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_mango_popsicle_sauce06_005",
+        "name": "recipe_mango_popsicle_sauce06_005",
+        "similarity": 0.3711,
+        "category": "디저트",
+        "product_id": "sauce_06",
+        "taste": "매운,달콤,새콤",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_ga_ran_sauce06_002",
+        "name": "recipe_ga_ran_sauce06_002",
+        "similarity": 0.3511,
+        "category": "볶음",
+        "product_id": "sauce_06",
+        "taste": "매운,달콤",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "products: ['sauce06']",
+    "expected_rank": null,
+    "verdict": "FAIL"
+  },
+  {
+    "query": "불고기 시즈닝 요리",
+    "language": "ko",
+    "variable_type": "C",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_bo_luc_lac_season01_003",
+        "name": "recipe_bo_luc_lac_season01_003",
+        "similarity": 0.5087,
+        "category": "볶음",
+        "product_id": "season_01",
+        "taste": "달콤,짭짤",
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_thit_nuong_season01_004",
+        "name": "recipe_thit_nuong_season01_004",
+        "similarity": 0.5001,
+        "category": "구이",
+        "product_id": "season_01",
+        "taste": "고소,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_banh_mi_thit_nuong_season01_001",
+        "name": "recipe_banh_mi_thit_nuong_season01_001",
+        "similarity": 0.4841,
+        "category": "구이",
+        "product_id": "season_01",
+        "taste": "고소,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_bo_nuong_sauce05_002",
+        "name": "recipe_bo_nuong_sauce05_002",
+        "similarity": 0.4827,
+        "category": "구이",
+        "product_id": "sauce_05",
+        "taste": "고소,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_thit_nuong_sauce05_004",
+        "name": "recipe_thit_nuong_sauce05_004",
+        "similarity": 0.4813,
+        "category": "구이",
+        "product_id": "sauce_05",
+        "taste": "고소,달콤",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "products: ['season01']",
+    "expected_rank": null,
+    "verdict": "FAIL"
+  },
+  {
+    "query": "김부각 코코넛 칩 요리",
+    "language": "ko",
+    "variable_type": "C",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_chocolate_crunch_food02_005",
+        "name": "recipe_chocolate_crunch_food02_005",
+        "similarity": 0.5406,
+        "category": "스낵",
+        "product_id": "food_02",
+        "taste": "달콤,짭짤,바삭",
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_gimbugak_goi_food02_002",
+        "name": "recipe_gimbugak_goi_food02_002",
+        "similarity": 0.5008,
+        "category": "샐러드",
+        "product_id": "food_02",
+        "taste": "새콤,바삭",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_gimbugak_biahoi_food02_003",
+        "name": "recipe_gimbugak_biahoi_food02_003",
+        "similarity": 0.492,
+        "category": "스낵",
+        "product_id": "food_02",
+        "taste": "짭짤,바삭",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_gimbugak_comtam_food02_001",
+        "name": "recipe_gimbugak_comtam_food02_001",
+        "similarity": 0.4856,
+        "category": "밥",
+        "product_id": "food_02",
+        "taste": "고소,바삭",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_gimbugak_pho_food02_004",
+        "name": "recipe_gimbugak_pho_food02_004",
+        "similarity": 0.477,
+        "category": "면",
+        "product_id": "food_02",
+        "taste": "바삭,감칠맛",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "products: ['food02']",
+    "expected_rank": null,
+    "verdict": "FAIL"
+  },
+  {
+    "query": "매운 면 요리",
+    "language": "ko",
+    "variable_type": "D",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_mi_quang_coin02_005",
+        "name": "recipe_mi_quang_coin02_005",
+        "similarity": 0.433,
+        "category": "면",
+        "taste": "고소,담백",
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_lau_chua_cay_coin04_002",
+        "name": "recipe_lau_chua_cay_coin04_002",
+        "similarity": 0.4151,
+        "category": "국물",
+        "taste": "매운,새콤",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_com_tam_sauce01_004",
+        "name": "recipe_com_tam_sauce01_004",
+        "similarity": 0.3948,
+        "category": "밥",
+        "taste": "매운,고소",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_banh_mi_sauce01_001",
+        "name": "recipe_banh_mi_sauce01_001",
+        "similarity": 0.3899,
+        "category": "밥",
+        "taste": "매운,고소",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_goi_cuon_chien_sauce01_003",
+        "name": "recipe_goi_cuon_chien_sauce01_003",
+        "similarity": 0.3889,
+        "category": "볶음",
+        "taste": "매운,고소",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "cat=면, taste=매운",
+    "expected_rank": null,
+    "verdict": "FAIL"
+  },
+  {
+    "query": "담백한 국물 요리",
+    "language": "ko",
+    "variable_type": "D",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_tteokbokki_sauce06_005",
+        "name": "recipe_tteokbokki_sauce06_005",
+        "similarity": 0.4215,
+        "category": "스낵",
+        "taste": "매운,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_bun_bo_xao_coin01_005",
+        "name": "recipe_bun_bo_xao_coin01_005",
+        "similarity": 0.4175,
+        "category": "면",
+        "taste": "담백,얼큰",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_bun_cha_sauce03_004",
+        "name": "recipe_bun_cha_sauce03_004",
+        "similarity": 0.4123,
+        "category": "면",
+        "taste": "고소,담백",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_patbingsu_food01_005",
+        "name": "recipe_patbingsu_food01_005",
+        "similarity": 0.3976,
+        "category": "디저트",
+        "taste": "고소,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_bun_thang_coin02_003",
+        "name": "recipe_bun_thang_coin02_003",
+        "similarity": 0.3956,
+        "category": "면",
+        "taste": "고소,담백",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "cat=국물, taste=담백",
+    "expected_rank": null,
+    "verdict": "FAIL"
+  },
+  {
+    "query": "바삭한 간식",
+    "language": "ko",
+    "variable_type": "D",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_gimbugak_biahoi_food02_003",
+        "name": "recipe_gimbugak_biahoi_food02_003",
+        "similarity": 0.435,
+        "category": "스낵",
+        "taste": "짭짤,바삭",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_chocolate_crunch_food02_005",
+        "name": "recipe_chocolate_crunch_food02_005",
+        "similarity": 0.4323,
+        "category": "스낵",
+        "taste": "달콤,짭짤,바삭",
+        "relevant": true
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_tteokbokki_sauce06_005",
+        "name": "recipe_tteokbokki_sauce06_005",
+        "similarity": 0.4083,
+        "category": "스낵",
+        "taste": "매운,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_popcorn_season01_006",
+        "name": "recipe_popcorn_season01_006",
+        "similarity": 0.4082,
+        "category": "스낵",
+        "taste": "고소,달콤,짭짤,바삭",
+        "relevant": true
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_gimbugak_comtam_food02_001",
+        "name": "recipe_gimbugak_comtam_food02_001",
+        "similarity": 0.3968,
+        "category": "밥",
+        "taste": "고소,바삭",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "cat=스낵, taste=바삭",
+    "expected_rank": null,
+    "verdict": "PASS"
+  },
+  {
+    "query": "달콤한 음료",
+    "language": "ko",
+    "variable_type": "D",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_misutgaru_smoothie_food01_001",
+        "name": "recipe_misutgaru_smoothie_food01_001",
+        "similarity": 0.437,
+        "category": "음료",
+        "taste": "고소,달콤",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_misutgaru_latte_food01_002",
+        "name": "recipe_misutgaru_latte_food01_002",
+        "similarity": 0.4348,
+        "category": "음료",
+        "taste": "고소,담백",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_patbingsu_food01_005",
+        "name": "recipe_patbingsu_food01_005",
+        "similarity": 0.415,
+        "category": "디저트",
+        "taste": "고소,달콤",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_sinh_to_xoai_cay_sauce06_006",
+        "name": "recipe_sinh_to_xoai_cay_sauce06_006",
+        "similarity": 0.4102,
+        "category": "음료",
+        "taste": "매운,달콤,새콤",
+        "relevant": true
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_sinh_to_chuoi_food01_006",
+        "name": "recipe_sinh_to_chuoi_food01_006",
+        "similarity": 0.4082,
+        "category": "음료",
+        "taste": "고소,달콤",
+        "relevant": true
+      }
+    ],
+    "expected_recipe": "cat=음료, taste=달콤",
+    "expected_rank": null,
+    "verdict": "PASS"
+  },
+  {
+    "query": "고소한 볶음",
+    "language": "ko",
+    "variable_type": "D",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_bun_xao_sauce04_003",
+        "name": "recipe_bun_xao_sauce04_003",
+        "similarity": 0.4232,
+        "category": "면",
+        "taste": "매운,고소",
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_gimbugak_comtam_food02_001",
+        "name": "recipe_gimbugak_comtam_food02_001",
+        "similarity": 0.4172,
+        "category": "밥",
+        "taste": "고소,바삭",
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_xoi_season01_005",
+        "name": "recipe_xoi_season01_005",
+        "similarity": 0.4036,
+        "category": "밥",
+        "taste": "고소,짭짤",
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_com_chien_season02_002",
+        "name": "recipe_com_chien_season02_002",
+        "similarity": 0.4014,
+        "category": "밥",
+        "taste": "고소,짭짤",
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_pho_xao_sauce04_002",
+        "name": "recipe_pho_xao_sauce04_002",
+        "similarity": 0.401,
+        "category": "면",
+        "taste": "매운,고소",
+        "relevant": false
+      }
+    ],
+    "expected_recipe": "cat=볶음, taste=고소",
+    "expected_rank": null,
+    "verdict": "FAIL"
+  },
+  {
+    "query": "오늘 뭐 먹지",
+    "language": "ko",
+    "variable_type": "E",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_com_tam_sauce01_004",
+        "name": "recipe_com_tam_sauce01_004",
+        "similarity": 0.3149,
+        "category": "밥",
+        "taste": "매운,고소",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_gimbugak_comtam_food02_001",
+        "name": "recipe_gimbugak_comtam_food02_001",
+        "similarity": 0.2975,
+        "category": "밥",
+        "taste": "고소,바삭",
+        "relevant": true
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_tteokbokki_sauce06_005",
+        "name": "recipe_tteokbokki_sauce06_005",
+        "similarity": 0.297,
+        "category": "스낵",
+        "taste": "매운,달콤",
+        "relevant": true
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_gimbugak_pho_food02_004",
+        "name": "recipe_gimbugak_pho_food02_004",
+        "similarity": 0.2939,
+        "category": "면",
+        "taste": "바삭,감칠맛",
+        "relevant": true
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_xoi_season01_005",
+        "name": "recipe_xoi_season01_005",
+        "similarity": 0.2928,
+        "category": "밥",
+        "taste": "고소,짭짤",
+        "relevant": true
+      }
+    ],
+    "expected_recipe": "any (vague query)",
+    "expected_rank": null,
+    "verdict": "PASS"
+  },
+  {
+    "query": "간단한 저녁",
+    "language": "ko",
+    "variable_type": "E",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_bun_thang_coin02_003",
+        "name": "recipe_bun_thang_coin02_003",
+        "similarity": 0.2946,
+        "category": "면",
+        "taste": "고소,담백",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_com_tam_sauce01_004",
+        "name": "recipe_com_tam_sauce01_004",
+        "similarity": 0.2856,
+        "category": "밥",
+        "taste": "매운,고소",
+        "relevant": true
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_gimbugak_comtam_food02_001",
+        "name": "recipe_gimbugak_comtam_food02_001",
+        "similarity": 0.2763,
+        "category": "밥",
+        "taste": "고소,바삭",
+        "relevant": true
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_com_ga_season03_003",
+        "name": "recipe_com_ga_season03_003",
+        "similarity": 0.2664,
+        "category": "밥",
+        "taste": "매운,고소",
+        "relevant": true
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_bun_xao_sauce04_003",
+        "name": "recipe_bun_xao_sauce04_003",
+        "similarity": 0.2662,
+        "category": "면",
+        "taste": "매운,고소",
+        "relevant": true
+      }
+    ],
+    "expected_recipe": "any (vague query)",
+    "expected_rank": null,
+    "verdict": "PASS"
+  },
+  {
+    "query": "10분 요리",
+    "language": "ko",
+    "variable_type": "E",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_lau_chua_cay_coin04_002",
+        "name": "recipe_lau_chua_cay_coin04_002",
+        "similarity": 0.3624,
+        "category": "국물",
+        "taste": "매운,새콤",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_cheeseball_season03_006",
+        "name": "recipe_cheeseball_season03_006",
+        "similarity": 0.3485,
+        "category": "스낵",
+        "taste": "매운,고소,달콤,바삭",
+        "relevant": true
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_bun_xao_sauce04_003",
+        "name": "recipe_bun_xao_sauce04_003",
+        "similarity": 0.3437,
+        "category": "면",
+        "taste": "매운,고소",
+        "relevant": true
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_pho_ga_coin02_002",
+        "name": "recipe_pho_ga_coin02_002",
+        "similarity": 0.3387,
+        "category": "면",
+        "taste": "고소,담백",
+        "relevant": true
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_mi_quang_coin02_005",
+        "name": "recipe_mi_quang_coin02_005",
+        "similarity": 0.338,
+        "category": "면",
+        "taste": "고소,담백",
+        "relevant": true
+      }
+    ],
+    "expected_recipe": "any (vague query)",
+    "expected_rank": null,
+    "verdict": "PASS"
+  },
+  {
+    "query": "손님 접대 요리",
+    "language": "ko",
+    "variable_type": "E",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_hai_san_nuong_sauce02_002",
+        "name": "recipe_hai_san_nuong_sauce02_002",
+        "similarity": 0.3515,
+        "category": "구이",
+        "taste": "담백,새콤",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_gimbugak_biahoi_food02_003",
+        "name": "recipe_gimbugak_biahoi_food02_003",
+        "similarity": 0.3456,
+        "category": "스낵",
+        "taste": "짭짤,바삭",
+        "relevant": true
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_bo_nuong_sauce05_002",
+        "name": "recipe_bo_nuong_sauce05_002",
+        "similarity": 0.3374,
+        "category": "구이",
+        "taste": "고소,달콤",
+        "relevant": true
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_com_ga_season03_003",
+        "name": "recipe_com_ga_season03_003",
+        "similarity": 0.3344,
+        "category": "밥",
+        "taste": "매운,고소",
+        "relevant": true
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_com_tam_sauce01_004",
+        "name": "recipe_com_tam_sauce01_004",
+        "similarity": 0.3338,
+        "category": "밥",
+        "taste": "매운,고소",
+        "relevant": true
+      }
+    ],
+    "expected_recipe": "any (vague query)",
+    "expected_rank": null,
+    "verdict": "PASS"
+  },
+  {
+    "query": "아이 간식",
+    "language": "ko",
+    "variable_type": "E",
+    "results": [
+      {
+        "rank": 1,
+        "recipe_id": "recipe_mango_popsicle_sauce06_005",
+        "name": "recipe_mango_popsicle_sauce06_005",
+        "similarity": 0.398,
+        "category": "디저트",
+        "taste": "매운,달콤,새콤",
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "recipe_id": "recipe_tteokbokki_sauce06_005",
+        "name": "recipe_tteokbokki_sauce06_005",
+        "similarity": 0.3666,
+        "category": "스낵",
+        "taste": "매운,달콤",
+        "relevant": true
+      },
+      {
+        "rank": 3,
+        "recipe_id": "recipe_patbingsu_food01_005",
+        "name": "recipe_patbingsu_food01_005",
+        "similarity": 0.3277,
+        "category": "디저트",
+        "taste": "고소,달콤",
+        "relevant": true
+      },
+      {
+        "rank": 4,
+        "recipe_id": "recipe_misutgaru_che_food01_003",
+        "name": "recipe_misutgaru_che_food01_003",
+        "similarity": 0.3068,
+        "category": "디저트",
+        "taste": "고소,달콤",
+        "relevant": true
+      },
+      {
+        "rank": 5,
+        "recipe_id": "recipe_gimbugak_biahoi_food02_003",
+        "name": "recipe_gimbugak_biahoi_food02_003",
+        "similarity": 0.3047,
+        "category": "스낵",
+        "taste": "짭짤,바삭",
+        "relevant": true
+      }
+    ],
+    "expected_recipe": "any (vague query)",
+    "expected_rank": null,
+    "verdict": "PASS"
+  }
+]

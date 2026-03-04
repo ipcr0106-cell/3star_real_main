@@ -1,0 +1,68 @@
+{% extends "base_b2c.html" %}
+{% set active_tab = "product" %}
+
+{% block title %}Products — Three Star ★{% endblock %}
+
+{% block content %}
+
+<!-- ══════════════════════════════
+     PRODUCT 페이지
+     제품 데이터는 main.py → products.json 에서 자동 주입
+     categories 변수 구조:
+       { "coin_broth": { "label": "Coin Broth", "label_kr": "코인육수", "products": [...] }, ... }
+══════════════════════════════ -->
+
+<section class="section page-hero">
+  <h1 class="page-title">Our Products</h1>
+  <!-- 카테고리 빠른 이동 탭 -->
+  <div class="category-tabs">
+    {% for cat_key, cat in categories.items() %}
+    <a href="#{{ cat_key }}" class="category-tab">{{ cat.label_kr }}</a>
+    {% endfor %}
+  </div>
+</section>
+
+
+<!-- 카테고리별 제품 목록 (products.json에서 자동 생성) -->
+{% for cat_key, cat in categories.items() %}
+<section class="section product-category" id="{{ cat_key }}">
+  <h2 class="category-title">{{ cat.label }} <span class="category-title-kr">{{ cat.label_kr }}</span></h2>
+
+  <div class="product-grid">
+    {% for p in cat.products %}
+    <div class="product-card">
+
+      {% if p.badge %}
+      <span class="product-badge badge-{{ p.badge | lower }}">{{ p.badge }}</span>
+      {% endif %}
+
+      <div class="product-img-wrap">
+        <img src="{{ p.image }}" alt="{{ p.name }}" onerror="this.src='/static/images/products/placeholder.png'">
+      </div>
+
+      <div class="product-info">
+        <h3 class="product-name">{{ p.name }}</h3>
+        <p class="product-name-vn">{{ p.name_vn }}</p>
+        <p class="product-desc">{{ p.description }}</p>
+        <div class="product-footer">
+          <span class="product-price">{{ p.price_display }}</span>
+          <div class="product-btns">
+            <button
+              class="btn-add-cart"
+              onclick="addToCart('{{ p.id }}')"
+              {% if not p.in_stock %}disabled{% endif %}
+            >
+              {% if p.in_stock %}장바구니 담기{% else %}품절{% endif %}
+            </button>
+            <button class="btn-buy" onclick="proceedToCheckout()">구매하기</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endfor %}
+
+{% endblock %}

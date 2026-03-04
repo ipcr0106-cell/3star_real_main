@@ -1,0 +1,270 @@
+{% extends "base_b2b.html" %}
+
+{% block page_title %}📊 리뷰 키워드 분석{% endblock %}
+{% block page_desc %}경쟁사 제품 리뷰를 AI로 분석하여 차별화 전략을 도출합니다.{% endblock %}
+
+{% block page_actions %}
+<button class="btn-portal-action" onclick="loadReviewData()">🔄 분석 데이터 갱신</button>
+{% endblock %}
+
+{% block content %}
+
+<!-- 카테고리 탭 -->
+<div class="portal-tabs" id="categoryTabs">
+  <!-- JS로 탭 생성 -->
+  <div class="skeleton" style="width:100px; height:40px;"></div>
+  <div class="skeleton" style="width:100px; height:40px;"></div>
+  <div class="skeleton" style="width:100px; height:40px;"></div>
+</div>
+
+<!-- 메인 컨텐츠 영역 -->
+<div id="reviewContent">
+  <!-- 로딩 상태 -->
+  <div class="portal-card">
+    <div class="portal-loading">
+      <div class="skeleton" style="width:100%; height:200px; margin-bottom:20px;"></div>
+      <div class="skeleton" style="width:100%; height:100px;"></div>
+      <p class="mt-4">데이터를 불러오는 중입니다... (최초 실행 시 1~2분 소요될 수 있습니다)</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let reportData = {};
+let targetData = {};
+
+async function loadReviewData() {
+  const contentDiv = document.getElementById('reviewContent');
+  const tabsDiv = document.getElementById('categoryTabs');
+  
+  // 로딩 UI 표시
+  contentDiv.innerHTML = `
+    <div class="portal-card">
+      <div class="portal-loading">
+        <div class="f-map-loading-dots">
+          <div class="f-map-dot"></div><div class="f-map-dot"></div><div class="f-map-dot"></div>
+        </div>
+        <p class="text-sm txt-secondary mt-2">최신 리뷰 데이터를 분석 중입니다...</p>
+      </div>
+    </div>`;
+
+  try {
+    const res = await fetch('/api/review');
+    const data = await res.json();
+    
+    reportData = data.reports || {};
+    targetData = data.targets || {};
+
+    renderTabs();
+  } catch (e) {
+    contentDiv.innerHTML = `<div class="portal-error text-center py-10">데이터를 불러오는데 실패했습니다.<br>${e.message}</div>`;
+  }
+}
+
+function renderTabs() {
+  const tabsDiv = document.getElementById('categoryTabs');
+  const categories = Object.keys(targetData);
+  
+  if (categories.length === 0) {
+    tabsDiv.innerHTML = '<div class="text-sm txt-muted">분석 대상 카테고리가 없습니다.</div>';
+    return;
+  }
+
+  tabsDiv.innerHTML = categories.map((cat, idx) => `
+    <button class="portal-tab ${idx === 0 ? 'active' : ''}" 
+            onclick="switchCategory('${cat}', this)">
+      ${cat}
+    </button>
+  `).join('');
+
+  // 첫 번째 카테고리 자동 선택
+  if (categories.length > 0) {
+    renderCategory(categories[0]);
+  }
+}
+
+function switchCategory(cat, btn) {
+  // 탭 스타일 변경
+  document.querySelectorAll('.portal-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  
+  renderCategory(cat);
+}
+
+function renderCategory(cat) {
+  const contentDiv = document.getElementById('reviewContent');
+  const report = reportData[cat];
+  const targets = targetData[cat] || [];
+
+  if (!report) {
+    contentDiv.innerHTML = `
+      <div class="portal-card text-center py-10">
+        <p class="text-lg mb-2">📉 분석 데이터가 없습니다</p>
+        <p class="text-sm txt-muted">아직 '${cat}' 카테고리에 대한 분석이 완료되지 않았습니다.</p>
+      </div>`;
+    return;
+  }
+
+  let html = '';
+
+  // 1. 경쟁사 제품 카드 (3개)
+  html += `<div class="d-competitor-header"><h3 class="portal-section-title mb-0">🏆 경쟁사 제품 분석</h3></div>`;
+  html += `<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">`;
+  
+  // report.competitors 배열 순회 (최대 3개)
+  const competitors = report.competitors || [];
+  competitors.forEach((comp, idx) => {
+    // 타겟 정보 매칭 (이미지 등)
+    const targetInfo = targets.find(t => t.name === comp.name) || {};
+    const imgUrl  = comp.image  || targetInfo.image || 'https://via.placeholder.com/150';
+    const shopUrl = comp.url    || targetInfo.url   || null;
+
+    html += `
+      <div class="bg-white border border-gray-200 dark:border-slate-700 rounded-xl p-5 shadow-sm hover:border-blue-300 transition-colors">
+        <div class="flex items-center gap-4 mb-4">
+          ${shopUrl
+            ? `<a href="${shopUrl}" target="_blank" rel="noopener" class="shrink-0"><img src="${imgUrl}" class="w-16 h-16 rounded-lg object-cover border border-gray-100 hover:opacity-80 transition-opacity" alt="${comp.name}"></a>`
+            : `<img src="${imgUrl}" class="w-16 h-16 rounded-lg object-cover border border-gray-100" alt="${comp.name}">`
+          }
+          <div class="min-w-0">
+            <h4 class="font-bold text-sm text-gray-800 dark:text-gray-200 truncate" title="${comp.name}">${comp.name}</h4>
+            <p class="text-xs text-gray-500 mt-1 line-clamp-2">${comp.summary || '요약 없음'}</p>
+            ${shopUrl ? `<a href="${shopUrl}" target="_blank" rel="noopener" class="text-xs text-blue-500 hover:underline mt-1 inline-block">🛒 쇼피에서 보기 →</a>` : ''}
+          </div>
+        </div>
+        
+        <div class="space-y-3">
+          <div>
+            <p class="text-xs font-bold text-green-600 mb-1">👍 장점 (Pros)</p>
+            <div class="space-y-1">
+              ${(comp.pros || []).slice(0, 2).map(p => `
+                <div class="bg-green-50 dark:bg-green-900/20 px-2 py-1.5 rounded text-xs text-gray-700 dark:text-gray-300 flex justify-between items-center">
+                  <span class="truncate mr-2">${p.keyword}</span>
+                  <span class="font-bold text-green-600 text-[10px]">${p.percent}%</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          
+          <div>
+            <p class="text-xs font-bold text-red-500 mb-1">👎 단점 (Cons)</p>
+            <div class="space-y-1">
+              ${(comp.cons || []).slice(0, 2).map(p => `
+                <div class="bg-red-50 dark:bg-red-900/20 px-2 py-1.5 rounded text-xs text-gray-700 dark:text-gray-300 flex justify-between items-center">
+                  <span class="truncate mr-2">${p.keyword}</span>
+                  <span class="font-bold text-red-500 text-[10px]">${p.percent}%</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+  html += `</div>`;
+
+  // 2. 차별화 전략 & 광고 카피
+  const diff = report.differentiation || {};
+  
+  html += `
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- 차별화 전략 -->
+      <div class="portal-card h-full">
+        <h3 class="portal-section-title flex items-center gap-2">
+          <i class="hgi-stroke hgi-strategy text-blue-600"></i> 다미푸드 차별화 전략
+        </h3>
+        <div class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-line bg-blue-50 dark:bg-blue-900/10 p-4 rounded-xl border border-blue-100 dark:border-blue-800/30">
+          ${diff.desc || '전략 내용이 없습니다.'}
+        </div>
+      </div>
+
+      <!-- 광고 카피 -->
+      <div class="portal-card h-full flex flex-col">
+        <h3 class="portal-section-title flex items-center gap-2">
+          <i class="hgi-stroke hgi-megaphone-01 text-orange-500"></i> 추천 광고 카피
+        </h3>
+        <div class="flex-1 bg-gray-50 dark:bg-slate-800 p-4 rounded-xl border border-gray-200 dark:border-slate-700 relative group">
+          <pre class="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap font-sans" id="adCopyText">${diff.ad_copy || '광고 카피가 없습니다.'}</pre>
+          
+          <button onclick="copyAdCopy()" class="absolute top-3 right-3 p-2 bg-white dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-lg shadow-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-50 text-xs font-bold text-gray-600 dark:text-gray-300">
+            복사
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // 3. 상세 키워드 분석 테이블 (아코디언)
+  html += `
+    <div class="mt-6">
+      <details class="group bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl overflow-hidden">
+        <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
+          <span class="font-bold text-gray-700 dark:text-gray-200 flex items-center gap-2">
+            <i class="hgi-stroke hgi-table-view text-gray-400"></i> 상세 키워드 분석 데이터 보기
+          </span>
+          <i class="hgi-stroke hgi-arrow-down-01 text-gray-400 group-open:rotate-180 transition-transform"></i>
+        </summary>
+        <div class="p-4 border-t border-gray-100 dark:border-slate-700 bg-gray-50 dark:bg-slate-900/20">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            ${competitors.map(comp => `
+              <div class="bg-white dark:bg-slate-800 p-3 rounded-lg border border-gray-200 dark:border-slate-700">
+                <p class="font-bold text-xs text-center mb-3 text-gray-800 dark:text-gray-200 border-b pb-2">${comp.name}</p>
+                <div class="space-y-3">
+                  <div>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase mb-1">PROS</p>
+                    <ul class="space-y-1">
+                      ${(comp.pros || []).map(p => `
+                        <li class="text-xs text-gray-600 dark:text-gray-400 flex justify-between">
+                          <span>${p.keyword}</span>
+                          <span class="text-green-600 font-medium">${p.percent}%</span>
+                        </li>
+                      `).join('')}
+                    </ul>
+                  </div>
+                  <div>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase mb-1">CONS</p>
+                    <ul class="space-y-1">
+                      ${(comp.cons || []).map(p => `
+                        <li class="text-xs text-gray-600 dark:text-gray-400 flex justify-between">
+                          <span>${p.keyword}</span>
+                          <span class="text-red-500 font-medium">${p.percent}%</span>
+                        </li>
+                      `).join('')}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </details>
+    </div>
+  `;
+
+  contentDiv.innerHTML = html;
+}
+
+function copyAdCopy() {
+  const text = document.getElementById('adCopyText').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    alert('광고 카피가 복사되었습니다!');
+  });
+}
+
+// 초기 로드
+document.addEventListener('DOMContentLoaded', loadReviewData);
+</script>
+
+<style>
+/* 추가 스타일 (필요시) */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</style>
+{% endblock %}

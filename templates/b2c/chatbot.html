@@ -1,0 +1,274 @@
+{% extends "base_b2c.html" %}
+{% set active_tab = "" %}
+
+{% block title %}Recipe Bot — Three Star ★{% endblock %}
+
+{% block content %}
+
+<!-- ══════════════════════════════
+     레시피 챗봇 페이지
+     API 연결: POST /api/chat
+     담당: 파트 B 팀원
+══════════════════════════════ -->
+
+<style>
+.recipe-image {
+    width: 100%; max-height: 300px; object-fit: cover;
+    border-radius: 8px; margin: 10px 0;
+}
+.chatbot-modes { display: flex; gap: 8px; margin-bottom: 12px; }
+.mode-btn {
+    flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px;
+    background: white; cursor: pointer; font-size: 14px; text-align: center;
+    transition: all 0.2s;
+}
+.mode-btn:hover { background: #fee2e2; border-color: #ef4444; }
+.mode-btn.active { background: #ef4444; color: white; border-color: #ef4444; }
+
+.guided-step { margin: 10px 0; }
+.guided-label { font-weight: bold; margin-bottom: 6px; font-size: 14px; color: #333; }
+.guided-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+.cat-btn, .taste-btn {
+    padding: 8px 16px; border: 1px solid #ddd; border-radius: 20px;
+    background: white; cursor: pointer; font-size: 14px; transition: all 0.2s;
+}
+.cat-btn:hover, .taste-btn:hover { background: #fee2e2; border-color: #ef4444; }
+.cat-btn.active, .taste-btn.active { background: #ef4444; color: white; border-color: #ef4444; }
+
+.lang-selector { display: flex; gap: 4px; margin-left: auto; }
+.lang-btn {
+    padding: 4px 10px; border: 1px solid #ddd; border-radius: 12px;
+    background: white; cursor: pointer; font-size: 12px; transition: all 0.2s;
+}
+.lang-btn.active { background: #333; color: white; border-color: #333; }
+</style>
+
+<section class="chatbot-page">
+  <div class="chatbot-wrap">
+    <div class="chatbot-header">
+      <div style="display:flex; align-items:center;">
+        <h1>🧑‍🍳 Three Star Recipe Bot</h1>
+        <div class="lang-selector">
+          <button class="lang-btn" data-lang="ko" onclick="setLang('ko')">한국어</button>
+          <button class="lang-btn active" data-lang="vi" onclick="setLang('vi')">Tiếng Việt</button>
+          <button class="lang-btn" data-lang="en" onclick="setLang('en')">English</button>
+        </div>
+      </div>
+      <p>가지고 있는 재료를 알려주시면 레시피를 만들어드려요!</p>
+    </div>
+
+    <!-- 모드 선택 -->
+    <div class="chatbot-modes">
+      <button class="mode-btn active" data-mode="chat" onclick="setMode('chat')">💬 자유 대화</button>
+      <button class="mode-btn" data-mode="guided" onclick="setMode('guided')">📋 가이드 추천</button>
+      <button class="mode-btn" data-mode="random" onclick="setMode('random')">🎲 랜덤 레시피</button>
+    </div>
+
+    <!-- 가이드 추천: 카테고리 선택 -->
+    <div id="guidedCategories" class="guided-step" style="display:none;">
+      <p class="guided-label">카테고리를 선택하세요:</p>
+      <div class="guided-buttons">
+        <button class="cat-btn" data-cat="국물탕">🍲 국물·탕</button>
+        <button class="cat-btn" data-cat="면볶음면">🍜 면·볶음면</button>
+        <button class="cat-btn" data-cat="구이볶음">🥩 구이·볶음</button>
+        <button class="cat-btn" data-cat="쌈샐러드">🥗 쌈·샐러드</button>
+        <button class="cat-btn" data-cat="밥죽">🍚 밥·죽</button>
+        <button class="cat-btn" data-cat="간식음료">🧋 간식·음료</button>
+      </div>
+    </div>
+
+    <!-- 가이드 추천: 맛 선택 -->
+    <div id="guidedTastes" class="guided-step" style="display:none;">
+      <p class="guided-label">어떤 맛을 원하세요?</p>
+      <div class="guided-buttons">
+        <button class="taste-btn" data-taste="매운">🌶️ 매운</button>
+        <button class="taste-btn" data-taste="고소">🥜 고소</button>
+        <button class="taste-btn" data-taste="담백">💧 담백</button>
+        <button class="taste-btn" data-taste="달콤">🍯 달콤</button>
+        <button class="taste-btn" data-taste="새콤">🍋 새콤</button>
+        <button class="taste-btn" data-taste="짭짤">🧂 짭짤</button>
+        <button class="taste-btn" data-taste="바삭">🍘 바삭</button>
+        <button class="taste-btn" data-taste="감칠맛">✨ 감칠맛</button>
+        <button class="taste-btn" data-taste="얼큰">🔥 얼큰</button>
+      </div>
+    </div>
+
+    <!-- 대화창 -->
+    <div class="chat-window" id="chatWindow">
+      <div class="msg msg-bot">
+        안녕하세요! 🇻🇳<br>
+        다미푸드 레시피 챗봇입니다.<br>
+        <small>자유 대화, 가이드 추천, 랜덤 레시피 중 선택해 보세요!</small>
+      </div>
+    </div>
+
+    <!-- 입력창 -->
+    <div class="chat-input-row">
+      <input
+        type="text"
+        id="userInput"
+        class="chat-input"
+        placeholder="메시지를 입력하세요..."
+        onkeypress="if(event.key==='Enter') sendMessage()"
+      >
+      <button class="chat-send-btn" onclick="sendMessage()">전송 🚀</button>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="/static/js/chatbot-widget.js"></script>
+<script>
+/* ── 챗봇 페이지 JS — widget.js 함수 사용 ── */
+
+let currentMode = 'chat';
+let currentLang = 'vi';
+let selectedCategory = null;
+let selectedTaste = null;
+
+// ── 모드 전환 ──
+function setMode(mode) {
+  currentMode = mode;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.mode-btn[data-mode="${mode}"]`).classList.add('active');
+
+  document.getElementById('guidedCategories').style.display = mode === 'guided' ? 'block' : 'none';
+  document.getElementById('guidedTastes').style.display = 'none';
+  selectedCategory = null;
+  selectedTaste = null;
+  document.querySelectorAll('.cat-btn, .taste-btn').forEach(b => b.classList.remove('active'));
+
+  if (mode === 'random') {
+    sendRandom();
+  }
+}
+
+// ── 언어 전환 ──
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
+
+  var L = LANG[lang];
+  // placeholder
+  document.getElementById('userInput').placeholder = L.placeholder;
+  // 전송 버튼
+  document.querySelector('.chat-send-btn').textContent = L.send;
+  // 가이드 라벨
+  document.querySelector('#guidedCategories .guided-label').textContent = L.selectCategory;
+  document.querySelector('#guidedTastes .guided-label').textContent = L.selectTaste;
+  // 카테고리 버튼 라벨
+  document.querySelectorAll('.cat-btn').forEach(function(btn, i) {
+    if (L.categories[i]) btn.textContent = L.categories[i];
+  });
+  // 맛 버튼 라벨
+  document.querySelectorAll('.taste-btn').forEach(function(btn, i) {
+    if (L.tastes[i]) btn.textContent = L.tastes[i];
+  });
+}
+
+// ── 카테고리 버튼 클릭 ──
+document.querySelectorAll('.cat-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedCategory = btn.dataset.cat;
+    document.getElementById('guidedTastes').style.display = 'block';
+  });
+});
+
+// ── 맛 버튼 클릭 → 자동 전송 ──
+document.querySelectorAll('.taste-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.taste-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedTaste = btn.dataset.taste;
+    sendGuided();
+  });
+});
+
+// ── 메시지 전송 (chat 모드) ──
+async function sendMessage() {
+  const input = document.getElementById('userInput');
+  const message = input.value.trim();
+  if (!message) return;
+
+  appendMessage('user', message);
+  input.value = '';
+  conversationHistory.push({ role: 'user', content: message });
+
+  const loadingId = appendMessage('bot', LANG[currentLang].loading);
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: message,
+        language: currentLang,
+        mode: currentMode === 'guided' ? 'guided' : 'chat',
+        category: selectedCategory,
+        taste: selectedTaste,
+        conversation_history: conversationHistory.slice(-6)
+      })
+    });
+    const data = await res.json();
+    handleResponse(data, loadingId);
+  } catch (e) {
+    document.getElementById(loadingId).textContent = LANG[currentLang].error;
+  }
+}
+
+// ── 가이드 추천 전송 ──
+async function sendGuided() {
+  const label = `${selectedCategory} + ${selectedTaste} 맛`;
+  appendMessage('user', `📋 가이드 추천: ${label}`);
+  const loadingId = appendMessage('bot', LANG[currentLang].loading);
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: '',
+        language: currentLang,
+        mode: 'guided',
+        category: selectedCategory,
+        taste: selectedTaste,
+        conversation_history: []
+      })
+    });
+    const data = await res.json();
+    handleResponse(data, loadingId);
+  } catch (e) {
+    document.getElementById(loadingId).textContent = LANG[currentLang].error;
+  }
+}
+
+// ── 랜덤 레시피 ──
+async function sendRandom() {
+  appendMessage('user', '🎲 랜덤 레시피 추천해 주세요!');
+  const loadingId = appendMessage('bot', LANG[currentLang].loading);
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: '',
+        language: currentLang,
+        mode: 'random',
+        conversation_history: []
+      })
+    });
+    const data = await res.json();
+    handleResponse(data, loadingId);
+  } catch (e) {
+    document.getElementById(loadingId).textContent = LANG[currentLang].error;
+  }
+}
+</script>
+{% endblock %}

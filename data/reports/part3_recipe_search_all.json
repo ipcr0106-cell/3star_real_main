@@ -1,0 +1,650 @@
+[
+  {
+    "recipe_id": "recipe_banh_canh_season02_005",
+    "query": "감자탕 시즈닝 반깐 (타피오카 면 국수)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.566,
+    "top1_similarity": 0.566
+  },
+  {
+    "recipe_id": "recipe_banh_mi_sauce01_001",
+    "query": "청양마요 반미 샌드위치",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5971,
+    "top1_similarity": 0.5971
+  },
+  {
+    "recipe_id": "recipe_banh_mi_thit_nuong_season01_001",
+    "query": "불고기 시즈닝 반미",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.4882,
+    "top1_similarity": 0.4882
+  },
+  {
+    "recipe_id": "recipe_banh_xeo_sauce01_002",
+    "query": "반쎄오 청양마요 디핑",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.3957,
+    "top1_similarity": 0.3957
+  },
+  {
+    "recipe_id": "recipe_bo_luc_lac_season01_003",
+    "query": "불고기 시즈닝 보 룩 락",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5204,
+    "top1_similarity": 0.5204
+  },
+  {
+    "recipe_id": "recipe_bo_nuong_la_lot_sauce03_002",
+    "query": "로롯 잎 소고기 구이 쌈장허브 곁들임",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.62,
+    "top1_similarity": 0.62
+  },
+  {
+    "recipe_id": "recipe_bo_nuong_sauce05_002",
+    "query": "불고기코코넛 소고기 구이",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5504,
+    "top1_similarity": 0.5504
+  },
+  {
+    "recipe_id": "recipe_bun_bo_hue_coin01_002",
+    "query": "후에식 매운 소고기 국수",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5238,
+    "top1_similarity": 0.5238
+  },
+  {
+    "recipe_id": "recipe_bun_bo_xao_coin01_005",
+    "query": "소고기 볶음 쌀국수 (국물 버전)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.6149,
+    "top1_similarity": 0.6149
+  },
+  {
+    "recipe_id": "recipe_bun_ca_coin04_004",
+    "query": "생선 국수 (새콤한 버전)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5397,
+    "top1_similarity": 0.5397
+  },
+  {
+    "recipe_id": "recipe_bun_cha_sauce03_004",
+    "query": "분짜 쌈장허브 디핑",
+    "rank": 2,
+    "in_top3": true,
+    "similarity": 0.3863,
+    "top1_similarity": 0.3978
+  },
+  {
+    "recipe_id": "recipe_bun_rieu_chay_coin03_004",
+    "query": "채식 분리우",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.396,
+    "top1_similarity": 0.396
+  },
+  {
+    "recipe_id": "recipe_bun_thang_coin02_003",
+    "query": "하노이식 맑은 국수",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5068,
+    "top1_similarity": 0.5068
+  },
+  {
+    "recipe_id": "recipe_bun_xao_sauce04_003",
+    "query": "K-로제 볶음 분",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.4779,
+    "top1_similarity": 0.4779
+  },
+  {
+    "recipe_id": "recipe_canh_ca_coin02_004",
+    "query": "생선 맑은탕",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5392,
+    "top1_similarity": 0.5392
+  },
+  {
+    "recipe_id": "recipe_canh_chua_ca_coin04_001",
+    "query": "새콤한 생선탕",
+    "rank": null,
+    "in_top3": false,
+    "similarity": null,
+    "top1_similarity": 0.3983
+  },
+  {
+    "recipe_id": "recipe_canh_chua_thap_cam_coin04_005",
+    "query": "모둠 새콤탕",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.2671,
+    "top1_similarity": 0.2671
+  },
+  {
+    "recipe_id": "recipe_canh_chua_tom_coin04_003",
+    "query": "새콤한 새우탕",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.4778,
+    "top1_similarity": 0.4778
+  },
+  {
+    "recipe_id": "recipe_canh_ga_chien_sauce06_001",
+    "query": "망고고추장 닭날개 튀김",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.6025,
+    "top1_similarity": 0.6025
+  },
+  {
+    "recipe_id": "recipe_canh_ga_nuong_sauce06_003",
+    "query": "망고고추장 닭날개 구이",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.6282,
+    "top1_similarity": 0.6282
+  },
+  {
+    "recipe_id": "recipe_canh_nam_coin03_003",
+    "query": "버섯 맑은탕",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5714,
+    "top1_similarity": 0.5714
+  },
+  {
+    "recipe_id": "recipe_canh_rau_muong_coin02_001",
+    "query": "공심채 맑은국",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.4006,
+    "top1_similarity": 0.4006
+  },
+  {
+    "recipe_id": "recipe_canh_xuong_season02_004",
+    "query": "감자탕 시즈닝 까인 쓰엉 (뼈 육수 국)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.6474,
+    "top1_similarity": 0.6474
+  },
+  {
+    "recipe_id": "recipe_chao_bao_ngu_season04_001",
+    "query": "전복죽 시즈닝 짜오 바오 응우 (베트남식 전복죽)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.6151,
+    "top1_similarity": 0.6151
+  },
+  {
+    "recipe_id": "recipe_chao_ga_season04_002",
+    "query": "전복죽 시즈닝 짜오 가 (닭죽 프리미엄)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.59,
+    "top1_similarity": 0.59
+  },
+  {
+    "recipe_id": "recipe_chao_hai_san_season04_004",
+    "query": "전복죽 시즈닝 짜오 하이 산 (해산물 죽)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5103,
+    "top1_similarity": 0.5103
+  },
+  {
+    "recipe_id": "recipe_chao_suon_season02_001",
+    "query": "감자탕 시즈닝 짜오 쓰언 (돼지갈비 죽)",
+    "rank": 2,
+    "in_top3": true,
+    "similarity": 0.5378,
+    "top1_similarity": 0.5409
+  },
+  {
+    "recipe_id": "recipe_cheeseball_season03_006",
+    "query": "닭갈비 시즈닝 치즈볼",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5983,
+    "top1_similarity": 0.5983
+  },
+  {
+    "recipe_id": "recipe_chocolate_crunch_food02_005",
+    "query": "김부각 초콜릿 크런치 바",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5839,
+    "top1_similarity": 0.5839
+  },
+  {
+    "recipe_id": "recipe_com_chien_season02_002",
+    "query": "감자탕 시즈닝 껌찌엔 (볶음밥)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5755,
+    "top1_similarity": 0.5755
+  },
+  {
+    "recipe_id": "recipe_com_ga_season03_003",
+    "query": "닭갈비 시즈닝 껌가 (호이안식 닭고기 밥)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5936,
+    "top1_similarity": 0.5936
+  },
+  {
+    "recipe_id": "recipe_com_tam_sauce01_004",
+    "query": "쩜떰 청양마요 곁들임",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.3604,
+    "top1_similarity": 0.3604
+  },
+  {
+    "recipe_id": "recipe_com_tam_suon_nuong_season01_002",
+    "query": "불고기 시즈닝 쩜떰",
+    "rank": 3,
+    "in_top3": true,
+    "similarity": 0.4089,
+    "top1_similarity": 0.4502
+  },
+  {
+    "recipe_id": "recipe_dui_ga_chien_gion_sauce06_004",
+    "query": "망고고추장 바삭 닭다리 튀김",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5676,
+    "top1_similarity": 0.5676
+  },
+  {
+    "recipe_id": "recipe_ga_nuong_mat_ong_sauce05_003",
+    "query": "불고기코코넛 꿀 닭구이",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5593,
+    "top1_similarity": 0.5593
+  },
+  {
+    "recipe_id": "recipe_ga_nuong_season03_001",
+    "query": "닭갈비 시즈닝 가느엉 (닭구이)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5793,
+    "top1_similarity": 0.5793
+  },
+  {
+    "recipe_id": "recipe_ga_ran_sauce06_002",
+    "query": "망고고추장 베트남 프라이드치킨",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.6528,
+    "top1_similarity": 0.6528
+  },
+  {
+    "recipe_id": "recipe_ga_xao_sa_ot_season03_002",
+    "query": "닭갈비 시즈닝 가 싸오 사 엇 (레몬그라스 닭볶음)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5187,
+    "top1_similarity": 0.5187
+  },
+  {
+    "recipe_id": "recipe_ga_xao_sauce04_004",
+    "query": "K-로제 닭볶음",
+    "rank": 2,
+    "in_top3": true,
+    "similarity": 0.4674,
+    "top1_similarity": 0.4808
+  },
+  {
+    "recipe_id": "recipe_gimbugak_biahoi_food02_003",
+    "query": "김부각 칩 맥주 안주 플래터",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5112,
+    "top1_similarity": 0.5112
+  },
+  {
+    "recipe_id": "recipe_gimbugak_comtam_food02_001",
+    "query": "김부각 칩 쩜떰 토핑",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.3687,
+    "top1_similarity": 0.3687
+  },
+  {
+    "recipe_id": "recipe_gimbugak_goi_food02_002",
+    "query": "김부각 칩 베트남 샐러드 토핑",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5894,
+    "top1_similarity": 0.5894
+  },
+  {
+    "recipe_id": "recipe_gimbugak_pho_food02_004",
+    "query": "김부각 칩 쌀국수 토핑",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5326,
+    "top1_similarity": 0.5326
+  },
+  {
+    "recipe_id": "recipe_goi_cuon_chien_sauce01_003",
+    "query": "튀긴 스프링롤 청양마요 딥",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.4595,
+    "top1_similarity": 0.4595
+  },
+  {
+    "recipe_id": "recipe_goi_cuon_thit_nuong_sauce03_001",
+    "query": "구운고기 월남쌈 쌈장허브 디핑",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5773,
+    "top1_similarity": 0.5773
+  },
+  {
+    "recipe_id": "recipe_goi_cuon_tom_sauce02_001",
+    "query": "새우 월남쌈 매실 디핑",
+    "rank": 2,
+    "in_top3": true,
+    "similarity": 0.5063,
+    "top1_similarity": 0.5115
+  },
+  {
+    "recipe_id": "recipe_goi_ga_season03_005",
+    "query": "닭갈비 시즈닝 고이 가 (닭고기 샐러드)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.6198,
+    "top1_similarity": 0.6198
+  },
+  {
+    "recipe_id": "recipe_goi_hai_san_sauce02_003",
+    "query": "해산물 샐러드 매실 드레싱",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5765,
+    "top1_similarity": 0.5765
+  },
+  {
+    "recipe_id": "recipe_hai_san_nuong_sauce02_002",
+    "query": "구운 해산물 플래터 매실 디핑",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5444,
+    "top1_similarity": 0.5444
+  },
+  {
+    "recipe_id": "recipe_hu_tieu_bo_kho_coin01_004",
+    "query": "소고기 스튜 후띠우",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.4513,
+    "top1_similarity": 0.4513
+  },
+  {
+    "recipe_id": "recipe_lau_bo_coin01_003",
+    "query": "소고기 전골",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5187,
+    "top1_similarity": 0.5187
+  },
+  {
+    "recipe_id": "recipe_lau_chay_coin03_001",
+    "query": "채식 전골",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.4615,
+    "top1_similarity": 0.4615
+  },
+  {
+    "recipe_id": "recipe_lau_chua_cay_coin04_002",
+    "query": "새콤매콤 전골",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.4471,
+    "top1_similarity": 0.4471
+  },
+  {
+    "recipe_id": "recipe_lau_nam_coin03_005",
+    "query": "버섯 전골",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.4789,
+    "top1_similarity": 0.4789
+  },
+  {
+    "recipe_id": "recipe_lau_xuong_season02_003",
+    "query": "감자탕 시즈닝 러우 쓰엉 (뼈 전골)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.6225,
+    "top1_similarity": 0.6225
+  },
+  {
+    "recipe_id": "recipe_mango_popsicle_sauce06_005",
+    "query": "망고 고추장 아이스바",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5206,
+    "top1_similarity": 0.5206
+  },
+  {
+    "recipe_id": "recipe_mi_quang_coin02_005",
+    "query": "꽝남식 넓은 면",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.3128,
+    "top1_similarity": 0.3128
+  },
+  {
+    "recipe_id": "recipe_mi_xao_hai_san_sauce04_001",
+    "query": "K-로제 해산물 볶음면",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5732,
+    "top1_similarity": 0.5732
+  },
+  {
+    "recipe_id": "recipe_misutgaru_banhchuoi_food01_004",
+    "query": "미숫가루 바나나 케이크 (bánh chuối)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.6617,
+    "top1_similarity": 0.6617
+  },
+  {
+    "recipe_id": "recipe_misutgaru_che_food01_003",
+    "query": "미숫가루 코코넛 체 (chè)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.6011,
+    "top1_similarity": 0.6011
+  },
+  {
+    "recipe_id": "recipe_misutgaru_iceblend_food01_005",
+    "query": "미숫가루 베트남 커피 아이스 블렌드",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.7085,
+    "top1_similarity": 0.7085
+  },
+  {
+    "recipe_id": "recipe_misutgaru_latte_food01_002",
+    "query": "미숫가루 라떼 (연유커피 대체)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5344,
+    "top1_similarity": 0.5344
+  },
+  {
+    "recipe_id": "recipe_misutgaru_smoothie_food01_001",
+    "query": "미숫가루 코코넛 sinh tố",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.592,
+    "top1_similarity": 0.592
+  },
+  {
+    "recipe_id": "recipe_nem_nuong_sauce03_003",
+    "query": "네무엉 쌈장허브 디핑",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.4704,
+    "top1_similarity": 0.4704
+  },
+  {
+    "recipe_id": "recipe_patbingsu_food01_005",
+    "query": "미숫가루 코코넛 빙수",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.4919,
+    "top1_similarity": 0.4919
+  },
+  {
+    "recipe_id": "recipe_pho_bo_coin01_001",
+    "query": "소고기 쌀국수",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5422,
+    "top1_similarity": 0.5422
+  },
+  {
+    "recipe_id": "recipe_pho_chay_coin03_002",
+    "query": "채식 쌀국수",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5877,
+    "top1_similarity": 0.5877
+  },
+  {
+    "recipe_id": "recipe_pho_ga_coin02_002",
+    "query": "닭고기 쌀국수",
+    "rank": 2,
+    "in_top3": true,
+    "similarity": 0.4973,
+    "top1_similarity": 0.5035
+  },
+  {
+    "recipe_id": "recipe_pho_ga_xao_season03_004",
+    "query": "닭갈비 시즈닝 퍼가 싸오 (닭고기 볶음 쌀국수)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.57,
+    "top1_similarity": 0.57
+  },
+  {
+    "recipe_id": "recipe_pho_xao_sauce04_002",
+    "query": "K-로제 볶음 쌀국수",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5355,
+    "top1_similarity": 0.5355
+  },
+  {
+    "recipe_id": "recipe_popcorn_season01_006",
+    "query": "불고기 시즈닝 팝콘",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.4562,
+    "top1_similarity": 0.4562
+  },
+  {
+    "recipe_id": "recipe_sinh_to_chuoi_food01_006",
+    "query": "미숫가루 바나나 셰이크",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5608,
+    "top1_similarity": 0.5608
+  },
+  {
+    "recipe_id": "recipe_sinh_to_xoai_cay_sauce06_006",
+    "query": "매콤 망고 스무디",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5211,
+    "top1_similarity": 0.5211
+  },
+  {
+    "recipe_id": "recipe_suon_nuong_sauce05_001",
+    "query": "불고기코코넛 돼지갈비 구이",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5973,
+    "top1_similarity": 0.5973
+  },
+  {
+    "recipe_id": "recipe_sup_hai_san_season04_003",
+    "query": "전복죽 시즈닝 숩 하이 산 (해산물 수프)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5692,
+    "top1_similarity": 0.5692
+  },
+  {
+    "recipe_id": "recipe_thit_nuong_sauce05_004",
+    "query": "불고기코코넛 숯불고기",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5715,
+    "top1_similarity": 0.5715
+  },
+  {
+    "recipe_id": "recipe_thit_nuong_season01_004",
+    "query": "불고기 시즈닝 숯불구이 (분팃느엉용)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.548,
+    "top1_similarity": 0.548
+  },
+  {
+    "recipe_id": "recipe_tom_hap_sauce02_004",
+    "query": "찐 새우 매실 디핑",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5318,
+    "top1_similarity": 0.5318
+  },
+  {
+    "recipe_id": "recipe_tteokbokki_sauce06_005",
+    "query": "망고 고추장 떡볶이 간식",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5551,
+    "top1_similarity": 0.5551
+  },
+  {
+    "recipe_id": "recipe_xoi_season01_005",
+    "query": "불고기 시즈닝 쏘이 (찹쌀밥 토핑)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5009,
+    "top1_similarity": 0.5009
+  },
+  {
+    "recipe_id": "recipe_xoi_season04_005",
+    "query": "전복죽 시즈닝 쏘이 (전복 풍미 찹쌀밥)",
+    "rank": 1,
+    "in_top3": true,
+    "similarity": 0.5702,
+    "top1_similarity": 0.5702
+  }
+]

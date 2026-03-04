@@ -1,0 +1,24 @@
+# 절대 Git에 올리지 마세요!
+.env
+data/admins.json
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# ChromaDB (init_vectordb.py로 재생성)
+data/vectordb/
+data/chroma_db/
+data/chromadb/
+
+# AI 이미지 캐시
+data/image_cache.json
+static/images/recipes/*.png
+
+# OS / IDE
+.DS_Store
+node_modules/
+*.log
+*.db

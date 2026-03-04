@@ -1,0 +1,244 @@
+{% extends "base_b2b.html" %}
+
+{% block extra_css %}
+<style>
+  /* 인쇄 버튼 */
+  @media print {
+    .no-print { display: none !important; }
+    .portal-page-header { margin-bottom: 16px; }
+    .report-card { break-inside: avoid; box-shadow: none !important; border: 1px solid #E2E8F0 !important; }
+    body { background: white !important; }
+  }
+
+  /* 리포트 헤더 배너 */
+  .report-banner {
+    background: linear-gradient(135deg, #1E3A6E 0%, #3B6FD4 60%, #5B8FE8 100%);
+    border-radius: 16px;
+    padding: 28px 32px;
+    color: #fff;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .report-banner-title   { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+  .report-banner-period  { font-size: 13px; opacity: .8; }
+  .report-banner-meta    { font-size: 12px; opacity: .65; text-align: right; }
+
+  /* 섹션 카드 */
+  .report-card {
+    background: #fff;
+    border: 1px solid #E8EDF3;
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 16px -4px rgba(44,62,80,.07);
+  }
+  .report-section-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #1E293B;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #F1F5F9;
+  }
+
+  /* 뉴스 리스트 */
+  .report-news-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #F8FAFC;
+    align-items: flex-start;
+  }
+  .report-news-item:last-child { border-bottom: none; }
+  .report-news-source {
+    font-size: 10px;
+    font-weight: 800;
+    color: #3B6FD4;
+    background: #EBF4FF;
+    border: 1px solid #BFDBFE;
+    padding: 2px 8px;
+    border-radius: 99px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .report-news-text  { font-size: 13px; color: #334155; line-height: 1.6; flex: 1; }
+  .report-news-date  { font-size: 11px; color: #CBD5E1; white-space: nowrap; flex-shrink: 0; }
+
+  /* 키워드 바 */
+  .report-kw-row     { margin-bottom: 14px; }
+  .report-kw-label   { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 5px; }
+  .report-kw-track   { height: 8px; background: #F1F5F9; border-radius: 99px; overflow: hidden; }
+  .report-kw-fill    { height: 100%; background: linear-gradient(90deg, #3B6FD4, #5B8FE8); border-radius: 99px; transition: width 1s ease; }
+
+  /* 인사이트 박스 */
+  .report-insight-box {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-left: 4px solid #3B6FD4;
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    font-size: 13px;
+    color: #334155;
+    line-height: 1.8;
+    white-space: pre-wrap;
+  }
+
+  /* 빈 상태 */
+  .report-empty {
+    text-align: center;
+    padding: 32px;
+    color: #94A3B8;
+    font-size: 13px;
+  }
+
+  /* 2열 그리드 */
+  .report-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 720px) {
+    .report-grid-2 { grid-template-columns: 1fr; }
+    .report-banner { flex-direction: column; }
+    .report-banner-meta { text-align: left; }
+  }
+</style>
+{% endblock %}
+
+{% block page_title %}📊 주간 마케팅 리포트{% endblock %}
+{% block page_desc %}수집된 데이터를 종합한 이번 주 베트남 시장 요약입니다{% endblock %}
+
+{% block page_actions %}
+<button class="btn-portal-action no-print" onclick="window.print()">🖨️ 인쇄 / PDF 저장</button>
+{% endblock %}
+
+{% block content %}
+
+<!-- 리포트 배너 -->
+<div class="report-banner" id="reportBanner">
+  <div>
+    <div class="report-banner-title">📊 주간 마케팅 리포트</div>
+    <div class="report-banner-period">분석 기간: {{ week_start }} ~ {{ week_end }}</div>
+  </div>
+  <div class="report-banner-meta">
+    생성일시: {{ generated_at }}<br>
+    Three Star B2B Portal
+  </div>
+</div>
+
+<div class="report-grid-2">
+
+  <!-- ① 베트남 소비 뉴스 -->
+  <div class="report-card" style="grid-column: 1 / -1;">
+    <div class="report-section-title">📰 이번 주 베트남 소비 트렌드 뉴스</div>
+    {% if news_items %}
+      {% for n in news_items %}
+      <div class="report-news-item">
+        <span class="report-news-source">{{ n.get('source', '') }}</span>
+        <div class="report-news-text">
+          <a href="{{ n.get('url','#') }}" target="_blank" style="color:#1E293B;text-decoration:none;font-weight:600;">
+            {{ n.get('title_ko', n.get('summary',''))[:70] }}{% if n.get('title_ko', n.get('summary',''))|length > 70 %}…{% endif %}
+          </a>
+          {% if n.get('summary','') %}
+          <div style="color:#64748B;font-size:12px;margin-top:3px;">{{ n.get('summary','')[:120] }}…</div>
+          {% endif %}
+        </div>
+        {% if n.get('date','') %}
+        <span class="report-news-date">{{ n.get('date','') }}</span>
+        {% endif %}
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="report-empty">
+        뉴스 데이터가 없습니다.<br>
+        <a href="/portal/news" style="color:#3B6FD4;font-weight:700;">뉴스 탭에서 먼저 수집</a>해주세요.
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- ② 리뷰 키워드 현황 -->
+  <div class="report-card">
+    <div class="report-section-title">🔑 리뷰 키워드 점유율</div>
+    {% if report_keywords %}
+      {% for kw in report_keywords %}
+      <div class="report-kw-row">
+        <div class="report-kw-label">
+          <span>{{ kw.name }}</span>
+          <span style="color:#3B6FD4;">{{ kw.pct }}%</span>
+        </div>
+        <div class="report-kw-track">
+          <div class="report-kw-fill" style="width:{{ kw.pct }}%;"></div>
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="report-empty">
+        리뷰 탭에서 3사 분석을 먼저 실행해주세요.
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- ③ 베트남 환율 -->
+  <div class="report-card">
+    <div class="report-section-title">💱 오늘의 환율</div>
+    <div id="exchangeWidget">
+      <div style="text-align:center;color:#94A3B8;padding:20px;font-size:13px;">환율 불러오는 중…</div>
+    </div>
+    <p style="font-size:11px;color:#CBD5E1;margin-top:12px;">출처: European Central Bank (via frankfurter.app)</p>
+  </div>
+
+</div>
+
+<!-- ④ 이번 주 활동 요약 (수동 입력 메모) -->
+<div class="report-card">
+  <div class="report-section-title">✏️ 이번 주 활동 메모 <span style="font-size:12px;font-weight:400;color:#94A3B8;">(인쇄 전 직접 입력)</span></div>
+  <textarea id="reportMemo"
+    style="width:100%;min-height:120px;padding:14px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:13px;color:#334155;font-family:inherit;resize:vertical;outline:none;line-height:1.7;"
+    placeholder="예) · E파트: 틱톡 인플루언서 3명 컨택 완료&#10;· C파트: 베트남 광고법 분석 정리&#10;· 전체: 다음 주 캠페인 기획 회의 예정"
+  ></textarea>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  /* 환율 위젯 로드 */
+  async function loadExchange() {
+    try {
+      const res  = await fetch('/api/exchange-rate');
+      const data = await res.json();
+      if (!data.success) throw new Error(data.error);
+
+      document.getElementById('exchangeWidget').innerHTML = `
+        <div style="display:grid;gap:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:#F8FAFC;border-radius:12px;border:1px solid #E2E8F0;">
+            <div>
+              <div style="font-size:11px;color:#94A3B8;margin-bottom:3px;">🇻🇳 VND → KRW (100동 기준)</div>
+              <div style="font-size:22px;font-weight:800;color:#1E293B;">₩ ${data.vnd100_krw.toFixed(2)}</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:11px;color:#94A3B8;margin-bottom:3px;">1 USD</div>
+              <div style="font-size:13px;font-weight:700;color:#3B6FD4;">${data.usd_krw.toLocaleString()} KRW</div>
+              <div style="font-size:13px;font-weight:700;color:#10B981;">${data.usd_vnd.toLocaleString()} VND</div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:#CBD5E1;text-align:right;">기준일: ${data.updated}</p>
+        </div>
+      `;
+    } catch(e) {
+      document.getElementById('exchangeWidget').innerHTML =
+        '<div style="text-align:center;color:#EF4444;font-size:13px;padding:20px;">⚠️ 환율 로드 실패</div>';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadExchange);
+</script>
+{% endblock %}

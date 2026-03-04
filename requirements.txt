@@ -1,0 +1,55 @@
+# ★ 쓰리스타 필요 패키지 — pip install -r requirements.txt ★
+
+# 서버
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-dotenv>=1.0.0
+jinja2>=3.1.2
+python-multipart>=0.0.6
+
+# AI / LLM
+openai>=1.12.0
+langchain>=0.1.0
+langchain-openai>=0.0.5
+chromadb>=0.4.22
+langgraph>=0.0.40
+together>=0.2.0
+groq>=0.9.0              # ★ 추가 — Groq API (밈 영상 프롬프트 생성)
+
+# 챗봇 (B파트)
+httpx>=0.25.0
+pyyaml>=6.0.1
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+slowapi>=0.1.9
+
+# 데이터 수집
+feedparser>=6.0.0
+playwright>=1.40.0
+apify-client>=1.7.0
+
+# 번역
+deepl>=1.16.0
+
+# 지도
+folium>=0.15.0
+
+# PDF
+reportlab>=4.0.0
+
+# 유틸리티
+aiofiles>=23.2.0
+python-frontmatter>=1.0.0
+
+flask>=2.3.0
+google-api-python-client>=2.90.0
+requests>=2.31.0
+
+beautifulsoup4>=4.13.0
+pdfplumber>=0.7.0
+pytrends>=0.7.0
+urllib3>=2.0.0
+
+magic-hour>=0.1.0        # ★ 추가 — Magic Hour API (밈 영상 생성)
+yfinance>=0.2.0
+APScheduler>=3.10.0

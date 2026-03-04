@@ -1,0 +1,820 @@
+{
+  "generated_at": "2026-03-03T17:41:07.077626",
+  "mode": "live",
+  "total": 81,
+  "success": 81,
+  "failed": 0,
+  "elapsed_seconds": 1399.9,
+  "results": [
+    {
+      "recipe_id": "recipe_banh_canh_season02_005",
+      "name_en": "Tapioca Noodle Soup with Gamjatang Seasoning",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Tapioca Noodle Soup with Gamjatang Seasoning, with Pork ribs, Shrimp, Garlic, Fried onions, Green onions.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_banh_canh_season02_005.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_banh_mi_sauce01_001",
+      "name_en": "Cheongyang Mayo Bánh Mì Sandwich",
+      "category": "밥",
+      "style": "plate",
+      "prompt": "Professional food photo of Cheongyang Mayo Bánh Mì Sandwich, with baguettes, pork shoulder, carrot, radish, cucumber.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_banh_mi_sauce01_001.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_banh_mi_thit_nuong_season01_001",
+      "name_en": "Grilled Pork Banh Mi with Bulgogi Seasoning",
+      "category": "구이",
+      "style": "plate",
+      "prompt": "Professional food photo of Grilled Pork Banh Mi with Bulgogi Seasoning, with baguette breads, carrot, radish, cilantro, green chili.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_banh_mi_thit_nuong_season01_001.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_banh_xeo_sauce01_002",
+      "name_en": "Bánh Xèo with Cheongyang Mayo Dip",
+      "category": "볶음",
+      "style": "plate",
+      "prompt": "Professional food photo of Bánh Xèo with Cheongyang Mayo Dip, with turmeric powder, coconut milk, medium-sized shrimp, bean sprouts, onion.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_banh_xeo_sauce01_002.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_bo_luc_lac_season01_003",
+      "name_en": "Shaking Beef with Bulgogi Seasoning",
+      "category": "볶음",
+      "style": "plate",
+      "prompt": "Professional food photo of Shaking Beef with Bulgogi Seasoning, with beef tenderloin or sirloin, onion, garlic, butter, oyster sauce.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_bo_luc_lac_season01_003.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_bo_nuong_la_lot_sauce03_002",
+      "name_en": "Beef Wrapped in Betel Leaf with Ssamjang Herb Sauce",
+      "category": "구이",
+      "style": "plate",
+      "prompt": "Professional food photo of Beef Wrapped in Betel Leaf with Ssamjang Herb Sauce, with ground beef, wild betel leaf, lemongrass, garlic, shallots.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_bo_nuong_la_lot_sauce03_002.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_bo_nuong_sauce05_002",
+      "name_en": "Bulgogi-Coconut BBQ Beef",
+      "category": "구이",
+      "style": "plate",
+      "prompt": "Professional food photo of Bulgogi-Coconut BBQ Beef, with garlic, lemongrass, lettuce, cilantro, mint, perilla, pickled carrots and radish.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_bo_nuong_sauce05_002.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_bun_bo_hue_coin01_002",
+      "name_en": "Hue-Style Spicy Beef Noodle Soup",
+      "category": "면",
+      "style": "bowl",
+      "prompt": "Professional food photo of Hue-Style Spicy Beef Noodle Soup, with beef brisket, pork trotters or pork tenderloin, lemongrass, shrimp paste, chili powder.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_bun_bo_hue_coin01_002.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_bun_bo_xao_coin01_005",
+      "name_en": "Beef Rice Noodle Soup",
+      "category": "면",
+      "style": "bowl",
+      "prompt": "Professional food photo of Beef Rice Noodle Soup, with onion, tomato, green onion, bean sprouts, garlic.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_bun_bo_xao_coin01_005.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_bun_ca_coin04_004",
+      "name_en": "Sour Fish Noodle Soup",
+      "category": "면",
+      "style": "bowl",
+      "prompt": "Professional food photo of Sour Fish Noodle Soup, with white fish, tomatoes, pineapple, dill, turmeric powder.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_bun_ca_coin04_004.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_bun_cha_sauce03_004",
+      "name_en": "Bún Chả with Ssamjang Herb Dip",
+      "category": "면",
+      "style": "bowl",
+      "prompt": "Professional food photo of Bún Chả with Ssamjang Herb Dip, with ground pork, lettuce, cilantro, mint, perilla, pickled papaya or pickled carrots and radish.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_bun_cha_sauce03_004.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_bun_rieu_chay_coin03_004",
+      "name_en": "Vegetarian Bun Rieu (Tomato Rice Noodle Soup)",
+      "category": "면",
+      "style": "bowl",
+      "prompt": "Professional food photo of Vegetarian Bun Rieu (Tomato Rice Noodle Soup), with tofu, tomatoes, tamarind paste, fermented tofu, green onion.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_bun_rieu_chay_coin03_004.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_bun_thang_coin02_003",
+      "name_en": "Hanoi-Style Clear Noodle Soup",
+      "category": "면",
+      "style": "bowl",
+      "prompt": "Professional food photo of Hanoi-Style Clear Noodle Soup, with chicken breast, cha siu, radish, dried shiitake mushrooms, green onions.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_bun_thang_coin02_003.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_bun_xao_sauce04_003",
+      "name_en": "K-Rosé Stir-fried Vermicelli",
+      "category": "면",
+      "style": "bowl",
+      "prompt": "Professional food photo of K-Rosé Stir-fried Vermicelli, with chicken breast, onion, carrot, bok choy, garlic.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_bun_xao_sauce04_003.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_canh_ca_coin02_004",
+      "name_en": "Vietnamese Fish Clear Soup",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Vietnamese Fish Clear Soup, with white fish, tomato, dill, green onions, garlic.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_canh_ca_coin02_004.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_canh_chua_ca_coin04_001",
+      "name_en": "Vietnamese Sour Fish Soup",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Vietnamese Sour Fish Soup, with white fish, pineapple, tomato, bean sprouts, okra.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_canh_chua_ca_coin04_001.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_canh_chua_thap_cam_coin04_005",
+      "name_en": "Mixed Sour Soup",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Mixed Sour Soup, with shrimp, squid, white fish, pineapple, tomato.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_canh_chua_thap_cam_coin04_005.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_canh_chua_tom_coin04_003",
+      "name_en": "Vietnamese Sour Shrimp Soup",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Vietnamese Sour Shrimp Soup, with shrimp, pineapple, tomato, bean sprouts, okra.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_canh_chua_tom_coin04_003.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_canh_ga_chien_sauce06_001",
+      "name_en": "Mango Gochujang Fried Chicken Wings",
+      "category": "볶음",
+      "style": "plate",
+      "prompt": "Professional food photo of Mango Gochujang Fried Chicken Wings, with chicken wings, starch, garlic powder, toasted sesame seeds, green onions.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_canh_ga_chien_sauce06_001.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_canh_ga_nuong_sauce06_003",
+      "name_en": "Mango Gochujang Grilled Chicken Wings",
+      "category": "구이",
+      "style": "plate",
+      "prompt": "Professional food photo of Mango Gochujang Grilled Chicken Wings, with chicken wings, garlic, toasted sesame seeds.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_canh_ga_nuong_sauce06_003.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_canh_nam_coin03_003",
+      "name_en": "Vietnamese Mushroom Soup",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Vietnamese Mushroom Soup, with large king oyster mushrooms, shiitake mushrooms, oyster mushrooms, dried wood ear mushrooms, tofu.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_canh_nam_coin03_003.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_canh_rau_muong_coin02_001",
+      "name_en": "Water Spinach Clear Soup",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Water Spinach Clear Soup, with Garlic, Tomato.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_canh_rau_muong_coin02_001.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_canh_xuong_season02_004",
+      "name_en": "Pork Bone Soup with Gamjatang Seasoning",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Pork Bone Soup with Gamjatang Seasoning, with Pork back bones, Daikon radish, Green onions, Cilantro a little.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_canh_xuong_season02_004.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_chao_bao_ngu_season04_001",
+      "name_en": "Vietnamese Abalone Congee with Abalone Porridge Seasoning",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Vietnamese Abalone Congee with Abalone Porridge Seasoning, with ginger, green onions, little cilantro, fried onions.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_chao_bao_ngu_season04_001.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_chao_ga_season04_002",
+      "name_en": "Premium Chicken Congee with Abalone Porridge Seasoning",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Premium Chicken Congee with Abalone Porridge Seasoning, with chicken leg, green onions, cilantro, fried onions, youtiao.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_chao_ga_season04_002.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_chao_hai_san_season04_004",
+      "name_en": "Seafood Congee with Abalone Porridge Seasoning",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Seafood Congee with Abalone Porridge Seasoning, with shrimp, squid, scallops, ginger, garlic.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_chao_hai_san_season04_004.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_chao_suon_season02_001",
+      "name_en": "Pork Rib Congee with Gamjatang Seasoning",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Pork Rib Congee with Gamjatang Seasoning, with pork ribs, fried onions, green onions, little coriander, youtiao.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_chao_suon_season02_001.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_cheeseball_season03_006",
+      "name_en": "Dakgalbi Seasoning Cheese Balls",
+      "category": "스낵",
+      "style": "plate",
+      "prompt": "Professional food photo of Dakgalbi Seasoning Cheese Balls, with Mozzarella cheese, Breadcrumbs.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_cheeseball_season03_006.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_chocolate_crunch_food02_005",
+      "name_en": "Seaweed Coconut Chocolate Crunch Bar",
+      "category": "스낵",
+      "style": "plate",
+      "prompt": "Professional food photo of Seaweed Coconut Chocolate Crunch Bar, with Dark chocolate, Roasted peanuts, Dried mango, Coconut flakes.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_chocolate_crunch_food02_005.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_com_chien_season02_002",
+      "name_en": "Vietnamese Fried Rice with Gamjatang Seasoning",
+      "category": "밥",
+      "style": "plate",
+      "prompt": "Professional food photo of Vietnamese Fried Rice with Gamjatang Seasoning, with shrimp, carrot, green peas, green onion, garlic.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_com_chien_season02_002.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_com_ga_season03_003",
+      "name_en": "Hoi An Chicken Rice with Dakgalbi Seasoning",
+      "category": "밥",
+      "style": "plate",
+      "prompt": "Professional food photo of Hoi An Chicken Rice with Dakgalbi Seasoning, with chicken thighs, garlic, turmeric powder, Vietnamese coriander.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_com_ga_season03_003.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_com_tam_sauce01_004",
+      "name_en": "Broken Rice with Cheongyang Mayo",
+      "category": "밥",
+      "style": "plate",
+      "prompt": "Professional food photo of Broken Rice with Cheongyang Mayo, with Pork ribs, cucumber, tomato, Pickled radish.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_com_tam_sauce01_004.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_com_tam_suon_nuong_season01_002",
+      "name_en": "Broken Rice with Bulgogi Seasoned Grilled Pork Ribs",
+      "category": "밥",
+      "style": "plate",
+      "prompt": "Professional food photo of Broken Rice with Bulgogi Seasoned Grilled Pork Ribs, with pork ribs, garlic, lemongrass.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_com_tam_suon_nuong_season01_002.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_dui_ga_chien_gion_sauce06_004",
+      "name_en": "Crispy Drumsticks with Mango Gochujang Glaze",
+      "category": "볶음",
+      "style": "plate",
+      "prompt": "Professional food photo of Crispy Drumsticks with Mango Gochujang Glaze, with chicken drumsticks, garlic, ginger, lime, little cilantro and green onion.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_dui_ga_chien_gion_sauce06_004.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_ga_nuong_mat_ong_sauce05_003",
+      "name_en": "Bulgogi-Coconut Honey Roasted Chicken",
+      "category": "구이",
+      "style": "plate",
+      "prompt": "Professional food photo of Bulgogi-Coconut Honey Roasted Chicken, with chicken  or chicken thighs, honey, garlic, ginger, lime.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_ga_nuong_mat_ong_sauce05_003.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_ga_nuong_season03_001",
+      "name_en": "Vietnamese Grilled Chicken with Dakgalbi Seasoning",
+      "category": "구이",
+      "style": "plate",
+      "prompt": "Professional food photo of Vietnamese Grilled Chicken with Dakgalbi Seasoning, with chicken thighs or wings, lemongrass, garlic, honey, lime wedges, cilantro.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_ga_nuong_season03_001.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_ga_ran_sauce06_002",
+      "name_en": "Vietnamese Fried Chicken with Mango Gochujang",
+      "category": "볶음",
+      "style": "plate",
+      "prompt": "Professional food photo of Vietnamese Fried Chicken with Mango Gochujang, with chicken thighs or drumsticks, garlic, lime wedges, little cilantro.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_ga_ran_sauce06_002.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_ga_xao_sa_ot_season03_002",
+      "name_en": "Lemongrass Chicken Stir-fry with Dakgalbi Seasoning",
+      "category": "볶음",
+      "style": "plate",
+      "prompt": "Professional food photo of Lemongrass Chicken Stir-fry with Dakgalbi Seasoning, with chicken thigh, garlic, onion.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_ga_xao_sa_ot_season03_002.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_ga_xao_sauce04_004",
+      "name_en": "K-Rosé Lemongrass Chicken Stir-fry",
+      "category": "볶음",
+      "style": "plate",
+      "prompt": "Professional food photo of K-Rosé Lemongrass Chicken Stir-fry, with chicken thigh, onion, lemongrass, garlic.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_ga_xao_sauce04_004.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_gimbugak_biahoi_food02_003",
+      "name_en": "Gim-Bugak Coconut Chips Beer Snack Platter",
+      "category": "스낵",
+      "style": "plate",
+      "prompt": "Professional food photo of Gim-Bugak Coconut Chips Beer Snack Platter, with lime wedges.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_gimbugak_biahoi_food02_003.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_gimbugak_comtam_food02_001",
+      "name_en": "Broken Rice with Gim-Bugak Coconut Chip Topping",
+      "category": "밥",
+      "style": "plate",
+      "prompt": "Professional food photo of Broken Rice with Gim-Bugak Coconut Chip Topping.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_gimbugak_comtam_food02_001.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_gimbugak_goi_food02_002",
+      "name_en": "Vietnamese Salad with Gim-Bugak Coconut Chip Topping",
+      "category": "샐러드",
+      "style": "plate",
+      "prompt": "Professional food photo of Vietnamese Salad with Gim-Bugak Coconut Chip Topping, with shredded green papaya or green mango, herbs  cilantro, mint, and Thai basil, little  chili, crushed peanuts.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_gimbugak_goi_food02_002.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_gimbugak_pho_food02_004",
+      "name_en": "Phở with Gim-Bugak Coconut Chip Topping",
+      "category": "면",
+      "style": "bowl",
+      "prompt": "Professional food photo of Phở with Gim-Bugak Coconut Chip Topping, with Basic accompaniments  bean sprouts, lime, chili, and herbs.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_gimbugak_pho_food02_004.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_goi_cuon_chien_sauce01_003",
+      "name_en": "Fried Spring Rolls with Cheongyang Mayo",
+      "category": "볶음",
+      "style": "plate",
+      "prompt": "Professional food photo of Fried Spring Rolls with Cheongyang Mayo, with shrimp, glass noodles, ground pork, dried wood ear mushrooms, carrot.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_goi_cuon_chien_sauce01_003.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_goi_cuon_thit_nuong_sauce03_001",
+      "name_en": "Grilled Pork Spring Rolls with Ssamjang Herb Dip",
+      "category": "샐러드",
+      "style": "plate",
+      "prompt": "Professional food photo of Grilled Pork Spring Rolls with Ssamjang Herb Dip, with pork neck, lettuce, cilantro, mint, perilla.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_goi_cuon_thit_nuong_sauce03_001.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_goi_cuon_tom_sauce02_001",
+      "name_en": "Shrimp Spring Rolls with Maesil Seafood Dip",
+      "category": "샐러드",
+      "style": "plate",
+      "prompt": "Professional food photo of Shrimp Spring Rolls with Maesil Seafood Dip, with medium-sized shrimp, lettuce, cilantro, mint, chives.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_goi_cuon_tom_sauce02_001.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_goi_ga_season03_005",
+      "name_en": "Vietnamese Chicken Salad with Dakgalbi Seasoning",
+      "category": "샐러드",
+      "style": "plate",
+      "prompt": "Professional food photo of Vietnamese Chicken Salad with Dakgalbi Seasoning, with chicken breast, cabbage, carrot, Vietnamese coriander, little cilantro.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_goi_ga_season03_005.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_goi_hai_san_sauce02_003",
+      "name_en": "Seafood Salad with Maesil Dressing",
+      "category": "샐러드",
+      "style": "plate",
+      "prompt": "Professional food photo of Seafood Salad with Maesil Dressing, with shrimp, squid, celery, carrot, cilantro.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_goi_hai_san_sauce02_003.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_hai_san_nuong_sauce02_002",
+      "name_en": "Grilled Seafood Platter with Maesil Dip",
+      "category": "구이",
+      "style": "plate",
+      "prompt": "Professional food photo of Grilled Seafood Platter with Maesil Dip, with large shrimp, squid, scallops, garlic, green onions.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_hai_san_nuong_sauce02_002.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_hu_tieu_bo_kho_coin01_004",
+      "name_en": "Vietnamese Beef Stew with Hu Tieu Noodles",
+      "category": "면",
+      "style": "bowl",
+      "prompt": "Professional food photo of Vietnamese Beef Stew with Hu Tieu Noodles, with Beef shank or short ribs, carrot, lemongrass, star anise, cinnamon stick.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_hu_tieu_bo_kho_coin01_004.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_lau_bo_coin01_003",
+      "name_en": "Vietnamese Beef Hot Pot",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Vietnamese Beef Hot Pot, with napa cabbage, corn, oyster mushrooms, enoki mushrooms, tofu.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_lau_bo_coin01_003.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_lau_chay_coin03_001",
+      "name_en": "Vietnamese Vegetarian Hot Pot",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Vietnamese Vegetarian Hot Pot, with tofu, shiitake mushrooms, oyster mushrooms, enoki mushrooms, napa cabbage.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_lau_chay_coin03_001.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_lau_chua_cay_coin04_002",
+      "name_en": "Spicy Sour Hot Pot",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Spicy Sour Hot Pot, with shrimp, squid, beef for shabu-shabu, napa cabbage, tomato.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_lau_chua_cay_coin04_002.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_lau_nam_coin03_005",
+      "name_en": "Vietnamese Mushroom Hot Pot",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Vietnamese Mushroom Hot Pot, with large king oyster mushrooms, shiitake mushrooms, oyster mushrooms, enoki mushrooms, dried wood ear mushrooms.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_lau_nam_coin03_005.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_lau_xuong_season02_003",
+      "name_en": "Bone Hot Pot with Gamjatang Seasoning",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Bone Hot Pot with Gamjatang Seasoning, with Pork bones, Potato, Corn, Napa cabbage, Enoki mushrooms.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_lau_xuong_season02_003.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_mango_popsicle_sauce06_005",
+      "name_en": "Mango Gochujang Popsicle",
+      "category": "디저트",
+      "style": "plate",
+      "prompt": "Professional food photo of Mango Gochujang Popsicle, with ripe mangoes, plain yogurt, sweetened condensed milk.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_mango_popsicle_sauce06_005.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_mi_quang_coin02_005",
+      "name_en": "Quang-Style Turmeric Noodles",
+      "category": "면",
+      "style": "bowl",
+      "prompt": "Professional food photo of Quang-Style Turmeric Noodles, with Shrimp, Chicken thigh meat, Turmeric powder, Onion, Tomato.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_mi_quang_coin02_005.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_mi_xao_hai_san_sauce04_001",
+      "name_en": "K-Rosé Seafood Stir-fried Noodles",
+      "category": "면",
+      "style": "bowl",
+      "prompt": "Professional food photo of K-Rosé Seafood Stir-fried Noodles, with shrimp, broccoli, onion, garlic.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_mi_xao_hai_san_sauce04_001.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_misutgaru_banhchuoi_food01_004",
+      "name_en": "K-Grain Banana Cake (Vietnamese Style)",
+      "category": "디저트",
+      "style": "plate",
+      "prompt": "Professional food photo of K-Grain Banana Cake (Vietnamese Style), with ripe bananas, coconut milk, little butter.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_misutgaru_banhchuoi_food01_004.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_misutgaru_che_food01_003",
+      "name_en": "K-Grain Coconut Chè (Vietnamese Dessert Soup)",
+      "category": "디저트",
+      "style": "plate",
+      "prompt": "Professional food photo of K-Grain Coconut Chè (Vietnamese Dessert Soup), with Coconut milk, Tapioca pearls, Cooked red beans.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_misutgaru_che_food01_003.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_misutgaru_iceblend_food01_005",
+      "name_en": "Misutgaru Vietnamese Coffee Ice Blend",
+      "category": "음료",
+      "style": "glass",
+      "prompt": "Professional food photo of Misutgaru Vietnamese Coffee Ice Blend, with Vietnamese coffee  shots, sweetened condensed milk, milk, coconut cream.\nIn a tall clear glass, seen from eye level.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_misutgaru_iceblend_food01_005.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_misutgaru_latte_food01_002",
+      "name_en": "K-Grain Latte (Vietnamese Iced Coffee Alternative)",
+      "category": "음료",
+      "style": "glass",
+      "prompt": "Professional food photo of K-Grain Latte (Vietnamese Iced Coffee Alternative), with Milk or coconut milk, Sweetened condensed milk.\nIn a tall clear glass, seen from eye level.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_misutgaru_latte_food01_002.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_misutgaru_smoothie_food01_001",
+      "name_en": "K-Grain Coconut Smoothie",
+      "category": "음료",
+      "style": "glass",
+      "prompt": "Professional food photo of K-Grain Coconut Smoothie, with Coconut milk, ripe banana, condensed milk.\nIn a tall clear glass, seen from eye level.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_misutgaru_smoothie_food01_001.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_nem_nuong_sauce03_003",
+      "name_en": "Grilled Pork Sausage with Ssamjang Herb Dip",
+      "category": "구이",
+      "style": "plate",
+      "prompt": "Professional food photo of Grilled Pork Sausage with Ssamjang Herb Dip, with ground pork, pork fat, garlic, baking powder, lettuce, cilantro, mint, cucumber, pickled papaya or carrot.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_nem_nuong_sauce03_003.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_patbingsu_food01_005",
+      "name_en": "Misutgaru Coconut Shaved Ice (K-Bingsu Style)",
+      "category": "디저트",
+      "style": "plate",
+      "prompt": "Professional food photo of Misutgaru Coconut Shaved Ice (K-Bingsu Style), with cooked red beans, coconut milk, condensed milk, tapioca pearls, jelly.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_patbingsu_food01_005.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_pho_bo_coin01_001",
+      "name_en": "Vietnamese Beef Pho",
+      "category": "면",
+      "style": "bowl",
+      "prompt": "Professional food photo of Vietnamese Beef Pho, with beef shank or brisket, bean sprouts, onion, green onion, cilantro.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_pho_bo_coin01_001.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_pho_chay_coin03_002",
+      "name_en": "Vietnamese Vegetarian Pho",
+      "category": "면",
+      "style": "bowl",
+      "prompt": "Professional food photo of Vietnamese Vegetarian Pho, with firm tofu, shiitake mushrooms, broccoli, carrot, bean sprouts.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_pho_chay_coin03_002.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_pho_ga_coin02_002",
+      "name_en": "Vietnamese Chicken Pho",
+      "category": "면",
+      "style": "bowl",
+      "prompt": "Professional food photo of Vietnamese Chicken Pho, with chicken breast or thigh, onion, ginger, cinnamon stick, star anise.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_pho_ga_coin02_002.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_pho_ga_xao_season03_004",
+      "name_en": "Stir-fried Chicken Pho Noodles with Dakgalbi Seasoning",
+      "category": "볶음",
+      "style": "plate",
+      "prompt": "Professional food photo of Stir-fried Chicken Pho Noodles with Dakgalbi Seasoning, with onion, Bok choy, Bean sprouts, garlic, Lime wedges.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_pho_ga_xao_season03_004.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_pho_xao_sauce04_002",
+      "name_en": "K-Rosé Stir-fried Phở Noodles",
+      "category": "면",
+      "style": "bowl",
+      "prompt": "Professional food photo of K-Rosé Stir-fried Phở Noodles, with cabbage, bean sprouts, scallions, garlic.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_pho_xao_sauce04_002.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_popcorn_season01_006",
+      "name_en": "Bulgogi Seasoning Butter Popcorn",
+      "category": "스낵",
+      "style": "plate",
+      "prompt": "Professional food photo of Bulgogi Seasoning Butter Popcorn, with popcorn kernels, butter.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_popcorn_season01_006.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_sinh_to_chuoi_food01_006",
+      "name_en": "Misutgaru Banana Coconut Shake",
+      "category": "음료",
+      "style": "glass",
+      "prompt": "Professional food photo of Misutgaru Banana Coconut Shake, with ripe bananas, milk, condensed milk, honey, little roasted sesame.\nIn a tall clear glass, seen from eye level.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_sinh_to_chuoi_food01_006.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_sinh_to_xoai_cay_sauce06_006",
+      "name_en": "Spicy Mango Gochujang Smoothie",
+      "category": "음료",
+      "style": "glass",
+      "prompt": "Professional food photo of Spicy Mango Gochujang Smoothie, with ripe mango, plain yogurt, sweetened condensed milk, fresh mint.\nIn a tall clear glass, seen from eye level.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_sinh_to_xoai_cay_sauce06_006.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_suon_nuong_sauce05_001",
+      "name_en": "Bulgogi-Coconut BBQ Pork Ribs",
+      "category": "구이",
+      "style": "plate",
+      "prompt": "Professional food photo of Bulgogi-Coconut BBQ Pork Ribs, with pork ribs, garlic, shallots, honey, lime.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_suon_nuong_sauce05_001.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_sup_hai_san_season04_003",
+      "name_en": "Seafood Soup with Abalone Porridge Seasoning",
+      "category": "국물",
+      "style": "bowl",
+      "prompt": "Professional food photo of Seafood Soup with Abalone Porridge Seasoning, with Shrimp, Squid, Crab stick, Corn kernels, Garlic.\nServed in a deep ceramic bowl, seen from 45-degree angle.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_sup_hai_san_season04_003.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_thit_nuong_sauce05_004",
+      "name_en": "Bulgogi-Coconut Chargrilled Pork",
+      "category": "구이",
+      "style": "plate",
+      "prompt": "Professional food photo of Bulgogi-Coconut Chargrilled Pork, with garlic, shallots, lettuce, cilantro, mint, pickled carrots and daikon, roasted peanuts.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_thit_nuong_sauce05_004.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_thit_nuong_season01_004",
+      "name_en": "Grilled Pork with Rice Vermicelli and Bulgogi Seasoning",
+      "category": "구이",
+      "style": "plate",
+      "prompt": "Professional food photo of Grilled Pork with Rice Vermicelli and Bulgogi Seasoning, with Lettuce, perilla , cilantro  each a, Bean sprouts, Shredded carrot a little, Roasted peanuts, Lemongrass.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_thit_nuong_season01_004.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_tom_hap_sauce02_004",
+      "name_en": "Steamed Shrimp with Maesil Dip",
+      "category": "구이",
+      "style": "plate",
+      "prompt": "Professional food photo of Steamed Shrimp with Maesil Dip, with large shrimp, lemongrass, lime.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_tom_hap_sauce02_004.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_tteokbokki_sauce06_005",
+      "name_en": "Mango Gochujang Tteokbokki Snack",
+      "category": "스낵",
+      "style": "plate",
+      "prompt": "Professional food photo of Mango Gochujang Tteokbokki Snack, with Fish cake, Mozzarella cheese.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_tteokbokki_sauce06_005.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_xoi_season01_005",
+      "name_en": "Sticky Rice with Bulgogi Seasoning Topping",
+      "category": "밥",
+      "style": "plate",
+      "prompt": "Professional food photo of Sticky Rice with Bulgogi Seasoning Topping, with fried onions, peanuts, shredded pork or pork floss.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_xoi_season01_005.png",
+      "error": ""
+    },
+    {
+      "recipe_id": "recipe_xoi_season04_005",
+      "name_en": "Sticky Rice with Abalone Porridge Seasoning Topping",
+      "category": "밥",
+      "style": "plate",
+      "prompt": "Professional food photo of Sticky Rice with Abalone Porridge Seasoning Topping, with mung beans, fried onions, scallions.\nPlated on a round ceramic dish, seen from above.\nLight wooden table, warm natural side lighting, vibrant colors, sharp focus.",
+      "status": "success",
+      "image_path": "static/images/recipes/recipe_xoi_season04_005.png",
+      "error": ""
+    }
+  ]
+}

@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="ko" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}대시보드{% endblock %} — (주)다미푸드 직원용 포탈</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { DEFAULT: '#3B6FD4', light: '#5B8FE8', dark: '#2A52A8' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+  <link rel="stylesheet" href="/static/css/portal.css">
+
+  <style>
+    *, body { font-family: 'Inter', 'Noto Sans KR', sans-serif; }
+
+    /* ── 전체 배경 ── */
+    body { background: #F0F4F8; min-height: 100vh; }
+    html.dark body { background: #0F1923; }
+
+    /* ── Utility Bar ── */
+    .util-bar {
+      background: #fff;
+      border-bottom: 1px solid #E8EDF3;
+      position: sticky;
+      top: 0;
+      z-index: 200; /* ★ 드롭다운 overlay보다 높게 */
+    }
+    html.dark .util-bar { background: #0F1923; border-color: #1E3347; }
+
+    /* ── GNB ── */
+    .gnb-wrap {
+      background: #fff;
+      border-bottom: 1px solid #E8EDF3;
+      position: sticky;
+      top: 40px;
+      z-index: 190;
+    }
+    html.dark .gnb-wrap { background: #0F1923; border-color: #1E3347; }
+
+    /* ── Nav 링크 ── */
+    .nav-link {
+      color: #64748B; font-weight: 500;
+      padding: 20px 4px; border-bottom: 2px solid transparent;
+      transition: all .15s; white-space: nowrap; text-decoration: none;
+      font-size: 14px;
+    }
+    .nav-link:hover { color: #2C3E50; }
+    .nav-link.active { color: #3B6FD4; border-color: #3B6FD4; font-weight: 700; }
+    html.dark .nav-link { color: #94A3B8; }
+    html.dark .nav-link:hover { color: #CBD5E1; }
+    html.dark .nav-link.active { color: #5B8FE8; border-color: #5B8FE8; }
+
+    /* ── 아이콘 버튼 ── */
+    .icon-btn {
+      width: 34px; height: 34px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      background: #F8FAFC; border: 1px solid #E2E8F0;
+      cursor: pointer; transition: all .15s; flex-shrink: 0;
+    }
+    html.dark .icon-btn { background: #162230; border-color: #1E3347; }
+    .icon-btn:hover { background: #EBF4FF; border-color: #BFDBFE; }
+    html.dark .icon-btn:hover { background: #1E3347; }
+
+    /* ── 아바타 ── */
+    .avatar-btn {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: #3B6FD4; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; border: 2px solid #BFDBFE;
+      cursor: pointer; flex-shrink: 0; transition: .15s;
+      letter-spacing: 0.05em;
+    }
+    html.dark .avatar-btn { border-color: #2A4A66; }
+    .avatar-btn:hover { transform: scale(1.08); }
+
+    /* ── 유틸 드롭다운 ── */
+    .util-dd {
+      position: absolute; top: calc(100% + 8px); right: 0;
+      background: #fff; border: 1px solid #E8EDF3; border-radius: 16px;
+      box-shadow: 0 12px 40px -8px rgba(44,62,80,.18);
+      padding: 16px; min-width: 280px; z-index: 50; display: none;
+    }
+    html.dark .util-dd { background: #162230; border-color: #1E3347; box-shadow: 0 12px 40px -8px rgba(0,0,0,.4); }
+    .util-dd.open { display: block; }
+
+    /* ── 텍스트 유틸 ── */
+    .txt-primary   { color: #2C3E50; }
+    html.dark .txt-primary   { color: #E2E8F0; }
+    .txt-secondary { color: #64748B; }
+    html.dark .txt-secondary { color: #94A3B8; }
+    .txt-muted     { color: #94A3B8; }
+    html.dark .txt-muted     { color: #4A6080; }
+
+    /* ══════════════════════════════
+       메인 레이아웃 Shell
+    ══════════════════════════════ */
+    #portalShell {
+      display: flex;
+      min-height: calc(100vh - 101px);
+      align-items: stretch;
+      overflow: hidden;
+    }
+
+    #portalMain {
+      flex: 1;
+      min-width: 0;
+      overflow-y: auto;
+    }
+
+    .portal-content-area {
+      padding: 28px 32px;
+      width: 100%;
+    }
+
+    /* 기능 페이지 공통 헤더 */
+    .portal-page-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      margin-bottom: 24px; gap: 16px; flex-wrap: wrap;
+    }
+    .portal-page-title {
+      font-size: 20px; font-weight: 800; color: #1E293B;
+      padding-left: 12px;
+      border-left: 4px solid #3B6FD4;
+      margin-bottom: 4px;
+    }
+    html.dark .portal-page-title { color: #E2E8F0; }
+    .portal-page-desc { font-size: 13px; color: #64748B; padding-left: 16px; }
+    html.dark .portal-page-desc { color: #94A3B8; }
+
+    
+    /* ══════════════════════════════
+       사이드바(Drawer/Overlay 공통)
+    ══════════════════════════════ */
+    #sidebar {
+      position: fixed;
+      right: 0; 
+      top: 101px; /* ★ 헤더와 유틸바 높이만큼 내려서 시작 */
+      bottom: 0;
+      width: 300px !important; min-width: 300px !important;
+      z-index: 180; /* ★ 헤더보다 뒤에 있도록 z-index 낮춤 */
+      background: #fff;
+      border-left: 1px solid #E8EDF3;
+      transform: translateX(100%);
+      transition: transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s;
+      overflow-y: auto;
+    }
+    html.dark #sidebar { background: #0F1923; border-color: #1E3347; }
+    
+    idebar.open   { transform: translateX(0); box-shadow: -8px 0 32px rgba(0,0,0,0.15); }
+    #sidebar.open   { transform: translateX(0); box-shadow: -8px 0 32px rgba(0,0,0,0.15); }    #sidebar.closed { transform: translateX(100%); box-shadow: none; }
+    
+    /* 사이드바 뒤에 깔리는 어두운 배경 */
+    #sidebarOverlay {
+      position: fixed; inset: 0;
+      top: 101px; /* ★ 오버레이도 헤더 아래부터 깔리게 설정 */
+      background: rgba(15,25,35,.5);
+      backdrop-filter: blur(3px);
+      opacity: 0; visibility: hidden;
+      transition: opacity .3s, visibility .3s;
+      z-index: 170;
+    }
+    #sidebarOverlay.show { opacity: 1; visibility: visible; }
+
+    /* ── Quick Link 버튼 ── */
+    .ql-btn {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 5px; padding: 10px 6px;
+      border-radius: 12px; border: 1px solid #E8EDF3;
+      text-decoration: none; transition: all .15s; background: #F8FAFC;
+    }
+    html.dark .ql-btn { background: #162230; border-color: #1E3347; }
+    .ql-btn:hover { border-color: #BFDBFE; background: #EBF4FF; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(59,111,212,.1); }
+    html.dark .ql-btn:hover { background: #1E3347; border-color: #2A5080; }
+
+    /* ── 사이드바 로고 이미지 ── */
+    .ql-logo {
+      width: 28px; height: 28px; border-radius: 8px;
+      object-fit: contain; background: #fff;
+    }
+
+    /* ── 사이드바 섹션 타이틀 ── */
+    .sb-section-title {
+      font-size: 11px; font-weight: 700;
+      color: #94A3B8; text-transform: uppercase;
+      letter-spacing: 0.08em; margin-bottom: 10px;
+    }
+    html.dark .sb-section-title { color: #4A6080; }
+
+    /* ── 사이드바 링크 텍스트 ── */
+    .ql-label {
+      font-size: 11px; font-weight: 600;
+      color: #64748B; text-align: center; line-height: 1.2;
+    }
+    html.dark .ql-label { color: #94A3B8; }
+
+    /* ── 시계: 깜빡임 방지 ── */
+    .clock-display {
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    /* ── 스크롤바 ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #BFDBFE; border-radius: 99px; }
+    html.dark ::-webkit-scrollbar-thumb { background: #2A4A66; }
+
+    /* ── 모바일 네비 ── */
+    #mobileMenu {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: #fff;
+      border-bottom: 1px solid #E8EDF3;
+      padding: 8px 16px 16px;
+      z-index: 49;
+    }
+    html.dark #mobileMenu { background: #0F1923; border-color: #1E3347; }
+    #mobileMenu.open { display: block; }
+
+    /* ── 반응형 패딩 ── */
+    @media (max-width: 768px) {
+      .portal-content-area { padding: 16px; }
+      .util-bar { display: none; }
+      .gnb-wrap { top: 0; }
+      #portalShell { min-height: calc(100vh - 61px); }
+      #sidebar, #sidebarOverlay { top: 61px; } /* ★ 모바일에서는 61px 아래부터 띄움 */
+    }
+  </style>
+
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     UTILITY BAR — 최상단 (데스크탑만 표시)
+══════════════════════════════════════════ -->
+<div class="util-bar hidden md:block">
+  <div class="max-w-[1800px] mx-auto px-6 h-10 flex justify-end items-center gap-4 text-[12px] font-medium txt-secondary">
+
+    <div class="flex items-center gap-5">
+
+      <!-- My Favorites -->
+      <div class="relative">
+        <button onclick="toggleDD('dd-favorites')" class="flex items-center gap-1.5 hover:text-[#3B6FD4] transition-colors">
+          <i class="hgi-stroke hgi-favourite text-sm"></i> My Favorites
+          <span id="fav-badge" class="bg-rose-500 text-white px-1.5 rounded-full text-[9px] hidden">0</span>
+        </button>
+        <div id="dd-favorites" class="util-dd" style="min-width:300px;">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold txt-primary">❤️ 저장한 아이디어</span>
+          </div>
+          <div id="fav-list" class="space-y-2 max-h-52 overflow-y-auto">
+            <div class="text-[11px] txt-muted text-center py-4">아이디어 탭에서 좋아요를 눌러보세요!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- To-Dos -->
+      <div class="relative">
+        <button onclick="toggleDD('dd-todos')" class="flex items-center gap-1.5 hover:text-[#3B6FD4] transition-colors">
+          <i class="hgi-stroke hgi-task-list-01 text-sm"></i> To-Dos
+          <span id="todo-badge" class="bg-orange-500 text-white px-1.5 rounded-full text-[9px]">0</span>
+        </button>
+        <div id="dd-todos" class="util-dd" style="min-width:300px;">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold txt-primary">📋 오늘의 할 일</span>
+            <button onclick="showTodoInput()" class="text-[10px] font-bold text-[#3B6FD4] hover:underline">+ 추가</button>
+          </div>
+          <div id="todo-list" class="space-y-1.5 mb-2 max-h-52 overflow-y-auto"></div>
+          <div id="todo-input-wrap" class="hidden mt-2">
+            <input id="todo-input" type="text" placeholder="할 일 입력 후 Enter"
+              class="w-full text-xs border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-300 mb-1.5 dark:bg-slate-700 dark:border-slate-600 dark:text-white">
+            <div class="flex gap-2">
+              <button onclick="saveTodo()" class="flex-1 bg-[#3B6FD4] text-white text-xs font-bold py-1.5 rounded-lg hover:bg-[#2A52A8] transition-colors">저장</button>
+              <button onclick="hideTodoInput()" class="flex-1 bg-gray-100 text-gray-600 text-xs font-bold py-1.5 rounded-lg hover:bg-gray-200 transition-colors">취소</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Documents -->
+      <div class="relative">
+        <button onclick="toggleDD('dd-docs')" class="flex items-center gap-1.5 hover:text-[#3B6FD4] transition-colors">
+          <i class="hgi-stroke hgi-file-01 text-sm"></i> Documents
+          <span id="docs-badge" class="bg-blue-500 text-white px-1.5 rounded-full text-[9px] hidden">0</span>
+        </button>
+        <div id="dd-docs" class="util-dd" style="min-width:320px;">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold txt-primary">📄 생성된 문서</span>
+            <span class="text-[10px] txt-muted">클릭하면 다운로드</span>
+          </div>
+          <div id="docs-list" class="space-y-2 max-h-52 overflow-y-auto">
+            <div class="text-[11px] txt-muted text-center py-4">생성된 문서가 없습니다</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-px h-3.5 bg-gray-200 dark:bg-slate-600"></div>
+
+      <!-- 자사몰 -->
+      <a href="/" class="flex items-center gap-1.5 hover:text-[#3B6FD4] transition-colors whitespace-nowrap font-semibold">
+        <i class="hgi-stroke hgi-home-01 text-sm"></i> 자사몰
+      </a>
+
+      <!-- 로그아웃 -->
+      <a href="/portal/logout" class="flex items-center gap-1.5 hover:text-red-500 transition-colors whitespace-nowrap">
+        <i class="hgi-stroke hgi-logout-03 text-sm"></i> 로그아웃
+      </a>
+
+      <!-- 아바타 -->
+      <div class="avatar-btn" id="userAvatar" title="로그인 정보">
+        {{ user_initial | default('??') }}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     GNB — 로고 + 네비게이션 + 시계 + 토글
+══════════════════════════════════════════ -->
+<header class="gnb-wrap">
+  <div class="max-w-[1800px] mx-auto px-6 h-[61px] flex items-center justify-between gap-4">
+
+    <!-- 좌측: 로고 + 네비 -->
+    <div class="flex items-center gap-8 min-w-0">
+      <a href="/portal" class="flex items-center gap-2 flex-shrink-0 group">
+        <img src="/static/images/brand/logo.jpg"
+            class="h-10 w-auto object-contain group-hover:scale-105 transition-transform"
+            alt="DA-MI FOOD">
+        <!-- 회사명 -->
+        <div class="hidden lg:flex flex-col leading-tight">
+          <span class="text-[13px] font-bold txt-primary whitespace-nowrap">DA-MI FOOD</span>
+          <span class="text-[10px] txt-muted whitespace-nowrap">Employee Intranet</span>
+        </div>
+      </a>
+
+      <!-- 데스크탑 네비 -->
+      <nav class="hidden lg:flex items-center gap-6 min-w-0">
+        <a href="/portal"        class="nav-link {% if active_menu == 'dashboard' %}active{% endif %}">대시보드</a>
+        <a href="/portal/news"   class="nav-link {% if active_menu == 'news'      %}active{% endif %}">트렌드</a>
+        <a href="/portal/review" class="nav-link {% if active_menu == 'review'    %}active{% endif %}">리뷰 키워드</a>
+        <a href="/portal/sns"    class="nav-link {% if active_menu == 'sns'       %}active{% endif %}">SNS 콘텐츠</a>
+        <a href="/portal/map"       class="nav-link {% if active_menu == 'map'       %}active{% endif %}">유통 채널</a>
+        <a href="/portal/customers" class="nav-link {% if active_menu == 'customers' %}active{% endif %}">고객 관리</a>
+        <a href="/portal/ideas"     class="nav-link {% if active_menu == 'ideas'     %}active{% endif %}">아이디어</a>
+      </nav>
+    </div>
+
+    <!-- 우측: 시계 + 다크모드 + 사이드바 토글 -->
+    <div class="flex items-center gap-3 flex-shrink-0">
+
+      <!-- ★ 세계 시계 — index(개선) 스타일, 큰 글씨 2줄 -->
+      <div class="hidden md:flex items-center gap-6 border-r border-gray-100 dark:border-slate-700 pr-4 mr-1">
+        <div class="flex flex-col items-center justify-center">
+          <p class="text-[9px] font-bold txt-muted uppercase tracking-widest leading-none mb-1">Seoul</p>
+          <p class="text-sm font-bold txt-primary clock-display leading-none" id="time-kr">--:--:--</p>
+        </div>
+        <div class="flex flex-col items-center justify-center">
+          <p class="text-[9px] font-bold txt-muted uppercase tracking-widest leading-none mb-1">Ho Chi Minh</p>
+          <p class="text-sm font-bold text-[#3B6FD4] dark:text-[#5B8FE8] clock-display leading-none" id="time-vn">--:--:--</p>
+        </div>
+      </div>
+
+      <!-- 모바일 메뉴 토글 (lg 미만에서만 표시) -->
+      <button id="mobileMenuToggle" class="icon-btn lg:hidden" title="메뉴 열기">
+        <i class="hgi-stroke hgi-menu-01 txt-secondary text-base"></i>
+      </button>
+
+      <!-- 다크모드 토글 -->
+      <button id="darkModeToggle" class="icon-btn" title="다크모드 전환">
+        <i id="darkModeIcon" class="hgi-stroke hgi-sun-01 txt-secondary text-base"></i>
+      </button>
+
+      <!-- 사이드바 토글 (돋보기 아이콘) -->
+      <button id="sidebarToggle" class="icon-btn" title="사이드바 열기/닫기">
+        <i class="hgi-stroke hgi-search-01 txt-secondary text-base"></i>
+      </button>
+      
+    </div>
+  </div>
+
+  <!-- 모바일 드롭다운 네비 -->
+  <div id="mobileMenu">
+    <div class="flex flex-col gap-1 py-2">
+      <a href="/portal"        class="px-3 py-2.5 rounded-xl text-sm font-medium txt-secondary hover:bg-blue-50 hover:text-[#3B6FD4] transition-colors {% if active_menu == 'dashboard' %}bg-blue-50 text-[#3B6FD4] font-bold{% endif %}">대시보드</a>
+      <a href="/portal/news"   class="px-3 py-2.5 rounded-xl text-sm font-medium txt-secondary hover:bg-blue-50 hover:text-[#3B6FD4] transition-colors {% if active_menu == 'news'      %}bg-blue-50 text-[#3B6FD4] font-bold{% endif %}">트렌드 분석</a>
+      <a href="/portal/review" class="px-3 py-2.5 rounded-xl text-sm font-medium txt-secondary hover:bg-blue-50 hover:text-[#3B6FD4] transition-colors {% if active_menu == 'review'    %}bg-blue-50 text-[#3B6FD4] font-bold{% endif %}">리뷰 키워드 분석</a>
+      <a href="/portal/sns"    class="px-3 py-2.5 rounded-xl text-sm font-medium txt-secondary hover:bg-blue-50 hover:text-[#3B6FD4] transition-colors {% if active_menu == 'sns'       %}bg-blue-50 text-[#3B6FD4] font-bold{% endif %}">SNS 콘텐츠</a>
+      <a href="/portal/map"       class="px-3 py-2.5 rounded-xl text-sm font-medium txt-secondary hover:bg-blue-50 hover:text-[#3B6FD4] transition-colors {% if active_menu == 'map'       %}bg-blue-50 text-[#3B6FD4] font-bold{% endif %}">유통 채널</a>
+      <a href="/portal/customers" class="px-3 py-2.5 rounded-xl text-sm font-medium txt-secondary hover:bg-blue-50 hover:text-[#3B6FD4] transition-colors {% if active_menu == 'customers' %}bg-blue-50 text-[#3B6FD4] font-bold{% endif %}">고객 관리</a>
+      <a href="/portal/ideas"     class="px-3 py-2.5 rounded-xl text-sm font-medium txt-secondary hover:bg-blue-50 hover:text-[#3B6FD4] transition-colors {% if active_menu == 'ideas'     %}bg-blue-50 text-[#3B6FD4] font-bold{% endif %}">아이디어</a>
+      <div class="border-t border-gray-100 dark:border-slate-700 mt-2 pt-2 flex gap-4 px-3">
+        <a href="/" class="text-xs txt-muted hover:text-[#3B6FD4] transition-colors">자사몰</a>
+        <a href="/portal/logout" class="text-xs txt-muted hover:text-red-500 transition-colors">로그아웃</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     메인 레이아웃
+══════════════════════════════════════════ -->
+<div id="portalShell">
+
+  <main id="portalMain">
+    <div class="portal-content-area">
+
+      {% if self.page_title()|trim or self.page_actions()|trim %}
+      <div class="portal-page-header">
+        <div>
+          <h1 class="portal-page-title">{% block page_title %}{% endblock %}</h1>
+          <p class="portal-page-desc">{% block page_desc %}{% endblock %}</p>
+        </div>
+        <div>{% block page_actions %}{% endblock %}</div>
+      </div>
+      {% endif %}
+
+      {% block content %}{% endblock %}
+
+    </div>
+  </main>
+
+  <!-- 모바일 오버레이 -->
+  <div id="sidebarOverlay"></div>
+
+  <!-- ══════════════════════════════
+       사이드바 (우측 고정)
+  ══════════════════════════════ -->
+  <aside id="sidebar" class="open">
+    <div class="p-5 space-y-6">
+
+      <!-- 유통 플랫폼 -->
+      <div>
+        <p class="sb-section-title">🛒 베트남 유통 플랫폼</p>
+        <div class="grid grid-cols-3 gap-2 mb-5">
+          <a href="https://shopee.vn" target="_blank" class="ql-btn">
+            <img src="https://www.google.com/s2/favicons?domain=shopee.vn&sz=32" class="ql-logo" alt="Shopee" onerror="this.style.display='none'">
+            <span class="ql-label">Shopee</span>
+          </a>
+          <a href="https://lazada.vn" target="_blank" class="ql-btn">
+            <img src="https://www.google.com/s2/favicons?domain=lazada.vn&sz=32" class="ql-logo" alt="Lazada" onerror="this.style.display='none'">
+            <span class="ql-label">Lazada</span>
+          </a>
+          <a href="https://tiki.vn" target="_blank" class="ql-btn">
+            <img src="https://www.google.com/s2/favicons?domain=tiki.vn&sz=32" class="ql-logo" alt="Tiki" onerror="this.style.display='none'">
+            <span class="ql-label">Tiki</span>
+          </a>
+        </div>
+
+        <p class="sb-section-title">📱 SNS</p>
+        <div class="grid grid-cols-2 gap-2 mb-5">
+          <a href="https://www.tiktok.com" target="_blank" class="ql-btn">
+            <img src="https://www.google.com/s2/favicons?domain=tiktok.com&sz=32" class="ql-logo" alt="TikTok" onerror="this.style.display='none'">
+            <span class="ql-label">TikTok</span>
+          </a>
+          <a href="https://shop.tiktok.com" target="_blank" class="ql-btn">
+            <img src="https://www.google.com/s2/favicons?domain=shop.tiktok.com&sz=32" class="ql-logo" alt="TikTok Shop" onerror="this.style.display='none'">
+            <span class="ql-label">TikTok Shop</span>
+          </a>
+          <a href="https://seller-vn.tiktok.com" target="_blank" class="ql-btn">
+            <img src="https://www.google.com/s2/favicons?domain=seller-vn.tiktok.com&sz=32" class="ql-logo" alt="셀러센터" onerror="this.style.display='none'">
+            <span class="ql-label">셀러센터(VN)</span>
+          </a>
+          <a href="https://www.facebook.com" target="_blank" class="ql-btn">
+            <img src="https://www.google.com/s2/favicons?domain=facebook.com&sz=32" class="ql-logo" alt="Facebook" onerror="this.style.display='none'">
+            <span class="ql-label">Facebook</span>
+          </a>
+          <a href="https://www.instagram.com" target="_blank" class="ql-btn col-span-2">
+            <img src="https://www.google.com/s2/favicons?domain=instagram.com&sz=32" class="ql-logo" alt="Instagram" onerror="this.style.display='none'">
+            <span class="ql-label">Instagram</span>
+          </a>
+        </div>
+
+        <p class="sb-section-title">🏪 오프라인 / 배달</p>
+        <div class="grid grid-cols-3 gap-2 mb-5">
+          <a href="https://www.grab.com/vn/food/" target="_blank" class="ql-btn">
+            <img src="https://www.google.com/s2/favicons?domain=grab.com&sz=32" class="ql-logo" alt="GrabFood" onerror="this.style.display='none'">
+            <span class="ql-label">GrabFood</span>
+          </a>
+          <a href="https://mmvietnam.com/" target="_blank" class="ql-btn">
+            <img src="https://www.google.com/s2/favicons?domain=mmvietnam.com&sz=32" class="ql-logo" alt="MM Mega" onerror="this.style.display='none'">
+            <span class="ql-label">MM Mega</span>
+          </a>
+          <a href="https://cooponline.vn/" target="_blank" class="ql-btn">
+            <img src="https://www.google.com/s2/favicons?domain=cooponline.vn&sz=32" class="ql-logo" alt="Co.opmart" onerror="this.style.display='none'">
+            <span class="ql-label">Co.opmart</span>
+          </a>
+        </div>
+
+        <p class="sb-section-title">📊 포탈 바로가기</p>
+        <div class="grid grid-cols-2 gap-2">
+          <a href="/portal/report" class="ql-btn">
+            <i class="hgi-stroke hgi-chart-bar-01 txt-muted text-xl"></i>
+            <span class="ql-label">주간 리포트</span>
+          </a>
+          <a href="/portal/ideas" class="ql-btn">
+            <i class="hgi-stroke hgi-idea-01 txt-muted text-xl"></i>
+            <span class="ql-label">아이디어</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 날씨 -->
+      <div>
+        <p class="sb-section-title">🌤 베트남 날씨</p>
+        <div class="space-y-2">
+          <div class="flex items-center justify-between bg-blue-50 dark:bg-blue-900/20 rounded-xl px-4 py-3 border border-blue-100 dark:border-blue-800/30">
+            <span class="text-xs font-semibold txt-secondary">🇻🇳 하노이</span>
+            <span class="text-sm font-bold txt-primary">24°C ⛅</span>
+            <span class="text-sm font-bold txt-primary" id="weather-hanoi">--°C</span>
+          </div>
+          <div class="flex items-center justify-between bg-blue-50 dark:bg-blue-900/20 rounded-xl px-4 py-3 border border-blue-100 dark:border-blue-800/30">
+            <span class="text-xs font-semibold txt-secondary">🏙 호치민</span>
+            <span class="text-sm font-bold txt-primary">31°C 🌧</span>
+            <span class="text-sm font-bold txt-primary" id="weather-hcm">--°C</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 환율 -->
+      <div>
+        <p class="sb-section-title">💱 오늘의 환율</p>
+        <div id="sidebar-exchange" class="space-y-2">
+          <div class="text-xs txt-muted text-center py-2">불러오는 중…</div>
+        </div>
+      </div>
+
+      <!-- 공지사항 -->
+      <div>
+        <p class="sb-section-title">📢 사내 공지사항</p>
+        <div class="space-y-1">
+          <a href="#" class="block p-3 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-all border border-transparent hover:border-blue-100 dark:hover:border-blue-800/30 group">
+            <p class="text-xs font-bold txt-primary group-hover:text-[#3B6FD4] transition-colors mb-0.5">포탈 초기 버전 오픈 — 병합 환영!</p>
+            <p class="text-[11px] txt-muted">2026.03.01</p>
+          </a>
+          <a href="#" class="block p-3 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-all border border-transparent hover:border-blue-100 dark:hover:border-blue-800/30 group">
+            <p class="text-xs font-bold txt-primary group-hover:text-[#3B6FD4] transition-colors mb-0.5">베트남 지사 설립 관련 안내</p>
+            <p class="text-[11px] txt-muted">2026.02.28</p>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </aside>
+</div>
+
+<!-- ★ 드롭다운 오버레이 — z-index를 util-bar(z-200)보다 낮게 설정 -->
+<div id="dd-overlay" class="fixed inset-0 z-[170]" style="display:none;" onclick="closeAllDD()"></div>
+
+<!-- ══════════════════════════════════════════
+     공통 JavaScript
+══════════════════════════════════════════ -->
+<script src="/static/js/portal.js"></script>
+{% block extra_js %}{% endblock %}
+
+<script>
+/* ═══════════════════════════════════════════════════
+   BASE COMMON JS — 모든 페이지에서 단 한 번만 실행
+═══════════════════════════════════════════════════ */
+
+/* ── 1. 세계 시계 (깜빡임 방지, 2줄 스타일) ── */
+(function tickClock() {
+  const pad = n => String(n).padStart(2, '0');
+  const fmt = d => `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  function update() {
+    const now = new Date();
+    const kr = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+    const vn = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Ho_Chi_Minh' }));
+    const elKr = document.getElementById('time-kr');
+    const elVn = document.getElementById('time-vn');
+    if (elKr) elKr.textContent = fmt(kr);
+    if (elVn) elVn.textContent = fmt(vn);
+  }
+  update();
+  setInterval(update, 1000);
+})();
+
+/* ── 2. 다크모드 토글 ── */
+(function initDarkMode() {
+  const html   = document.documentElement;
+  const btn    = document.getElementById('darkModeToggle');
+  const icon   = document.getElementById('darkModeIcon');
+  let dark = localStorage.getItem('damiFoodDark') === 'true';
+
+  function apply(d) {
+    dark = d;
+    html.classList.toggle('dark', d);
+    if (icon) {
+      icon.className = d
+        ? 'hgi-stroke hgi-moon-02 txt-secondary text-base'
+        : 'hgi-stroke hgi-sun-01 txt-secondary text-base';
+    }
+    localStorage.setItem('damiFoodDark', d);
+  }
+  apply(dark);
+  if (btn) btn.addEventListener('click', () => apply(!dark));
+})();
+
+/* ── 3. 사이드바 토글 (Drawer Overlay 방식) ── */
+(function initSidebar() {
+  const sb  = document.getElementById('sidebar');
+  const ov  = document.getElementById('sidebarOverlay');
+  const btn = document.getElementById('sidebarToggle');
+
+  // 평소엔 무조건 숨겨져 있도록 기본값을 false로 설정합니다.
+  let open = false; 
+
+  function setSidebar(v) {
+    open = v;
+    if (!sb) return;
+    sb.classList.toggle('open',   v);
+    sb.classList.toggle('closed', !v);
+    if (ov) {
+      ov.style.display = v ? 'block' : 'none';
+      setTimeout(() => { if (ov) ov.classList.toggle('show', v); }, 10);
+    }
+  }
+
+  // 초기 상태 셋팅 (닫힘)
+  setSidebar(open);
+  
+  // 버튼 누르면 열고 닫기, 어두운 배경(오버레이) 누르면 무조건 닫기
+  if (btn) btn.addEventListener('click', () => setSidebar(!open));
+  if (ov)  ov.addEventListener('click',  () => setSidebar(false));
+})();
+
+/* ── 4. 모바일 네비 토글 ── */
+(function initMobileMenu() {
+  const btn  = document.getElementById('mobileMenuToggle');
+  const menu = document.getElementById('mobileMenu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', () => menu.classList.toggle('open'));
+  document.addEventListener('click', e => {
+    if (!btn.contains(e.target) && !menu.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+})();
+
+/* ── 5. 드롭다운 ── */
+function toggleDD(id) {
+  const el  = document.getElementById(id);
+  const ov  = document.getElementById('dd-overlay');
+  if (!el) return;
+  const was = el.classList.contains('open');
+  closeAllDD();
+  if (!was) { el.classList.add('open'); if (ov) ov.style.display = 'block'; }
+}
+function closeAllDD() {
+  document.querySelectorAll('.util-dd').forEach(d => d.classList.remove('open'));
+  const ov = document.getElementById('dd-overlay');
+  if (ov) ov.style.display = 'none';
+}
+
+/* ── 6. To-Do (localStorage) ── */
+let todos = JSON.parse(localStorage.getItem('damiFoodTodos') || '[]');
+
+function renderTodos() {
+  const list  = document.getElementById('todo-list');
+  const badge = document.getElementById('todo-badge');
+  if (!list) return;
+  const remaining = todos.filter(t => !t.done).length;
+  if (badge) badge.textContent = remaining;
+  list.innerHTML = todos.length === 0
+    ? '<div class="text-[11px] txt-muted text-center py-3">할 일을 추가해보세요 ✓</div>'
+    : todos.map((t, i) => `
+        <div class="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700/50 group">
+          <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleTodo(${i})"
+            class="rounded accent-[#3B6FD4] cursor-pointer flex-shrink-0">
+          <span class="text-xs flex-1 transition-all ${t.done
+            ? 'line-through txt-muted opacity-60'
+            : 'txt-primary'}">${escHtml(t.text)}</span>
+          <button onclick="deleteTodo(${i})"
+            class="opacity-0 group-hover:opacity-100 text-red-400 hover:text-red-600 text-[10px] transition-opacity flex-shrink-0">✕</button>
+        </div>`).join('');
+}
+function showTodoInput()  { document.getElementById('todo-input-wrap')?.classList.remove('hidden'); document.getElementById('todo-input')?.focus(); }
+function hideTodoInput()  {
+  document.getElementById('todo-input-wrap')?.classList.add('hidden');
+  if (document.getElementById('todo-input')) document.getElementById('todo-input').value = '';
+}
+function saveTodo() {
+  const v = document.getElementById('todo-input')?.value.trim();
+  if (!v) return;
+  todos.unshift({ text: v, done: false });
+  localStorage.setItem('damiFoodTodos', JSON.stringify(todos));
+  renderTodos(); hideTodoInput();
+}
+function toggleTodo(i)  { todos[i].done = !todos[i].done; localStorage.setItem('damiFoodTodos', JSON.stringify(todos)); renderTodos(); }
+function deleteTodo(i)  { todos.splice(i, 1); localStorage.setItem('damiFoodTodos', JSON.stringify(todos)); renderTodos(); }
+document.getElementById('todo-input')?.addEventListener('keydown', e => {
+  if (e.key === 'Enter')  saveTodo();
+  if (e.key === 'Escape') hideTodoInput();
+});
+renderTodos();
+
+/* ── 7. My Favorites (localStorage) ── */
+let favorites = JSON.parse(localStorage.getItem('damiFoodFavorites') || '[]');
+
+function renderFavorites() {
+  const list  = document.getElementById('fav-list');
+  const badge = document.getElementById('fav-badge');
+  if (!list) return;
+  if (badge) {
+    badge.textContent = favorites.length;
+    badge.classList.toggle('hidden', favorites.length === 0);
+  }
+  list.innerHTML = favorites.length === 0
+    ? '<div class="text-[11px] txt-muted text-center py-4">아이디어 탭에서 좋아요를 눌러보세요!</div>'
+    : favorites.map((f, i) => `
+        <div class="flex items-start gap-2 p-2.5 rounded-xl bg-gray-50 dark:bg-slate-700/50 border border-gray-100 dark:border-slate-600 group">
+          <div class="flex-1 min-w-0">
+            <p class="text-xs font-bold txt-primary truncate">${escHtml(f.title)}</p>
+            <p class="text-[10px] txt-muted mt-0.5">${escHtml(f.author || '')} · ${escHtml(f.date || '')}</p>
+          </div>
+          <button onclick="removeFavorite(${i})"
+            class="opacity-0 group-hover:opacity-100 text-red-400 hover:text-red-600 text-[10px] transition-opacity flex-shrink-0 mt-0.5">✕</button>
+        </div>`).join('');
+}
+
+function addFavorite(item) {
+  if (favorites.find(f => f.id === item.id)) return;
+  favorites.unshift(item);
+  localStorage.setItem('damiFoodFavorites', JSON.stringify(favorites));
+  renderFavorites();
+}
+function removeFavorite(i) {
+  favorites.splice(i, 1);
+  localStorage.setItem('damiFoodFavorites', JSON.stringify(favorites));
+  renderFavorites();
+}
+renderFavorites();
+
+/* ── 8. Documents (서버 파일 목록) ── */
+async function loadDocuments() {
+  const list  = document.getElementById('docs-list');
+  const badge = document.getElementById('docs-badge');
+  if (!list) return;
+  try {
+    const res  = await fetch('/api/intranet/documents');
+    const data = await res.json();
+    const docs = data.files || [];
+    if (badge) {
+      badge.textContent = docs.length;
+      badge.classList.toggle('hidden', docs.length === 0);
+    }
+    list.innerHTML = docs.length === 0
+      ? '<div class="text-[11px] txt-muted text-center py-4">생성된 문서가 없습니다</div>'
+      : docs.map(d => `
+          <a href="${escHtml(d.url)}" download class="flex items-center gap-2.5 p-2.5 rounded-xl bg-gray-50 dark:bg-slate-700/50 border border-gray-100 dark:border-slate-600 hover:border-[#3B6FD4] hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all group">
+            <span class="text-lg">${d.type === 'pdf' ? '📄' : d.type === 'xlsx' ? '📊' : '📁'}</span>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold txt-primary group-hover:text-[#3B6FD4] transition-colors truncate">${escHtml(d.name)}</p>
+              <p class="text-[10px] txt-muted">${escHtml(d.size || '')} · ${escHtml(d.date || '')}</p>
+            </div>
+            <i class="hgi-stroke hgi-download-01 txt-muted text-sm group-hover:text-[#3B6FD4] transition-colors"></i>
+          </a>`).join('');
+  } catch(e) {
+    list.innerHTML = '<div class="text-[11px] txt-muted text-center py-2">불러오기 실패</div>';
+  }
+}
+loadDocuments();
+
+/* ── 9. 환율 위젯 ── */
+let _exchangeRates = null;
+
+async function loadExchange() {
+  const el = document.getElementById('sidebar-exchange');
+  if (!el) return;
+  try {
+    const res  = await fetch('/api/exchange-rate');
+    const data = await res.json();
+    if (!data.success) throw new Error();
+    _exchangeRates = data;
+
+    el.innerHTML = `
+      <div class="flex items-center justify-between bg-blue-50 dark:bg-blue-900/20 rounded-xl px-4 py-2.5 border border-blue-100 dark:border-blue-800/30">
+        <span class="text-xs font-medium txt-secondary">100 VND</span>
+        <span class="text-sm font-bold txt-primary">₩ ${data.vnd100_krw.toFixed(2)}</span>
+      </div>
+      <div class="flex items-center justify-between bg-emerald-50 dark:bg-emerald-900/20 rounded-xl px-4 py-2.5 border border-emerald-100 dark:border-emerald-800/30">
+        <span class="text-xs font-medium txt-secondary">1 USD</span>
+        <span class="text-sm font-bold txt-primary">${data.usd_krw.toLocaleString()} KRW</span>
+      </div>
+      <p class="text-[10px] txt-muted text-right mt-1">기준: ${data.updated}</p>
+
+      <!-- 환율 계산기 -->
+      <div class="mt-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 overflow-hidden">
+        <div class="flex text-[11px] font-semibold">
+          <button id="calc-tab-vnd" onclick="switchCalcTab('vnd')"
+            class="flex-1 py-1.5 bg-blue-500 text-white transition-colors">VND → KRW</button>
+          <button id="calc-tab-krw" onclick="switchCalcTab('krw')"
+            class="flex-1 py-1.5 txt-secondary bg-gray-100 dark:bg-gray-700 transition-colors">KRW → VND</button>
+        </div>
+        <div class="px-3 py-2.5 space-y-2">
+          <div class="flex items-center gap-2">
+            <input id="calc-input" type="number" min="0" placeholder="금액 입력"
+              oninput="calcExchange()"
+              class="w-full text-sm border border-gray-200 dark:border-gray-600 rounded-lg px-2.5 py-1.5 bg-transparent txt-primary focus:outline-none focus:border-blue-400" />
+            <span id="calc-unit" class="text-xs txt-muted whitespace-nowrap">VND</span>
+          </div>
+          <div id="calc-result" class="text-sm font-bold txt-primary text-right min-h-[1.25rem]"></div>
+        </div>
+      </div>`;
+
+  } catch(e) {
+    el.innerHTML = '<p class="text-xs txt-muted text-center">환율 로드 실패</p>';
+  }
+}
+
+let _calcMode = 'vnd'; // 'vnd' | 'krw'
+
+function switchCalcTab(mode) {
+  _calcMode = mode;
+  document.getElementById('calc-input').value = '';
+  document.getElementById('calc-result').textContent = '';
+
+  const vndBtn = document.getElementById('calc-tab-vnd');
+  const krwBtn = document.getElementById('calc-tab-krw');
+  if (mode === 'vnd') {
+    vndBtn.className = 'flex-1 py-1.5 bg-blue-500 text-white transition-colors text-[11px] font-semibold';
+    krwBtn.className = 'flex-1 py-1.5 txt-secondary bg-gray-100 dark:bg-gray-700 transition-colors text-[11px] font-semibold';
+    document.getElementById('calc-unit').textContent = 'VND';
+  } else {
+    krwBtn.className = 'flex-1 py-1.5 bg-blue-500 text-white transition-colors text-[11px] font-semibold';
+    vndBtn.className = 'flex-1 py-1.5 txt-secondary bg-gray-100 dark:bg-gray-700 transition-colors text-[11px] font-semibold';
+    document.getElementById('calc-unit').textContent = 'KRW';
+  }
+}
+
+function calcExchange() {
+  if (!_exchangeRates) return;
+  const input = parseFloat(document.getElementById('calc-input').value);
+  const resultEl = document.getElementById('calc-result');
+  if (isNaN(input) || input < 0) { resultEl.textContent = ''; return; }
+
+  if (_calcMode === 'vnd') {
+    // VND → KRW: vnd_to_krw = 1 VND당 KRW
+    const krw = input * _exchangeRates.vnd_to_krw;
+    resultEl.textContent = `≈ ₩ ${krw.toLocaleString('ko-KR', {maximumFractionDigits: 2})}`;
+  } else {
+    // KRW → VND: 1 KRW = 1/vnd_to_krw VND
+    const vnd = input / _exchangeRates.vnd_to_krw;
+    resultEl.textContent = `≈ ${Math.round(vnd).toLocaleString('ko-KR')} VND`;
+  }
+}
+
+loadExchange();
+
+/* ── 10. 날씨 위젯 (Open-Meteo API) ── */
+async function loadWeather() {
+  const targets = [
+    { id: 'weather-hanoi', lat: 21.0285, lon: 105.8542 },
+    { id: 'weather-hcm',   lat: 10.8231, lon: 106.6297 }
+  ];
+  function getIcon(code) {
+    if (code === 0) return '☀️';
+    if (code <= 3) return '⛅';
+    if (code <= 45) return '🌫';
+    if (code <= 67) return '🌧';
+    if (code <= 77) return '❄️';
+    if (code <= 82) return '🌧';
+    if (code <= 99) return '⛈';
+    return '🌡';
+  }
+  for (const t of targets) {
+    const el = document.getElementById(t.id);
+    if (!el) continue;
+    try {
+      const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${t.lat}&longitude=${t.lon}&current_weather=true&timezone=auto`);
+      const data = await res.json();
+      const temp = Math.round(data.current_weather.temperature);
+      const icon = getIcon(data.current_weather.weathercode);
+      el.textContent = `${temp}°C ${icon}`;
+    } catch (e) { el.textContent = 'N/A'; }
+  }
+}
+loadWeather();
+
+/* ── XSS 방지 ── */
+function escHtml(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>

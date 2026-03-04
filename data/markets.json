@@ -1,0 +1,8 @@
+{
+    "markets": [
+        {"name": "WinMart Times City", "city": "Hanoi", "district": "Hai Ba Trung", "lat": 20.9953, "lng": 105.8685, "type": "supermarket", "chain": "WinMart"},
+        {"name": "WinMart Royal City", "city": "Hanoi", "district": "Thanh Xuan", "lat": 21.0023, "lng": 105.8145, "type": "supermarket", "chain": "WinMart"},
+        {"name": "Bach Hoa Xanh District 1", "city": "Ho Chi Minh", "district": "District 1", "lat": 10.7769, "lng": 106.7009, "type": "convenience", "chain": "Bach Hoa Xanh"},
+        {"name": "Big C Da Nang", "city": "Da Nang", "district": "Thanh Khe", "lat": 16.0678, "lng": 108.2208, "type": "supermarket", "chain": "Big C"}
+    ]
+}
