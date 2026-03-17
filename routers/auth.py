@@ -3,7 +3,8 @@
 
 [역할]
 직원 코드 입력 → 세션에 name/initial/role 저장 → /portal 접근 허용
-직원 코드는 data/admins.json 에서 관리
+직원 코드는 기본적으로 data/admins.json 에서 관리하되,
+파일이 없을 경우 Netlify 등의 환경에서는 환경 변수에서 단일 관리자 계정을 로드.
 
 [사용하는 엔드포인트]
 GET  /portal/login       → 로그인 페이지
@@ -12,6 +13,7 @@ GET  /portal/logout      → 세션 삭제
 """
 
 import json
+import os
 from pathlib import Path
 from fastapi import APIRouter, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
@@ -24,11 +26,26 @@ ADMINS_FILE = Path("data/admins.json")
 
 
 def load_admins() -> list[dict]:
-    """data/admins.json에서 전체 직원 목록 반환"""
-    if not ADMINS_FILE.exists():
+    """직원 목록을 파일(data/admins.json) 또는 환경 변수에서 로드"""
+    if ADMINS_FILE.exists():
+        data = json.loads(ADMINS_FILE.read_text(encoding="utf-8"))
+        return data.get("codes", [])
+
+    admin_code = os.getenv("ADMIN_USERNAME")
+    if not admin_code:
         return []
-    data = json.loads(ADMINS_FILE.read_text(encoding="utf-8"))
-    return data.get("codes", [])
+
+    admin_name = os.getenv("ADMIN_NAME", "관리자")
+    admin_initial = os.getenv("ADMIN_INITIAL", "AD")
+
+    return [
+        {
+            "code": admin_code,
+            "name": admin_name,
+            "initial": admin_initial,
+            "role": "admin",
+        }
+    ]
 
 
 def find_admin(code: str) -> dict | None:
